@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import argparse
 from collections import defaultdict
@@ -82,28 +82,30 @@ def build_prompt(
             ]
         )
     else:
-        rules_text = "无"
+        rules_text = "None"
 
     return f"""
-你是文档级关系抽取助手，请在规则约束下判断实体对关系。
+You are a document-level relation extraction assistant. Your task is to determine the relations between the given entity pair based on the local evidence text and the provided logical rules.
 
-实体对：({h_name}, {t_name})
+Entity pair: ({h_name}, {t_name})
 
-局部证据文本：
+Local evidence text:
 {local_context}
 
-可参考逻辑规则：
+Reference logical rules:
 {rules_text}
 
-候选关系集合：
+Candidate relation set:
 {relation_set}
 
-请先给出简短推理，然后只输出一个JSON对象，格式如下：
-{{"relations": ["关系ID1", "关系ID2"]}}
-如果不存在关系，输出：{{"relations": []}}
-不要输出JSON以外的额外格式。
-""".strip()
+Output only one JSON object in the following format:
+{{"relations": ["relation_id_1", "relation_id_2"]}}
 
+If no relation exists between the entity pair, output:
+{{"relations": []}}
+
+Do not output explanations, markdown, or any extra text outside the JSON object.
+""".strip()
 
 def main():
     parser = argparse.ArgumentParser(description="Build rule-constrained prompts for CR-LLM stage-3.")
