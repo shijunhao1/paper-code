@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Graph: 161</title>
+  <link rel="stylesheet" href="./vis-9.1.2/vis-network.css">
+  <script src="./vis-9.1.2/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .page {
+      padding: 16px;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #dbe2ea;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    }
+    .header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .meta {
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .legend {
+      padding: 10px 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: #4b5563;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    #mynetwork {
+      width: 100%;
+      height: 85vh;
+      min-height: 760px;
+      background: #ffffff;
+    }
+    .empty {
+      padding: 40px 18px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <div class="header">
+        <div class="title">Document Graph: 161</div>
+        <div class="meta">Nodes 7 | Edges 7</div>
+      </div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5B8FF9"></span>Subject</span><span class="legend-item"><span class="legend-dot" style="background:#61DDAA"></span>Location</span><span class="legend-item"><span class="legend-dot" style="background:#F6BD16"></span>Date</span><span class="legend-item"><span class="legend-dot" style="background:#7262FD"></span>Equipment</span><span class="legend-item"><span class="legend-dot" style="background:#F08BB4"></span>Militaryforce</span><span class="legend-item"><span class="legend-dot" style="background:#78D3F8"></span>Object</span><span class="legend-item"><span class="legend-dot" style="background:#FF9D4D"></span>Participant</span><span class="legend-item"><span class="legend-dot" style="background:#BFBFBF"></span>Unknown</span></div>
+      <div id="mynetwork"></div>
+    </div>
+  </div>
+  <script>
+    const nodesData = [{"id": "161::n0", "label": "新型电子战作战管理水面防御系统", "title": "<b>新型电子战作战管理水面防御系统</b><br>Type: ENTITY<br>Entity role: Equipment<br>Doc: 161<br>Mentions: 3<br>Sent IDs: 0|2|5<br>Mentions:<br>name=新型电子战作战管理水面防御系统, sent_id=0, pos=[5, 20], type=ENTITY<br>name=EWBM系统, sent_id=2, pos=[16, 22], type=ENTITY<br>name=EWBM, sent_id=5, pos=[5, 9], type=ENTITY", "color": "#7262FD", "shape": "dot", "size": 18}, {"id": "161::n1", "label": "美国海军", "title": "<b>美国海军</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 161<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=美国海军, sent_id=0, pos=[0, 4], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "161::n2", "label": "美国海军研究局", "title": "<b>美国海军研究局</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 161<br>Mentions: 1<br>Sent IDs: 2<br>Mentions:<br>name=美国海军研究局, sent_id=2, pos=[6, 13], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "161::n3", "label": "美国和盟军的多艘舰艇", "title": "<b>美国和盟军的多艘舰艇</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 161<br>Mentions: 1<br>Sent IDs: 4<br>Mentions:<br>name=美国和盟军的多艘舰艇, sent_id=4, pos=[15, 25], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "161::n4", "label": "美国海军", "title": "<b>美国海军</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 161<br>Mentions: 1<br>Sent IDs: 2<br>Mentions:<br>name=美国海军, sent_id=2, pos=[6, 10], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "161::n5", "label": "2014年7月", "title": "<b>2014年7月</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 161<br>Mentions: 1<br>Sent IDs: 3<br>Mentions:<br>name=2014年7月, sent_id=3, pos=[10, 17], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "161::n6", "label": "环太军演", "title": "<b>环太军演</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 161<br>Mentions: 1<br>Sent IDs: 3<br>Mentions:<br>name=环太军演, sent_id=3, pos=[20, 24], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}];
+    const edgesData = [{"from": "161::n2", "to": "161::n1", "label": "赞助", "title": "<b>赞助</b><br>Relation: Support__Object<br>Role: Object<br>Head entity: 美国海军研究局<br>Tail entity: 美国海军<br>Evidence sent IDs: 0|2<br>Evidence:<br>[0] 美国海军对新型电子战作战管理水面防御系统进行测试，并取得成功。<br>[2]      由美国海军研究局赞助，EWBM系统正在ONR的海军未来能力规划下发展。", "width": 2, "arrows": "to"}, {"from": "161::n1", "to": "161::n0", "label": "测试", "title": "<b>测试</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 美国海军<br>Tail entity: 新型电子战作战管理水面防御系统<br>Evidence sent IDs: 0|2|5<br>Evidence:<br>[0] 美国海军对新型电子战作战管理水面防御系统进行测试，并取得成功。<br>[2]      由美国海军研究局赞助，EWBM系统正在ONR的海军未来能力规划下发展。<br>[5]      EWBM被设计来帮助水兵和海军陆战队员使用比传统的语音通信更快的方式，协调电子对策，应对入境威胁。", "width": 2, "arrows": "to"}, {"from": "161::n1", "to": "161::n0", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 美国海军<br>Tail entity: 新型电子战作战管理水面防御系统<br>Evidence sent IDs: 0|2|4|5<br>Evidence:<br>[0] 美国海军对新型电子战作战管理水面防御系统进行测试，并取得成功。<br>[2]      由美国海军研究局赞助，EWBM系统正在ONR的海军未来能力规划下发展。<br>[4]      在演习中，它被部署到美国和盟军的多艘舰艇上，以便支持多个电子战任务，应对各种威胁。<br>[5]      EWBM被设计来帮助水兵和海军陆战队员使用比传统的语音通信更快的方式，协调电子对策，应对入境威胁。", "width": 2, "arrows": "to"}, {"from": "161::n1", "to": "161::n3", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 美国海军<br>Tail entity: 美国和盟军的多艘舰艇<br>Evidence sent IDs: 4<br>Evidence:<br>[4]      在演习中，它被部署到美国和盟军的多艘舰艇上，以便支持多个电子战任务，应对各种威胁。", "width": 2, "arrows": "to"}, {"from": "161::n4", "to": "161::n0", "label": "验证", "title": "<b>验证</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 美国海军<br>Tail entity: 新型电子战作战管理水面防御系统<br>Evidence sent IDs: 0|2|3|5<br>Evidence:<br>[0] 美国海军对新型电子战作战管理水面防御系统进行测试，并取得成功。<br>[2]      由美国海军研究局赞助，EWBM系统正在ONR的海军未来能力规划下发展。<br>[3]      该系统已在2014年7月举行的环太军演中通过广泛验证。<br>[5]      EWBM被设计来帮助水兵和海军陆战队员使用比传统的语音通信更快的方式，协调电子对策，应对入境威胁。", "width": 2, "arrows": "to"}, {"from": "161::n4", "to": "161::n5", "label": "验证", "title": "<b>验证</b><br>Relation: Experiment__Date<br>Role: Date<br>Head entity: 美国海军<br>Tail entity: 2014年7月<br>Evidence sent IDs: 3<br>Evidence:<br>[3]      该系统已在2014年7月举行的环太军演中通过广泛验证。", "width": 2, "arrows": "to"}, {"from": "161::n4", "to": "161::n6", "label": "验证", "title": "<b>验证</b><br>Relation: Experiment__Location<br>Role: Location<br>Head entity: 美国海军<br>Tail entity: 环太军演<br>Evidence sent IDs: 3<br>Evidence:<br>[3]      该系统已在2014年7月举行的环太军演中通过广泛验证。", "width": 2, "arrows": "to"}];
+
+    const container = document.getElementById('mynetwork');
+    if (!window.vis) {
+      container.innerHTML = '<div class="empty">vis-network assets failed to load. Please check the local vis-9.1.2 directory.</div>';
+    } else if (!nodesData.length) {
+      container.innerHTML = '<div class="empty">No graph data is available for visualization.</div>';
+    } else {
+      const nodes = new vis.DataSet(nodesData);
+      const edges = new vis.DataSet(edgesData);
+      const data = { nodes, edges };
+      const options = {
+        interaction: {
+          hover: true,
+          navigationButtons: true,
+          keyboard: true
+        },
+        layout: {
+          improvedLayout: true
+        },
+        physics: {
+          enabled: true,
+          stabilization: {
+            enabled: true,
+            iterations: 300,
+            fit: true
+          },
+          barnesHut: {
+            gravitationalConstant: -3200,
+            centralGravity: 0.2,
+            springLength: 180,
+            springConstant: 0.04,
+            damping: 0.09
+          },
+          minVelocity: 0.75
+        },
+        edges: {
+          smooth: false,
+          color: {
+            color: '#94a3b8',
+            highlight: '#2563eb'
+          },
+          font: {
+            size: 12,
+            align: 'middle',
+            strokeWidth: 0,
+            background: 'rgba(255,255,255,0.75)'
+          }
+        },
+        nodes: {
+          borderWidth: 1,
+          borderWidthSelected: 2,
+          font: {
+            size: 16,
+            color: '#111827'
+          }
+        }
+      };
+
+      const network = new vis.Network(container, data, options);
+      network.once('stabilizationIterationsDone', function() {
+        network.fit({
+          animation: {
+            duration: 500,
+            easingFunction: 'easeInOutQuad'
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

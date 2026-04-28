@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Graph: 104</title>
+  <link rel="stylesheet" href="./vis-9.1.2/vis-network.css">
+  <script src="./vis-9.1.2/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .page {
+      padding: 16px;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #dbe2ea;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    }
+    .header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .meta {
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .legend {
+      padding: 10px 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: #4b5563;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    #mynetwork {
+      width: 100%;
+      height: 85vh;
+      min-height: 760px;
+      background: #ffffff;
+    }
+    .empty {
+      padding: 40px 18px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <div class="header">
+        <div class="title">Document Graph: 104</div>
+        <div class="meta">Nodes 12 | Edges 13</div>
+      </div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5B8FF9"></span>Subject</span><span class="legend-item"><span class="legend-dot" style="background:#61DDAA"></span>Location</span><span class="legend-item"><span class="legend-dot" style="background:#F6BD16"></span>Date</span><span class="legend-item"><span class="legend-dot" style="background:#7262FD"></span>Equipment</span><span class="legend-item"><span class="legend-dot" style="background:#F08BB4"></span>Militaryforce</span><span class="legend-item"><span class="legend-dot" style="background:#78D3F8"></span>Object</span><span class="legend-item"><span class="legend-dot" style="background:#FF9D4D"></span>Participant</span><span class="legend-item"><span class="legend-dot" style="background:#BFBFBF"></span>Unknown</span></div>
+      <div id="mynetwork"></div>
+    </div>
+  </div>
+  <script>
+    const nodesData = [{"id": "104::n0", "label": "阿富汗", "title": "<b>阿富汗</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 104<br>Mentions: 5<br>Sent IDs: 0|1|3<br>Mentions:<br>name=阿富汗, sent_id=0, pos=[5, 8], type=ENTITY<br>name=阿富汗, sent_id=0, pos=[54, 57], type=ENTITY<br>name=阿富汗, sent_id=1, pos=[45, 48], type=ENTITY<br>name=阿富汗, sent_id=1, pos=[91, 94], type=ENTITY<br>name=阿富汗, sent_id=3, pos=[9, 12], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "104::n1", "label": "XM25半自动榴弹发射器样枪", "title": "<b>XM25半自动榴弹发射器样枪</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 104<br>Mentions: 8<br>Sent IDs: 0|1|2|3|4|6<br>Mentions:<br>name=XM25式25毫米半自动榴弹发射器, sent_id=0, pos=[17, 34], type=ENTITY<br>name=XM25榴弹发射器样枪, sent_id=0, pos=[58, 69], type=ENTITY<br>name=XM25半自动榴弹发射器样枪, sent_id=1, pos=[23, 37], type=ENTITY<br>name=XM25榴弹发射器, sent_id=1, pos=[62, 71], type=ENTITY<br>name=XM25半自动榴弹发射器, sent_id=2, pos=[30, 42], type=ENTITY<br>name=XM25半自动榴弹发射器样枪, sent_id=3, pos=[18, 32], type=ENTITY<br>name=XM25榴弹发射器, sent_id=4, pos=[7, 16], type=ENTITY<br>name=XM25半自动榴弹发射器, sent_id=6, pos=[3, 15], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "104::n2", "label": "美国陆军", "title": "<b>美国陆军</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 104<br>Mentions: 5<br>Sent IDs: 0|1|3|4|5<br>Mentions:<br>name=美国陆军, sent_id=0, pos=[42, 46], type=ENTITY<br>name=美国陆军, sent_id=1, pos=[15, 19], type=ENTITY<br>name=陆军, sent_id=3, pos=[6, 8], type=ENTITY<br>name=陆军, sent_id=4, pos=[0, 2], type=ENTITY<br>name=美国陆军, sent_id=5, pos=[16, 20], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "104::n3", "label": "一名", "title": "<b>一名</b><br>Type: ENTITY<br>Entity role: Quantity<br>Doc: 104<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=一名, sent_id=0, pos=[2, 4], type=ENTITY", "color": "#BFBFBF", "shape": "dot", "size": 18}, {"id": "104::n4", "label": "驻阿富汗美国士兵", "title": "<b>驻阿富汗美国士兵</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 104<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=驻阿富汗美国士兵, sent_id=0, pos=[4, 12], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "104::n5", "label": "2013年1月", "title": "<b>2013年1月</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 104<br>Mentions: 1<br>Sent IDs: 1<br>Mentions:<br>name=2013年1月, sent_id=1, pos=[7, 14], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "104::n6", "label": "空爆弹", "title": "<b>空爆弹</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 104<br>Mentions: 1<br>Sent IDs: 1<br>Mentions:<br>name=空爆弹, sent_id=1, pos=[39, 42], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "104::n7", "label": "2010年11月～2012年4月", "title": "<b>2010年11月～2012年4月</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 104<br>Mentions: 1<br>Sent IDs: 1<br>Mentions:<br>name=2010年11月～2012年4月, sent_id=1, pos=[72, 88], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "104::n8", "label": "美国陆军", "title": "<b>美国陆军</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 104<br>Mentions: 1<br>Sent IDs: 2<br>Mentions:<br>name=美国陆军, sent_id=2, pos=[0, 4], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "104::n9", "label": "2013年2月", "title": "<b>2013年2月</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 104<br>Mentions: 1<br>Sent IDs: 2<br>Mentions:<br>name=2013年2月, sent_id=2, pos=[10, 17], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "104::n10", "label": "士兵确实受伤", "title": "<b>士兵确实受伤</b><br>Type: ENTITY<br>Entity role: Result<br>Doc: 104<br>Mentions: 1<br>Sent IDs: 2<br>Mentions:<br>name=士兵确实受伤, sent_id=2, pos=[93, 99], type=ENTITY", "color": "#BFBFBF", "shape": "dot", "size": 18}, {"id": "104::n11", "label": "该枪无法使用", "title": "<b>该枪无法使用</b><br>Type: ENTITY<br>Entity role: Result<br>Doc: 104<br>Mentions: 1<br>Sent IDs: 2<br>Mentions:<br>name=该枪无法使用, sent_id=2, pos=[101, 107], type=ENTITY", "color": "#BFBFBF", "shape": "dot", "size": 18}];
+    const edgesData = [{"from": "104::n4", "to": "104::n3", "label": "受伤", "title": "<b>受伤</b><br>Relation: Injure__Quantity<br>Role: Quantity<br>Head entity: 驻阿富汗美国士兵<br>Tail entity: 一名<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 鉴于一名驻阿富汗美国士兵在训练中因XM25式25毫米半自动榴弹发射器出现故障而受伤，美国陆军已经撤回其投放到阿富汗的XM25榴弹发射器样枪及其配用的空爆弹。", "width": 2, "arrows": "to"}, {"from": "104::n2", "to": "104::n5", "label": "投放", "title": "<b>投放</b><br>Relation: Deploy__Date<br>Role: Date<br>Head entity: 美国陆军<br>Tail entity: 2013年1月<br>Evidence sent IDs: 1<br>Evidence:<br>[1]        2013年1月，美国陆军将第二批XM25半自动榴弹发射器样枪及其空爆弹投放到阿富汗进行前方作战评估，第一批5具XM25榴弹发射器自2010年11月～2012年4月部署至阿富汗。", "width": 2, "arrows": "to"}, {"from": "104::n2", "to": "104::n1", "label": "投放", "title": "<b>投放</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 美国陆军<br>Tail entity: XM25半自动榴弹发射器样枪<br>Evidence sent IDs: 0|1|2|3|4|6<br>Evidence:<br>[0] 鉴于一名驻阿富汗美国士兵在训练中因XM25式25毫米半自动榴弹发射器出现故障而受伤，美国陆军已经撤回其投放到阿富汗的XM25榴弹发射器样枪及其配用的空爆弹。<br>[1]        2013年1月，美国陆军将第二批XM25半自动榴弹发射器样枪及其空爆弹投放到阿富汗进行前方作战评估，第一批5具XM25榴弹发射器自2010年11月～2012年4月部署至阿富汗。<br>[2] 美国陆军发言人称，在2013年2月进行的实弹射击试验中，一具XM25半自动榴弹发射器因供弹过程出现故障而导致底火过早地为25毫米空爆榴弹点火，尽管手工制成的空爆弹的空爆战斗部没有起爆，但士兵确实受伤，且该枪无法使用，训练立即停止。<br>[3] 事故发生后，陆军从阿富汗撤回了所有的XM25半自动榴弹发射器样枪及其弹药，以便调查事故根源和总结改进方案。<br>[4] 陆军已经终止了XM25榴弹发射器的野外试验，旨在进一步制定改进方案，确保武器安全。<br>[6] 同时，XM25半自动榴弹发射器的工程与制造研发阶段工作继续开展，以便进一步完善和改进武器设计。", "width": 2, "arrows": "to"}, {"from": "104::n2", "to": "104::n6", "label": "投放", "title": "<b>投放</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 美国陆军<br>Tail entity: 空爆弹<br>Evidence sent IDs: 1<br>Evidence:<br>[1]        2013年1月，美国陆军将第二批XM25半自动榴弹发射器样枪及其空爆弹投放到阿富汗进行前方作战评估，第一批5具XM25榴弹发射器自2010年11月～2012年4月部署至阿富汗。", "width": 2, "arrows": "to"}, {"from": "104::n2", "to": "104::n0", "label": "投放", "title": "<b>投放</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 美国陆军<br>Tail entity: 阿富汗<br>Evidence sent IDs: 0|1|3<br>Evidence:<br>[0] 鉴于一名驻阿富汗美国士兵在训练中因XM25式25毫米半自动榴弹发射器出现故障而受伤，美国陆军已经撤回其投放到阿富汗的XM25榴弹发射器样枪及其配用的空爆弹。<br>[1]        2013年1月，美国陆军将第二批XM25半自动榴弹发射器样枪及其空爆弹投放到阿富汗进行前方作战评估，第一批5具XM25榴弹发射器自2010年11月～2012年4月部署至阿富汗。<br>[3] 事故发生后，陆军从阿富汗撤回了所有的XM25半自动榴弹发射器样枪及其弹药，以便调查事故根源和总结改进方案。", "width": 2, "arrows": "to"}, {"from": "104::n2", "to": "104::n1", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 美国陆军<br>Tail entity: XM25半自动榴弹发射器样枪<br>Evidence sent IDs: 0|1|2|3|4|6<br>Evidence:<br>[0] 鉴于一名驻阿富汗美国士兵在训练中因XM25式25毫米半自动榴弹发射器出现故障而受伤，美国陆军已经撤回其投放到阿富汗的XM25榴弹发射器样枪及其配用的空爆弹。<br>[1]        2013年1月，美国陆军将第二批XM25半自动榴弹发射器样枪及其空爆弹投放到阿富汗进行前方作战评估，第一批5具XM25榴弹发射器自2010年11月～2012年4月部署至阿富汗。<br>[2] 美国陆军发言人称，在2013年2月进行的实弹射击试验中，一具XM25半自动榴弹发射器因供弹过程出现故障而导致底火过早地为25毫米空爆榴弹点火，尽管手工制成的空爆弹的空爆战斗部没有起爆，但士兵确实受伤，且该枪无法使用，训练立即停止。<br>[3] 事故发生后，陆军从阿富汗撤回了所有的XM25半自动榴弹发射器样枪及其弹药，以便调查事故根源和总结改进方案。<br>[4] 陆军已经终止了XM25榴弹发射器的野外试验，旨在进一步制定改进方案，确保武器安全。<br>[6] 同时，XM25半自动榴弹发射器的工程与制造研发阶段工作继续开展，以便进一步完善和改进武器设计。", "width": 2, "arrows": "to"}, {"from": "104::n2", "to": "104::n7", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Date<br>Role: Date<br>Head entity: 美国陆军<br>Tail entity: 2010年11月～2012年4月<br>Evidence sent IDs: 1<br>Evidence:<br>[1]        2013年1月，美国陆军将第二批XM25半自动榴弹发射器样枪及其空爆弹投放到阿富汗进行前方作战评估，第一批5具XM25榴弹发射器自2010年11月～2012年4月部署至阿富汗。", "width": 2, "arrows": "to"}, {"from": "104::n2", "to": "104::n0", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 美国陆军<br>Tail entity: 阿富汗<br>Evidence sent IDs: 0|1|3<br>Evidence:<br>[0] 鉴于一名驻阿富汗美国士兵在训练中因XM25式25毫米半自动榴弹发射器出现故障而受伤，美国陆军已经撤回其投放到阿富汗的XM25榴弹发射器样枪及其配用的空爆弹。<br>[1]        2013年1月，美国陆军将第二批XM25半自动榴弹发射器样枪及其空爆弹投放到阿富汗进行前方作战评估，第一批5具XM25榴弹发射器自2010年11月～2012年4月部署至阿富汗。<br>[3] 事故发生后，陆军从阿富汗撤回了所有的XM25半自动榴弹发射器样枪及其弹药，以便调查事故根源和总结改进方案。", "width": 2, "arrows": "to"}, {"from": "104::n8", "to": "104::n9", "label": "试验", "title": "<b>试验</b><br>Relation: Experiment__Date<br>Role: Date<br>Head entity: 美国陆军<br>Tail entity: 2013年2月<br>Evidence sent IDs: 2<br>Evidence:<br>[2] 美国陆军发言人称，在2013年2月进行的实弹射击试验中，一具XM25半自动榴弹发射器因供弹过程出现故障而导致底火过早地为25毫米空爆榴弹点火，尽管手工制成的空爆弹的空爆战斗部没有起爆，但士兵确实受伤，且该枪无法使用，训练立即停止。", "width": 2, "arrows": "to"}, {"from": "104::n8", "to": "104::n1", "label": "试验", "title": "<b>试验</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 美国陆军<br>Tail entity: XM25半自动榴弹发射器样枪<br>Evidence sent IDs: 0|1|2|3|4|6<br>Evidence:<br>[0] 鉴于一名驻阿富汗美国士兵在训练中因XM25式25毫米半自动榴弹发射器出现故障而受伤，美国陆军已经撤回其投放到阿富汗的XM25榴弹发射器样枪及其配用的空爆弹。<br>[1]        2013年1月，美国陆军将第二批XM25半自动榴弹发射器样枪及其空爆弹投放到阿富汗进行前方作战评估，第一批5具XM25榴弹发射器自2010年11月～2012年4月部署至阿富汗。<br>[2] 美国陆军发言人称，在2013年2月进行的实弹射击试验中，一具XM25半自动榴弹发射器因供弹过程出现故障而导致底火过早地为25毫米空爆榴弹点火，尽管手工制成的空爆弹的空爆战斗部没有起爆，但士兵确实受伤，且该枪无法使用，训练立即停止。<br>[3] 事故发生后，陆军从阿富汗撤回了所有的XM25半自动榴弹发射器样枪及其弹药，以便调查事故根源和总结改进方案。<br>[4] 陆军已经终止了XM25榴弹发射器的野外试验，旨在进一步制定改进方案，确保武器安全。<br>[6] 同时，XM25半自动榴弹发射器的工程与制造研发阶段工作继续开展，以便进一步完善和改进武器设计。", "width": 2, "arrows": "to"}, {"from": "104::n1", "to": "104::n9", "label": "点火", "title": "<b>点火</b><br>Relation: Accident__Date<br>Role: Date<br>Head entity: XM25半自动榴弹发射器样枪<br>Tail entity: 2013年2月<br>Evidence sent IDs: 2<br>Evidence:<br>[2] 美国陆军发言人称，在2013年2月进行的实弹射击试验中，一具XM25半自动榴弹发射器因供弹过程出现故障而导致底火过早地为25毫米空爆榴弹点火，尽管手工制成的空爆弹的空爆战斗部没有起爆，但士兵确实受伤，且该枪无法使用，训练立即停止。", "width": 2, "arrows": "to"}, {"from": "104::n1", "to": "104::n10", "label": "点火", "title": "<b>点火</b><br>Relation: Accident__Result<br>Role: Result<br>Head entity: XM25半自动榴弹发射器样枪<br>Tail entity: 士兵确实受伤<br>Evidence sent IDs: 2<br>Evidence:<br>[2] 美国陆军发言人称，在2013年2月进行的实弹射击试验中，一具XM25半自动榴弹发射器因供弹过程出现故障而导致底火过早地为25毫米空爆榴弹点火，尽管手工制成的空爆弹的空爆战斗部没有起爆，但士兵确实受伤，且该枪无法使用，训练立即停止。", "width": 2, "arrows": "to"}, {"from": "104::n1", "to": "104::n11", "label": "点火", "title": "<b>点火</b><br>Relation: Accident__Result<br>Role: Result<br>Head entity: XM25半自动榴弹发射器样枪<br>Tail entity: 该枪无法使用<br>Evidence sent IDs: 2<br>Evidence:<br>[2] 美国陆军发言人称，在2013年2月进行的实弹射击试验中，一具XM25半自动榴弹发射器因供弹过程出现故障而导致底火过早地为25毫米空爆榴弹点火，尽管手工制成的空爆弹的空爆战斗部没有起爆，但士兵确实受伤，且该枪无法使用，训练立即停止。", "width": 2, "arrows": "to"}];
+
+    const container = document.getElementById('mynetwork');
+    if (!window.vis) {
+      container.innerHTML = '<div class="empty">vis-network assets failed to load. Please check the local vis-9.1.2 directory.</div>';
+    } else if (!nodesData.length) {
+      container.innerHTML = '<div class="empty">No graph data is available for visualization.</div>';
+    } else {
+      const nodes = new vis.DataSet(nodesData);
+      const edges = new vis.DataSet(edgesData);
+      const data = { nodes, edges };
+      const options = {
+        interaction: {
+          hover: true,
+          navigationButtons: true,
+          keyboard: true
+        },
+        layout: {
+          improvedLayout: true
+        },
+        physics: {
+          enabled: true,
+          stabilization: {
+            enabled: true,
+            iterations: 300,
+            fit: true
+          },
+          barnesHut: {
+            gravitationalConstant: -3200,
+            centralGravity: 0.2,
+            springLength: 180,
+            springConstant: 0.04,
+            damping: 0.09
+          },
+          minVelocity: 0.75
+        },
+        edges: {
+          smooth: false,
+          color: {
+            color: '#94a3b8',
+            highlight: '#2563eb'
+          },
+          font: {
+            size: 12,
+            align: 'middle',
+            strokeWidth: 0,
+            background: 'rgba(255,255,255,0.75)'
+          }
+        },
+        nodes: {
+          borderWidth: 1,
+          borderWidthSelected: 2,
+          font: {
+            size: 16,
+            color: '#111827'
+          }
+        }
+      };
+
+      const network = new vis.Network(container, data, options);
+      network.once('stabilizationIterationsDone', function() {
+        network.fit({
+          animation: {
+            duration: 500,
+            easingFunction: 'easeInOutQuad'
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

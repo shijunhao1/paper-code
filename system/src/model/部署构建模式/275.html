@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Graph: 275</title>
+  <link rel="stylesheet" href="./vis-9.1.2/vis-network.css">
+  <script src="./vis-9.1.2/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .page {
+      padding: 16px;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #dbe2ea;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    }
+    .header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .meta {
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .legend {
+      padding: 10px 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: #4b5563;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    #mynetwork {
+      width: 100%;
+      height: 85vh;
+      min-height: 760px;
+      background: #ffffff;
+    }
+    .empty {
+      padding: 40px 18px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <div class="header">
+        <div class="title">Document Graph: 275</div>
+        <div class="meta">Nodes 3 | Edges 2</div>
+      </div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5B8FF9"></span>Subject</span><span class="legend-item"><span class="legend-dot" style="background:#61DDAA"></span>Location</span><span class="legend-item"><span class="legend-dot" style="background:#F6BD16"></span>Date</span><span class="legend-item"><span class="legend-dot" style="background:#7262FD"></span>Equipment</span><span class="legend-item"><span class="legend-dot" style="background:#F08BB4"></span>Militaryforce</span><span class="legend-item"><span class="legend-dot" style="background:#78D3F8"></span>Object</span><span class="legend-item"><span class="legend-dot" style="background:#FF9D4D"></span>Participant</span><span class="legend-item"><span class="legend-dot" style="background:#BFBFBF"></span>Unknown</span></div>
+      <div id="mynetwork"></div>
+    </div>
+  </div>
+  <script>
+    const nodesData = [{"id": "275::n0", "label": "BPz3装甲抢修车", "title": "<b>BPz3装甲抢修车</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 275<br>Mentions: 5<br>Sent IDs: 0|1|2|3|4<br>Mentions:<br>name=BPz3装甲抢修车, sent_id=0, pos=[56, 65], type=ENTITY<br>name=BPz3车辆, sent_id=1, pos=[29, 35], type=ENTITY<br>name=BPz3装甲抢修车改装版, sent_id=2, pos=[0, 12], type=ENTITY<br>name=BPz3装甲抢修车, sent_id=3, pos=[9, 18], type=ENTITY<br>name=BPz3装甲抢修车, sent_id=4, pos=[19, 28], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "275::n1", "label": "加拿大军队", "title": "<b>加拿大军队</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 275<br>Mentions: 1<br>Sent IDs: 4<br>Mentions:<br>name=加拿大军队, sent_id=4, pos=[3, 8], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "275::n2", "label": "阿富汗", "title": "<b>阿富汗</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 275<br>Mentions: 1<br>Sent IDs: 4<br>Mentions:<br>name=阿富汗, sent_id=4, pos=[9, 12], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}];
+    const edgesData = [{"from": "275::n1", "to": "275::n2", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 加拿大军队<br>Tail entity: 阿富汗<br>Evidence sent IDs: 4<br>Evidence:<br>[4] 此前，加拿大军队在阿富汗部署的另外2辆BPz3装甲抢修车已经进行了同样的改装。", "width": 2, "arrows": "to"}, {"from": "275::n1", "to": "275::n0", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 加拿大军队<br>Tail entity: BPz3装甲抢修车<br>Evidence sent IDs: 0|1|2|3|4<br>Evidence:<br>[0] 为了应对不断变化的作战要求，莱茵金属公司已与联邦德国装备、信息技术与服务支持办公室签署合同，将对德国联邦国防军的BPz3装甲抢修车进行现代化改造，合同价值约3000万欧元。<br>[1]      2019~2024年，莱茵金属公司将为69辆德国BPz3车辆生产并集成战场抢修设备和通用运输平台，合同还包括配件和文件。<br>[2] BPz3装甲抢修车改装版的战场抢修设备将从车辆前部改装到后部，车辆后部将配备通用运输平台，可携带用于回收其他车辆的附加设备。<br>[3]      已有4辆BPz3装甲抢修车配备战场抢修设备和通用运输平台装备，用于执行阿富汗国际安全援助部队任务。<br>[4] 此前，加拿大军队在阿富汗部署的另外2辆BPz3装甲抢修车已经进行了同样的改装。", "width": 2, "arrows": "to"}];
+
+    const container = document.getElementById('mynetwork');
+    if (!window.vis) {
+      container.innerHTML = '<div class="empty">vis-network assets failed to load. Please check the local vis-9.1.2 directory.</div>';
+    } else if (!nodesData.length) {
+      container.innerHTML = '<div class="empty">No graph data is available for visualization.</div>';
+    } else {
+      const nodes = new vis.DataSet(nodesData);
+      const edges = new vis.DataSet(edgesData);
+      const data = { nodes, edges };
+      const options = {
+        interaction: {
+          hover: true,
+          navigationButtons: true,
+          keyboard: true
+        },
+        layout: {
+          improvedLayout: true
+        },
+        physics: {
+          enabled: true,
+          stabilization: {
+            enabled: true,
+            iterations: 300,
+            fit: true
+          },
+          barnesHut: {
+            gravitationalConstant: -3200,
+            centralGravity: 0.2,
+            springLength: 180,
+            springConstant: 0.04,
+            damping: 0.09
+          },
+          minVelocity: 0.75
+        },
+        edges: {
+          smooth: false,
+          color: {
+            color: '#94a3b8',
+            highlight: '#2563eb'
+          },
+          font: {
+            size: 12,
+            align: 'middle',
+            strokeWidth: 0,
+            background: 'rgba(255,255,255,0.75)'
+          }
+        },
+        nodes: {
+          borderWidth: 1,
+          borderWidthSelected: 2,
+          font: {
+            size: 16,
+            color: '#111827'
+          }
+        }
+      };
+
+      const network = new vis.Network(container, data, options);
+      network.once('stabilizationIterationsDone', function() {
+        network.fit({
+          animation: {
+            duration: 500,
+            easingFunction: 'easeInOutQuad'
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

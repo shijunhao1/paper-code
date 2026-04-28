@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Graph: 1622</title>
+  <link rel="stylesheet" href="./vis-9.1.2/vis-network.css">
+  <script src="./vis-9.1.2/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .page {
+      padding: 16px;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #dbe2ea;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    }
+    .header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .meta {
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .legend {
+      padding: 10px 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: #4b5563;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    #mynetwork {
+      width: 100%;
+      height: 85vh;
+      min-height: 760px;
+      background: #ffffff;
+    }
+    .empty {
+      padding: 40px 18px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <div class="header">
+        <div class="title">Document Graph: 1622</div>
+        <div class="meta">Nodes 12 | Edges 12</div>
+      </div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5B8FF9"></span>Subject</span><span class="legend-item"><span class="legend-dot" style="background:#61DDAA"></span>Location</span><span class="legend-item"><span class="legend-dot" style="background:#F6BD16"></span>Date</span><span class="legend-item"><span class="legend-dot" style="background:#7262FD"></span>Equipment</span><span class="legend-item"><span class="legend-dot" style="background:#F08BB4"></span>Militaryforce</span><span class="legend-item"><span class="legend-dot" style="background:#78D3F8"></span>Object</span><span class="legend-item"><span class="legend-dot" style="background:#FF9D4D"></span>Participant</span><span class="legend-item"><span class="legend-dot" style="background:#BFBFBF"></span>Unknown</span></div>
+      <div id="mynetwork"></div>
+    </div>
+  </div>
+  <script>
+    const nodesData = [{"id": "1622::n0", "label": "磐石号战斗支援舰", "title": "<b>磐石号战斗支援舰</b><br>Type: ENTITY<br>Entity role: Materials<br>Doc: 1622<br>Mentions: 2<br>Sent IDs: 0|1<br>Mentions:<br>name=磐石号战斗支援舰, sent_id=0, pos=[22, 30], type=ENTITY<br>name=磐石级号, sent_id=1, pos=[7, 11], type=ENTITY", "color": "#BFBFBF", "shape": "dot", "size": 18}, {"id": "1622::n1", "label": "海军", "title": "<b>海军</b><br>Type: ENTITY<br>Entity role: Object<br>Doc: 1622<br>Mentions: 2<br>Sent IDs: 3|4<br>Mentions:<br>name=海军, sent_id=3, pos=[0, 2], type=ENTITY<br>name=台湾海军, sent_id=4, pos=[59, 63], type=ENTITY", "color": "#78D3F8", "shape": "dot", "size": 18}, {"id": "1622::n2", "label": "武夷号补给舰", "title": "<b>武夷号补给舰</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 1622<br>Mentions: 2<br>Sent IDs: 4|6<br>Mentions:<br>name=武夷号补给舰, sent_id=4, pos=[68, 74], type=ENTITY<br>name=武夷号补给舰, sent_id=6, pos=[0, 6], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "1622::n3", "label": "2015年1月23日", "title": "<b>2015年1月23日</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 1622<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=2015年1月23日, sent_id=0, pos=[0, 10], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "1622::n4", "label": "台湾国际造船股份有限公司", "title": "<b>台湾国际造船股份有限公司</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 1622<br>Mentions: 1<br>Sent IDs: 1<br>Mentions:<br>name=台湾国际造船股份有限公司, sent_id=1, pos=[12, 24], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "1622::n5", "label": "2013年", "title": "<b>2013年</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 1622<br>Mentions: 1<br>Sent IDs: 1<br>Mentions:<br>name=2013年, sent_id=1, pos=[47, 52], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "1622::n6", "label": "76毫米奥托・梅拉腊舰炮", "title": "<b>76毫米奥托・梅拉腊舰炮</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 1622<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=76毫米奥托・梅拉腊舰炮, sent_id=5, pos=[14, 26], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "1622::n7", "label": "密集阵近防武器", "title": "<b>密集阵近防武器</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 1622<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=密集阵近防武器, sent_id=5, pos=[34, 41], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "1622::n8", "label": "莱茵金属公司35毫米舰炮", "title": "<b>莱茵金属公司35毫米舰炮</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 1622<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=莱茵金属公司35毫米舰炮, sent_id=5, pos=[44, 56], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "1622::n9", "label": "30毫米机炮", "title": "<b>30毫米机炮</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 1622<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=30毫米机炮, sent_id=5, pos=[59, 65], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "1622::n10", "label": "博福斯40毫米/70倍径防空加农炮", "title": "<b>博福斯40毫米/70倍径防空加农炮</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 1622<br>Mentions: 1<br>Sent IDs: 6<br>Mentions:<br>name=博福斯40毫米/70倍径防空加农炮, sent_id=6, pos=[8, 25], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "1622::n11", "label": "T-75型20毫米舰炮", "title": "<b>T-75型20毫米舰炮</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 1622<br>Mentions: 1<br>Sent IDs: 6<br>Mentions:<br>name=T-75型20毫米舰炮, sent_id=6, pos=[29, 40], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}];
+    const edgesData = [{"from": "1622::n4", "to": "1622::n3", "label": "交付", "title": "<b>交付</b><br>Relation: Support__Date<br>Role: Date<br>Head entity: 台湾国际造船股份有限公司<br>Tail entity: 2015年1月23日<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 2015年1月23日，排水量20000吨级的磐石号战斗支援舰交付。", "width": 2, "arrows": "to"}, {"from": "1622::n4", "to": "1622::n0", "label": "交付", "title": "<b>交付</b><br>Relation: Support__Materials<br>Role: Materials<br>Head entity: 台湾国际造船股份有限公司<br>Tail entity: 磐石号战斗支援舰<br>Evidence sent IDs: 0|1<br>Evidence:<br>[0] 2015年1月23日，排水量20000吨级的磐石号战斗支援舰交付。<br>[1]        磐石级号由台湾国际造船股份有限公司建造，耗资1.3亿美元，于2011年开始建造，2013年下水。", "width": 2, "arrows": "to"}, {"from": "1622::n4", "to": "1622::n1", "label": "交付", "title": "<b>交付</b><br>Relation: Support__Object<br>Role: Object<br>Head entity: 台湾国际造船股份有限公司<br>Tail entity: 海军<br>Evidence sent IDs: 0|3|4<br>Evidence:<br>[0] 2015年1月23日，排水量20000吨级的磐石号战斗支援舰交付。<br>[3] 海军表示将于本月开始人员训练，舰艇将于3月份进入服役状态。<br>[4]        磐石级长196米，宽25.2米，满载排水量20000吨，舰员165人，续航力8000海里，在该舰服役前，台湾海军仅拥有一艘武夷号补给舰，该舰1990年服役。", "width": 2, "arrows": "to"}, {"from": "1622::n4", "to": "1622::n0", "label": "下水", "title": "<b>下水</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 台湾国际造船股份有限公司<br>Tail entity: 磐石号战斗支援舰<br>Evidence sent IDs: 0|1<br>Evidence:<br>[0] 2015年1月23日，排水量20000吨级的磐石号战斗支援舰交付。<br>[1]        磐石级号由台湾国际造船股份有限公司建造，耗资1.3亿美元，于2011年开始建造，2013年下水。", "width": 2, "arrows": "to"}, {"from": "1622::n4", "to": "1622::n5", "label": "下水", "title": "<b>下水</b><br>Relation: Experiment__Date<br>Role: Date<br>Head entity: 台湾国际造船股份有限公司<br>Tail entity: 2013年<br>Evidence sent IDs: 1<br>Evidence:<br>[1]        磐石级号由台湾国际造船股份有限公司建造，耗资1.3亿美元，于2011年开始建造，2013年下水。", "width": 2, "arrows": "to"}, {"from": "1622::n1", "to": "1622::n2", "label": "装备", "title": "<b>装备</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 海军<br>Tail entity: 武夷号补给舰<br>Evidence sent IDs: 4|5|6<br>Evidence:<br>[4]        磐石级长196米，宽25.2米，满载排水量20000吨，舰员165人，续航力8000海里，在该舰服役前，台湾海军仅拥有一艘武夷号补给舰，该舰1990年服役。<br>[5]        该舰将装备1门76毫米奥托・梅拉腊舰炮，2门雷声公司的密集阵近防武器，2门莱茵金属公司35毫米舰炮和2门30毫米机炮。<br>[6] 武夷号补给舰装备博福斯40毫米/70倍径防空加农炮和2 部T-75型20毫米舰炮。", "width": 2, "arrows": "to"}, {"from": "1622::n1", "to": "1622::n6", "label": "装备", "title": "<b>装备</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 海军<br>Tail entity: 76毫米奥托・梅拉腊舰炮<br>Evidence sent IDs: 5<br>Evidence:<br>[5]        该舰将装备1门76毫米奥托・梅拉腊舰炮，2门雷声公司的密集阵近防武器，2门莱茵金属公司35毫米舰炮和2门30毫米机炮。", "width": 2, "arrows": "to"}, {"from": "1622::n1", "to": "1622::n7", "label": "装备", "title": "<b>装备</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 海军<br>Tail entity: 密集阵近防武器<br>Evidence sent IDs: 5<br>Evidence:<br>[5]        该舰将装备1门76毫米奥托・梅拉腊舰炮，2门雷声公司的密集阵近防武器，2门莱茵金属公司35毫米舰炮和2门30毫米机炮。", "width": 2, "arrows": "to"}, {"from": "1622::n1", "to": "1622::n8", "label": "装备", "title": "<b>装备</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 海军<br>Tail entity: 莱茵金属公司35毫米舰炮<br>Evidence sent IDs: 5<br>Evidence:<br>[5]        该舰将装备1门76毫米奥托・梅拉腊舰炮，2门雷声公司的密集阵近防武器，2门莱茵金属公司35毫米舰炮和2门30毫米机炮。", "width": 2, "arrows": "to"}, {"from": "1622::n1", "to": "1622::n9", "label": "装备", "title": "<b>装备</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 海军<br>Tail entity: 30毫米机炮<br>Evidence sent IDs: 5<br>Evidence:<br>[5]        该舰将装备1门76毫米奥托・梅拉腊舰炮，2门雷声公司的密集阵近防武器，2门莱茵金属公司35毫米舰炮和2门30毫米机炮。", "width": 2, "arrows": "to"}, {"from": "1622::n1", "to": "1622::n10", "label": "装备", "title": "<b>装备</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 海军<br>Tail entity: 博福斯40毫米/70倍径防空加农炮<br>Evidence sent IDs: 5|6<br>Evidence:<br>[5]        该舰将装备1门76毫米奥托・梅拉腊舰炮，2门雷声公司的密集阵近防武器，2门莱茵金属公司35毫米舰炮和2门30毫米机炮。<br>[6] 武夷号补给舰装备博福斯40毫米/70倍径防空加农炮和2 部T-75型20毫米舰炮。", "width": 2, "arrows": "to"}, {"from": "1622::n1", "to": "1622::n11", "label": "装备", "title": "<b>装备</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 海军<br>Tail entity: T-75型20毫米舰炮<br>Evidence sent IDs: 5|6<br>Evidence:<br>[5]        该舰将装备1门76毫米奥托・梅拉腊舰炮，2门雷声公司的密集阵近防武器，2门莱茵金属公司35毫米舰炮和2门30毫米机炮。<br>[6] 武夷号补给舰装备博福斯40毫米/70倍径防空加农炮和2 部T-75型20毫米舰炮。", "width": 2, "arrows": "to"}];
+
+    const container = document.getElementById('mynetwork');
+    if (!window.vis) {
+      container.innerHTML = '<div class="empty">vis-network assets failed to load. Please check the local vis-9.1.2 directory.</div>';
+    } else if (!nodesData.length) {
+      container.innerHTML = '<div class="empty">No graph data is available for visualization.</div>';
+    } else {
+      const nodes = new vis.DataSet(nodesData);
+      const edges = new vis.DataSet(edgesData);
+      const data = { nodes, edges };
+      const options = {
+        interaction: {
+          hover: true,
+          navigationButtons: true,
+          keyboard: true
+        },
+        layout: {
+          improvedLayout: true
+        },
+        physics: {
+          enabled: true,
+          stabilization: {
+            enabled: true,
+            iterations: 300,
+            fit: true
+          },
+          barnesHut: {
+            gravitationalConstant: -3200,
+            centralGravity: 0.2,
+            springLength: 180,
+            springConstant: 0.04,
+            damping: 0.09
+          },
+          minVelocity: 0.75
+        },
+        edges: {
+          smooth: false,
+          color: {
+            color: '#94a3b8',
+            highlight: '#2563eb'
+          },
+          font: {
+            size: 12,
+            align: 'middle',
+            strokeWidth: 0,
+            background: 'rgba(255,255,255,0.75)'
+          }
+        },
+        nodes: {
+          borderWidth: 1,
+          borderWidthSelected: 2,
+          font: {
+            size: 16,
+            color: '#111827'
+          }
+        }
+      };
+
+      const network = new vis.Network(container, data, options);
+      network.once('stabilizationIterationsDone', function() {
+        network.fit({
+          animation: {
+            duration: 500,
+            easingFunction: 'easeInOutQuad'
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

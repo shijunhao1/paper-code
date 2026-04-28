@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Graph: 41</title>
+  <link rel="stylesheet" href="./vis-9.1.2/vis-network.css">
+  <script src="./vis-9.1.2/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .page {
+      padding: 16px;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #dbe2ea;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    }
+    .header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .meta {
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .legend {
+      padding: 10px 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: #4b5563;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    #mynetwork {
+      width: 100%;
+      height: 85vh;
+      min-height: 760px;
+      background: #ffffff;
+    }
+    .empty {
+      padding: 40px 18px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <div class="header">
+        <div class="title">Document Graph: 41</div>
+        <div class="meta">Nodes 8 | Edges 5</div>
+      </div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5B8FF9"></span>Subject</span><span class="legend-item"><span class="legend-dot" style="background:#61DDAA"></span>Location</span><span class="legend-item"><span class="legend-dot" style="background:#F6BD16"></span>Date</span><span class="legend-item"><span class="legend-dot" style="background:#7262FD"></span>Equipment</span><span class="legend-item"><span class="legend-dot" style="background:#F08BB4"></span>Militaryforce</span><span class="legend-item"><span class="legend-dot" style="background:#78D3F8"></span>Object</span><span class="legend-item"><span class="legend-dot" style="background:#FF9D4D"></span>Participant</span><span class="legend-item"><span class="legend-dot" style="background:#BFBFBF"></span>Unknown</span></div>
+      <div id="mynetwork"></div>
+    </div>
+  </div>
+  <script>
+    const nodesData = [{"id": "266::n0", "label": "最新型防空导弹系统道尔-M2", "title": "<b>最新型防空导弹系统道尔-M2</b><br>Type: ENTITY<br>Entity role: Unknown<br>Doc: 266<br>Mentions: 2<br>Sent IDs: 3|5<br>Mentions:<br>name=最新型防空导弹系统道尔-M2, sent_id=3, pos=[75, 89], type=ENTITY<br>name=道尔-M2防空导弹系统, sent_id=5, pos=[15, 26], type=ENTITY", "color": "#BFBFBF", "shape": "dot", "size": 18}, {"id": "266::n1", "label": "俄罗斯", "title": "<b>俄罗斯</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 266<br>Mentions: 1<br>Sent IDs: 3<br>Mentions:<br>name=俄罗斯, sent_id=3, pos=[18, 21], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "266::n2", "label": "兵团防空分队", "title": "<b>兵团防空分队</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 266<br>Mentions: 1<br>Sent IDs: 6<br>Mentions:<br>name=兵团防空分队, sent_id=6, pos=[17, 23], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "266::n3", "label": "常驻地", "title": "<b>常驻地</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 266<br>Mentions: 1<br>Sent IDs: 6<br>Mentions:<br>name=常驻地, sent_id=6, pos=[33, 36], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "266::n4", "label": "弗拉季高加索", "title": "<b>弗拉季高加索</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 266<br>Mentions: 1<br>Sent IDs: 3<br>Mentions:<br>name=弗拉季高加索, sent_id=3, pos=[49, 55], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "266::n5", "label": "南部军区防空导弹分队专业兵", "title": "<b>南部军区防空导弹分队专业兵</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 266<br>Mentions: 1<br>Sent IDs: 3<br>Mentions:<br>name=南部军区防空导弹分队专业兵, sent_id=3, pos=[56, 69], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "266::n6", "label": "道尔-M2防空导弹系统的分队人员", "title": "<b>道尔-M2防空导弹系统的分队人员</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 266<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=道尔-M2防空导弹系统的分队人员, sent_id=5, pos=[15, 31], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "266::n7", "label": "道尔-M2防空导弹", "title": "<b>道尔-M2防空导弹</b><br>Type: ENTITY<br>Entity role: Equipment<br>Doc: 266<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=道尔-M2防空导弹, sent_id=5, pos=[15, 24], type=ENTITY", "color": "#7262FD", "shape": "dot", "size": 18}];
+    const edgesData = [{"from": "266::n1", "to": "266::n2", "label": "抵达", "title": "<b>抵达</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 俄罗斯<br>Tail entity: 兵团防空分队<br>Evidence sent IDs: 6<br>Evidence:<br>[6] 阿斯塔菲耶夫称：在完成战斗射击后，兵团防空分队将乘新型战斗装备抵达常驻地。", "width": 2, "arrows": "to"}, {"from": "266::n1", "to": "266::n3", "label": "抵达", "title": "<b>抵达</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 俄罗斯<br>Tail entity: 常驻地<br>Evidence sent IDs: 6<br>Evidence:<br>[6] 阿斯塔菲耶夫称：在完成战斗射击后，兵团防空分队将乘新型战斗装备抵达常驻地。", "width": 2, "arrows": "to"}, {"from": "266::n1", "to": "266::n4", "label": "驻扎", "title": "<b>驻扎</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 俄罗斯<br>Tail entity: 弗拉季高加索<br>Evidence sent IDs: 3<br>Evidence:<br>[3]  俄罗斯卫星通讯社10月29日报道，俄罗斯南部军区新闻处处长瓦季姆·阿斯塔菲耶夫对记者透露，驻扎在弗拉季高加索的南部军区防空导弹分队专业兵接装了一营套最新型防空导弹系统道尔-M2。", "width": 2, "arrows": "to"}, {"from": "266::n1", "to": "266::n5", "label": "驻扎", "title": "<b>驻扎</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 俄罗斯<br>Tail entity: 南部军区防空导弹分队专业兵<br>Evidence sent IDs: 3<br>Evidence:<br>[3]  俄罗斯卫星通讯社10月29日报道，俄罗斯南部军区新闻处处长瓦季姆·阿斯塔菲耶夫对记者透露，驻扎在弗拉季高加索的南部军区防空导弹分队专业兵接装了一营套最新型防空导弹系统道尔-M2。", "width": 2, "arrows": "to"}, {"from": "266::n6", "to": "266::n7", "label": "射击", "title": "<b>射击</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 道尔-M2防空导弹系统的分队人员<br>Tail entity: 道尔-M2防空导弹<br>Evidence sent IDs: 5<br>Evidence:<br>[5] 据消息，在准备工作的最后阶段，道尔-M2防空导弹系统的分队人员将进行首次射击。", "width": 2, "arrows": "to"}];
+
+    const container = document.getElementById('mynetwork');
+    if (!window.vis) {
+      container.innerHTML = '<div class="empty">vis-network assets failed to load. Please check the local vis-9.1.2 directory.</div>';
+    } else if (!nodesData.length) {
+      container.innerHTML = '<div class="empty">No graph data is available for visualization.</div>';
+    } else {
+      const nodes = new vis.DataSet(nodesData);
+      const edges = new vis.DataSet(edgesData);
+      const data = { nodes, edges };
+      const options = {
+        interaction: {
+          hover: true,
+          navigationButtons: true,
+          keyboard: true
+        },
+        layout: {
+          improvedLayout: true
+        },
+        physics: {
+          enabled: true,
+          stabilization: {
+            enabled: true,
+            iterations: 300,
+            fit: true
+          },
+          barnesHut: {
+            gravitationalConstant: -3200,
+            centralGravity: 0.2,
+            springLength: 180,
+            springConstant: 0.04,
+            damping: 0.09
+          },
+          minVelocity: 0.75
+        },
+        edges: {
+          smooth: false,
+          color: {
+            color: '#94a3b8',
+            highlight: '#2563eb'
+          },
+          font: {
+            size: 12,
+            align: 'middle',
+            strokeWidth: 0,
+            background: 'rgba(255,255,255,0.75)'
+          }
+        },
+        nodes: {
+          borderWidth: 1,
+          borderWidthSelected: 2,
+          font: {
+            size: 16,
+            color: '#111827'
+          }
+        }
+      };
+
+      const network = new vis.Network(container, data, options);
+      network.once('stabilizationIterationsDone', function() {
+        network.fit({
+          animation: {
+            duration: 500,
+            easingFunction: 'easeInOutQuad'
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

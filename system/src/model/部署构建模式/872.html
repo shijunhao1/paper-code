@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Graph: 872</title>
+  <link rel="stylesheet" href="./vis-9.1.2/vis-network.css">
+  <script src="./vis-9.1.2/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .page {
+      padding: 16px;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #dbe2ea;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    }
+    .header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .meta {
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .legend {
+      padding: 10px 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: #4b5563;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    #mynetwork {
+      width: 100%;
+      height: 85vh;
+      min-height: 760px;
+      background: #ffffff;
+    }
+    .empty {
+      padding: 40px 18px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <div class="header">
+        <div class="title">Document Graph: 872</div>
+        <div class="meta">Nodes 9 | Edges 7</div>
+      </div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5B8FF9"></span>Subject</span><span class="legend-item"><span class="legend-dot" style="background:#61DDAA"></span>Location</span><span class="legend-item"><span class="legend-dot" style="background:#F6BD16"></span>Date</span><span class="legend-item"><span class="legend-dot" style="background:#7262FD"></span>Equipment</span><span class="legend-item"><span class="legend-dot" style="background:#F08BB4"></span>Militaryforce</span><span class="legend-item"><span class="legend-dot" style="background:#78D3F8"></span>Object</span><span class="legend-item"><span class="legend-dot" style="background:#FF9D4D"></span>Participant</span><span class="legend-item"><span class="legend-dot" style="background:#BFBFBF"></span>Unknown</span></div>
+      <div id="mynetwork"></div>
+    </div>
+  </div>
+  <script>
+    const nodesData = [{"id": "872::n0", "label": "美国", "title": "<b>美国</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 872<br>Mentions: 4<br>Sent IDs: 0|3|4|6<br>Mentions:<br>name=美国, sent_id=0, pos=[43, 45], type=ENTITY<br>name=美国, sent_id=3, pos=[16, 18], type=ENTITY<br>name=美国, sent_id=4, pos=[1, 3], type=ENTITY<br>name=美国, sent_id=6, pos=[19, 21], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "872::n1", "label": "导弹防御系统", "title": "<b>导弹防御系统</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 872<br>Mentions: 4<br>Sent IDs: 0|2|3|6<br>Mentions:<br>name=反导系统, sent_id=0, pos=[50, 54], type=ENTITY<br>name=导弹防御系统, sent_id=2, pos=[11, 17], type=ENTITY<br>name=导弹防御系统, sent_id=3, pos=[24, 30], type=ENTITY<br>name=导弹防御系统, sent_id=6, pos=[25, 31], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "872::n2", "label": "欧洲", "title": "<b>欧洲</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 872<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=欧洲, sent_id=0, pos=[46, 48], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "872::n3", "label": "宙斯盾作战系统", "title": "<b>宙斯盾作战系统</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 872<br>Mentions: 1<br>Sent IDs: 4<br>Mentions:<br>name=宙斯盾作战系统, sent_id=4, pos=[11, 18], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "872::n4", "label": "舰船", "title": "<b>舰船</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 872<br>Mentions: 1<br>Sent IDs: 4<br>Mentions:<br>name=舰船, sent_id=4, pos=[19, 21], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "872::n5", "label": "罗塔", "title": "<b>罗塔</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 872<br>Mentions: 1<br>Sent IDs: 4<br>Mentions:<br>name=罗塔, sent_id=4, pos=[31, 33], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "872::n6", "label": "奥巴马政府", "title": "<b>奥巴马政府</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 872<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=奥巴马政府, sent_id=5, pos=[0, 5], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "872::n7", "label": "土耳其", "title": "<b>土耳其</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 872<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=土耳其, sent_id=5, pos=[32, 35], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "872::n8", "label": "远程雷达系统", "title": "<b>远程雷达系统</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 872<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=远程雷达系统, sent_id=5, pos=[38, 44], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}];
+    const edgesData = [{"from": "872::n0", "to": "872::n2", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 美国<br>Tail entity: 欧洲<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 据俄塔社报道称，美国国务院高级军控官员于周一启程前往俄罗斯进行新一轮的双边磋商，旨在就美国在欧洲部署反导系统与俄罗斯达成一致。", "width": 2, "arrows": "to"}, {"from": "872::n0", "to": "872::n1", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 美国<br>Tail entity: 导弹防御系统<br>Evidence sent IDs: 0|2|3|6<br>Evidence:<br>[0] 据俄塔社报道称，美国国务院高级军控官员于周一启程前往俄罗斯进行新一轮的双边磋商，旨在就美国在欧洲部署反导系统与俄罗斯达成一致。<br>[2]  双方官员最近一次关于导弹防御系统的讨论于今年8月在圣彼得斯堡市举行。<br>[3] 在这次会议上，俄罗斯强调了确保由美国和北约建立的导弹防御系统不是针对俄罗斯战略核武器 具有法律约束力保障的重要性。<br>[6] 俄罗斯方面谴责这些交易不利于达成北约和美国所倡导的导弹防御系统协议。", "width": 2, "arrows": "to"}, {"from": "872::n0", "to": "872::n3", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 美国<br>Tail entity: 宙斯盾作战系统<br>Evidence sent IDs: 4<br>Evidence:<br>[4]  美国已经将四艘装备了宙斯盾作战系统的舰船部署在西班牙海军驻地罗塔。", "width": 2, "arrows": "to"}, {"from": "872::n0", "to": "872::n4", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 美国<br>Tail entity: 舰船<br>Evidence sent IDs: 4<br>Evidence:<br>[4]  美国已经将四艘装备了宙斯盾作战系统的舰船部署在西班牙海军驻地罗塔。", "width": 2, "arrows": "to"}, {"from": "872::n0", "to": "872::n5", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 美国<br>Tail entity: 罗塔<br>Evidence sent IDs: 4<br>Evidence:<br>[4]  美国已经将四艘装备了宙斯盾作战系统的舰船部署在西班牙海军驻地罗塔。", "width": 2, "arrows": "to"}, {"from": "872::n6", "to": "872::n7", "label": "安装", "title": "<b>安装</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 奥巴马政府<br>Tail entity: 土耳其<br>Evidence sent IDs: 5<br>Evidence:<br>[5] 奥巴马政府还与波兰和罗马尼亚缔结了关于标准3拦截导弹的协议，并在土耳其安装了远程雷达系统。", "width": 2, "arrows": "to"}, {"from": "872::n6", "to": "872::n8", "label": "安装", "title": "<b>安装</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 奥巴马政府<br>Tail entity: 远程雷达系统<br>Evidence sent IDs: 5<br>Evidence:<br>[5] 奥巴马政府还与波兰和罗马尼亚缔结了关于标准3拦截导弹的协议，并在土耳其安装了远程雷达系统。", "width": 2, "arrows": "to"}];
+
+    const container = document.getElementById('mynetwork');
+    if (!window.vis) {
+      container.innerHTML = '<div class="empty">vis-network assets failed to load. Please check the local vis-9.1.2 directory.</div>';
+    } else if (!nodesData.length) {
+      container.innerHTML = '<div class="empty">No graph data is available for visualization.</div>';
+    } else {
+      const nodes = new vis.DataSet(nodesData);
+      const edges = new vis.DataSet(edgesData);
+      const data = { nodes, edges };
+      const options = {
+        interaction: {
+          hover: true,
+          navigationButtons: true,
+          keyboard: true
+        },
+        layout: {
+          improvedLayout: true
+        },
+        physics: {
+          enabled: true,
+          stabilization: {
+            enabled: true,
+            iterations: 300,
+            fit: true
+          },
+          barnesHut: {
+            gravitationalConstant: -3200,
+            centralGravity: 0.2,
+            springLength: 180,
+            springConstant: 0.04,
+            damping: 0.09
+          },
+          minVelocity: 0.75
+        },
+        edges: {
+          smooth: false,
+          color: {
+            color: '#94a3b8',
+            highlight: '#2563eb'
+          },
+          font: {
+            size: 12,
+            align: 'middle',
+            strokeWidth: 0,
+            background: 'rgba(255,255,255,0.75)'
+          }
+        },
+        nodes: {
+          borderWidth: 1,
+          borderWidthSelected: 2,
+          font: {
+            size: 16,
+            color: '#111827'
+          }
+        }
+      };
+
+      const network = new vis.Network(container, data, options);
+      network.once('stabilizationIterationsDone', function() {
+        network.fit({
+          animation: {
+            duration: 500,
+            easingFunction: 'easeInOutQuad'
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

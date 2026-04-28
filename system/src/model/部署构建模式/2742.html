@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Graph: 2742</title>
+  <link rel="stylesheet" href="./vis-9.1.2/vis-network.css">
+  <script src="./vis-9.1.2/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .page {
+      padding: 16px;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #dbe2ea;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    }
+    .header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .meta {
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .legend {
+      padding: 10px 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: #4b5563;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    #mynetwork {
+      width: 100%;
+      height: 85vh;
+      min-height: 760px;
+      background: #ffffff;
+    }
+    .empty {
+      padding: 40px 18px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <div class="header">
+        <div class="title">Document Graph: 2742</div>
+        <div class="meta">Nodes 7 | Edges 6</div>
+      </div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5B8FF9"></span>Subject</span><span class="legend-item"><span class="legend-dot" style="background:#61DDAA"></span>Location</span><span class="legend-item"><span class="legend-dot" style="background:#F6BD16"></span>Date</span><span class="legend-item"><span class="legend-dot" style="background:#7262FD"></span>Equipment</span><span class="legend-item"><span class="legend-dot" style="background:#F08BB4"></span>Militaryforce</span><span class="legend-item"><span class="legend-dot" style="background:#78D3F8"></span>Object</span><span class="legend-item"><span class="legend-dot" style="background:#FF9D4D"></span>Participant</span><span class="legend-item"><span class="legend-dot" style="background:#BFBFBF"></span>Unknown</span></div>
+      <div id="mynetwork"></div>
+    </div>
+  </div>
+  <script>
+    const nodesData = [{"id": "2742::n0", "label": "俄罗斯", "title": "<b>俄罗斯</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 2742<br>Mentions: 2<br>Sent IDs: 0|10<br>Mentions:<br>name=俄罗斯, sent_id=0, pos=[7, 10], type=ENTITY<br>name=俄罗斯, sent_id=10, pos=[24, 27], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "2742::n1", "label": "布拉瓦弹道导弹", "title": "<b>布拉瓦弹道导弹</b><br>Type: ENTITY<br>Entity role: Equipment<br>Doc: 2742<br>Mentions: 5<br>Sent IDs: 0|1|2|10<br>Mentions:<br>name=布拉瓦弹道导弹, sent_id=0, pos=[19, 26], type=ENTITY<br>name=布拉瓦弹道导弹, sent_id=1, pos=[1, 8], type=ENTITY<br>name=导弹, sent_id=2, pos=[10, 12], type=ENTITY<br>name=布拉瓦, sent_id=10, pos=[15, 18], type=ENTITY<br>name=布拉瓦, sent_id=10, pos=[33, 36], type=ENTITY", "color": "#7262FD", "shape": "dot", "size": 18}, {"id": "2742::n2", "label": "最近", "title": "<b>最近</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 2742<br>Mentions: 1<br>Sent IDs: 2<br>Mentions:<br>name=最近, sent_id=2, pos=[1, 3], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "2742::n3", "label": "本月晚些时候", "title": "<b>本月晚些时候</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 2742<br>Mentions: 1<br>Sent IDs: 7<br>Mentions:<br>name=本月晚些时候, sent_id=7, pos=[8, 14], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "2742::n4", "label": "上个月", "title": "<b>上个月</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 2742<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=上个月, sent_id=0, pos=[27, 30], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "2742::n5", "label": "轻舟", "title": "<b>轻舟</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 2742<br>Mentions: 1<br>Sent IDs: 8<br>Mentions:<br>name=轻舟, sent_id=8, pos=[45, 47], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "2742::n6", "label": "北风级潜艇", "title": "<b>北风级潜艇</b><br>Type: ENTITY<br>Entity role: Equipment<br>Doc: 2742<br>Mentions: 1<br>Sent IDs: 11<br>Mentions:<br>name=北风级潜艇, sent_id=11, pos=[19, 25], type=ENTITY", "color": "#7262FD", "shape": "dot", "size": 18}];
+    const edgesData = [{"from": "2742::n0", "to": "2742::n1", "label": "试验", "title": "<b>试验</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 俄罗斯<br>Tail entity: 布拉瓦弹道导弹<br>Evidence sent IDs: 0|1|2|10<br>Evidence:<br>[0] 据俄新社报道，俄罗斯上星期五表示，尽管布拉瓦弹道导弹在上个月的试验中又一次失败，但仍将打算继续实施这项麻烦的导弹计划。<br>[1]  布拉瓦弹道导弹，主要用于潜艇发射，莫斯科希望使其成为未来核武库的基础。<br>[2] 在最近的发射试验中，导弹发射不到30秒发生了爆炸。<br>[10] 然而，Popovkin说，放弃布拉瓦已经太迟了，俄罗斯已经制造了按布拉瓦设计的潜艇了。", "width": 3.0, "arrows": "to"}, {"from": "2742::n0", "to": "2742::n2", "label": "试验", "title": "<b>试验</b><br>Relation: Experiment__Date<br>Role: Date<br>Head entity: 俄罗斯<br>Tail entity: 最近<br>Evidence sent IDs: 2<br>Evidence:<br>[2] 在最近的发射试验中，导弹发射不到30秒发生了爆炸。", "width": 2, "arrows": "to"}, {"from": "2742::n0", "to": "2742::n3", "label": "试验", "title": "<b>试验</b><br>Relation: Experiment__Date<br>Role: Date<br>Head entity: 俄罗斯<br>Tail entity: 本月晚些时候<br>Evidence sent IDs: 7<br>Evidence:<br>[7]  俄新社报道说，本月晚些时候将继续进行导弹试验。", "width": 2, "arrows": "to"}, {"from": "2742::n0", "to": "2742::n4", "label": "试验", "title": "<b>试验</b><br>Relation: Experiment__Date<br>Role: Date<br>Head entity: 俄罗斯<br>Tail entity: 上个月<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 据俄新社报道，俄罗斯上星期五表示，尽管布拉瓦弹道导弹在上个月的试验中又一次失败，但仍将打算继续实施这项麻烦的导弹计划。", "width": 2, "arrows": "to"}, {"from": "2742::n0", "to": "2742::n5", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 俄罗斯<br>Tail entity: 轻舟<br>Evidence sent IDs: 8<br>Evidence:<br>[8] 政府部门和私人国防机构的某些评论家建议，搁置布拉瓦导弹计划，转而加强现役部署的潜射导弹--轻舟。", "width": 2, "arrows": "to"}, {"from": "2742::n0", "to": "2742::n6", "label": "下水", "title": "<b>下水</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 俄罗斯<br>Tail entity: 北风级潜艇<br>Evidence sent IDs: 11<br>Evidence:<br>[11] 他说，我们没有选择……我们已拥有一艘北风级潜艇并已下水，因此进行新的项目是不现实的。", "width": 2, "arrows": "to"}];
+
+    const container = document.getElementById('mynetwork');
+    if (!window.vis) {
+      container.innerHTML = '<div class="empty">vis-network assets failed to load. Please check the local vis-9.1.2 directory.</div>';
+    } else if (!nodesData.length) {
+      container.innerHTML = '<div class="empty">No graph data is available for visualization.</div>';
+    } else {
+      const nodes = new vis.DataSet(nodesData);
+      const edges = new vis.DataSet(edgesData);
+      const data = { nodes, edges };
+      const options = {
+        interaction: {
+          hover: true,
+          navigationButtons: true,
+          keyboard: true
+        },
+        layout: {
+          improvedLayout: true
+        },
+        physics: {
+          enabled: true,
+          stabilization: {
+            enabled: true,
+            iterations: 300,
+            fit: true
+          },
+          barnesHut: {
+            gravitationalConstant: -3200,
+            centralGravity: 0.2,
+            springLength: 180,
+            springConstant: 0.04,
+            damping: 0.09
+          },
+          minVelocity: 0.75
+        },
+        edges: {
+          smooth: false,
+          color: {
+            color: '#94a3b8',
+            highlight: '#2563eb'
+          },
+          font: {
+            size: 12,
+            align: 'middle',
+            strokeWidth: 0,
+            background: 'rgba(255,255,255,0.75)'
+          }
+        },
+        nodes: {
+          borderWidth: 1,
+          borderWidthSelected: 2,
+          font: {
+            size: 16,
+            color: '#111827'
+          }
+        }
+      };
+
+      const network = new vis.Network(container, data, options);
+      network.once('stabilizationIterationsDone', function() {
+        network.fit({
+          animation: {
+            duration: 500,
+            easingFunction: 'easeInOutQuad'
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

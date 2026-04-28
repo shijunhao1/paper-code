@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Graph: 139</title>
+  <link rel="stylesheet" href="./vis-9.1.2/vis-network.css">
+  <script src="./vis-9.1.2/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .page {
+      padding: 16px;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #dbe2ea;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    }
+    .header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .meta {
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .legend {
+      padding: 10px 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: #4b5563;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    #mynetwork {
+      width: 100%;
+      height: 85vh;
+      min-height: 760px;
+      background: #ffffff;
+    }
+    .empty {
+      padding: 40px 18px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <div class="header">
+        <div class="title">Document Graph: 139</div>
+        <div class="meta">Nodes 6 | Edges 5</div>
+      </div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5B8FF9"></span>Subject</span><span class="legend-item"><span class="legend-dot" style="background:#61DDAA"></span>Location</span><span class="legend-item"><span class="legend-dot" style="background:#F6BD16"></span>Date</span><span class="legend-item"><span class="legend-dot" style="background:#7262FD"></span>Equipment</span><span class="legend-item"><span class="legend-dot" style="background:#F08BB4"></span>Militaryforce</span><span class="legend-item"><span class="legend-dot" style="background:#78D3F8"></span>Object</span><span class="legend-item"><span class="legend-dot" style="background:#FF9D4D"></span>Participant</span><span class="legend-item"><span class="legend-dot" style="background:#BFBFBF"></span>Unknown</span></div>
+      <div id="mynetwork"></div>
+    </div>
+  </div>
+  <script>
+    const nodesData = [{"id": "1065::n0", "label": "美国陆军", "title": "<b>美国陆军</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 1065<br>Mentions: 3<br>Sent IDs: 0|1|4<br>Mentions:<br>name=美国陆军, sent_id=0, pos=[0, 4], type=ENTITY<br>name=美陆军, sent_id=1, pos=[50, 53], type=ENTITY<br>name=美国陆军, sent_id=4, pos=[27, 31], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "1065::n1", "label": "欧洲", "title": "<b>欧洲</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 1065<br>Mentions: 2<br>Sent IDs: 0|2<br>Mentions:<br>name=欧洲, sent_id=0, pos=[7, 9], type=ENTITY<br>name=欧洲, sent_id=2, pos=[23, 25], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "1065::n2", "label": "海尔法反坦克导弹", "title": "<b>海尔法反坦克导弹</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 1065<br>Mentions: 2<br>Sent IDs: 0|1<br>Mentions:<br>name=海尔法反坦克导弹, sent_id=0, pos=[18, 26], type=ENTITY<br>name=AGM-114海尔法反坦克导弹, sent_id=1, pos=[12, 27], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "1065::n3", "label": "斯特赖克MSL近程防空系统", "title": "<b>斯特赖克MSL近程防空系统</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 1065<br>Mentions: 2<br>Sent IDs: 0|4<br>Mentions:<br>name=斯特赖克MSL近程防空系统, sent_id=0, pos=[27, 40], type=ENTITY<br>name=斯特赖克MSL, sent_id=4, pos=[0, 7], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "1065::n4", "label": "斯特赖克", "title": "<b>斯特赖克</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 1065<br>Mentions: 4<br>Sent IDs: 1|2|3|5<br>Mentions:<br>name=斯特赖克装甲战车, sent_id=1, pos=[28, 36], type=ENTITY<br>name=斯特赖克, sent_id=2, pos=[7, 11], type=ENTITY<br>name=斯特赖克近程防空系统样机, sent_id=3, pos=[16, 28], type=ENTITY<br>name=斯特赖克, sent_id=5, pos=[5, 9], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "1065::n5", "label": "2020年前", "title": "<b>2020年前</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 1065<br>Mentions: 1<br>Sent IDs: 2<br>Mentions:<br>name=2020年前, sent_id=2, pos=[14, 20], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}];
+    const edgesData = [{"from": "1065::n0", "to": "1065::n4", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 美国陆军<br>Tail entity: 斯特赖克<br>Evidence sent IDs: 1|2|3|5<br>Evidence:<br>[1]      据报道，装备有AGM-114海尔法反坦克导弹的斯特赖克装甲战车会比预期更早抵达欧洲，以支援美陆军在该地区的近程防空系统，对抗俄罗斯。<br>[2]      首批斯特赖克计划于2020年前部署到欧洲，这项部署项目是陆军近程防空-初始机动计划的一部分。<br>[3] 该计划预计在2019年前制造首套斯特赖克近程防空系统样机，作为生产144套小批量试生产系统的第一步。<br>[5]      斯特赖克是八轮驱动的战斗车族，最大公路速度99.8千米/时，公路行程502千米，配装最新的C4ISR系统和核生化探测装置。", "width": 2, "arrows": "to"}, {"from": "1065::n0", "to": "1065::n5", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Date<br>Role: Date<br>Head entity: 美国陆军<br>Tail entity: 2020年前<br>Evidence sent IDs: 2<br>Evidence:<br>[2]      首批斯特赖克计划于2020年前部署到欧洲，这项部署项目是陆军近程防空-初始机动计划的一部分。", "width": 2, "arrows": "to"}, {"from": "1065::n0", "to": "1065::n1", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 美国陆军<br>Tail entity: 欧洲<br>Evidence sent IDs: 0|2<br>Evidence:<br>[0] 美国陆军计划在欧洲部署最新型的装备有海尔法反坦克导弹的斯特赖克MSL近程防空系统。<br>[2]      首批斯特赖克计划于2020年前部署到欧洲，这项部署项目是陆军近程防空-初始机动计划的一部分。", "width": 2.5, "arrows": "to"}, {"from": "1065::n0", "to": "1065::n2", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 美国陆军<br>Tail entity: 海尔法反坦克导弹<br>Evidence sent IDs: 0|1<br>Evidence:<br>[0] 美国陆军计划在欧洲部署最新型的装备有海尔法反坦克导弹的斯特赖克MSL近程防空系统。<br>[1]      据报道，装备有AGM-114海尔法反坦克导弹的斯特赖克装甲战车会比预期更早抵达欧洲，以支援美陆军在该地区的近程防空系统，对抗俄罗斯。", "width": 2, "arrows": "to"}, {"from": "1065::n0", "to": "1065::n3", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 美国陆军<br>Tail entity: 斯特赖克MSL近程防空系统<br>Evidence sent IDs: 0|4<br>Evidence:<br>[0] 美国陆军计划在欧洲部署最新型的装备有海尔法反坦克导弹的斯特赖克MSL近程防空系统。<br>[4] 斯特赖克MSL是最先进的近程防空系统之一，设计用于满足美国陆军应对无人机系统、旋转翼和巡航导弹威胁的新作战需求。", "width": 2, "arrows": "to"}];
+
+    const container = document.getElementById('mynetwork');
+    if (!window.vis) {
+      container.innerHTML = '<div class="empty">vis-network assets failed to load. Please check the local vis-9.1.2 directory.</div>';
+    } else if (!nodesData.length) {
+      container.innerHTML = '<div class="empty">No graph data is available for visualization.</div>';
+    } else {
+      const nodes = new vis.DataSet(nodesData);
+      const edges = new vis.DataSet(edgesData);
+      const data = { nodes, edges };
+      const options = {
+        interaction: {
+          hover: true,
+          navigationButtons: true,
+          keyboard: true
+        },
+        layout: {
+          improvedLayout: true
+        },
+        physics: {
+          enabled: true,
+          stabilization: {
+            enabled: true,
+            iterations: 300,
+            fit: true
+          },
+          barnesHut: {
+            gravitationalConstant: -3200,
+            centralGravity: 0.2,
+            springLength: 180,
+            springConstant: 0.04,
+            damping: 0.09
+          },
+          minVelocity: 0.75
+        },
+        edges: {
+          smooth: false,
+          color: {
+            color: '#94a3b8',
+            highlight: '#2563eb'
+          },
+          font: {
+            size: 12,
+            align: 'middle',
+            strokeWidth: 0,
+            background: 'rgba(255,255,255,0.75)'
+          }
+        },
+        nodes: {
+          borderWidth: 1,
+          borderWidthSelected: 2,
+          font: {
+            size: 16,
+            color: '#111827'
+          }
+        }
+      };
+
+      const network = new vis.Network(container, data, options);
+      network.once('stabilizationIterationsDone', function() {
+        network.fit({
+          animation: {
+            duration: 500,
+            easingFunction: 'easeInOutQuad'
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

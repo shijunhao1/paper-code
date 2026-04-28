@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Graph: 777</title>
+  <link rel="stylesheet" href="./vis-9.1.2/vis-network.css">
+  <script src="./vis-9.1.2/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .page {
+      padding: 16px;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #dbe2ea;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    }
+    .header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .meta {
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .legend {
+      padding: 10px 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: #4b5563;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    #mynetwork {
+      width: 100%;
+      height: 85vh;
+      min-height: 760px;
+      background: #ffffff;
+    }
+    .empty {
+      padding: 40px 18px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <div class="header">
+        <div class="title">Document Graph: 777</div>
+        <div class="meta">Nodes 6 | Edges 5</div>
+      </div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5B8FF9"></span>Subject</span><span class="legend-item"><span class="legend-dot" style="background:#61DDAA"></span>Location</span><span class="legend-item"><span class="legend-dot" style="background:#F6BD16"></span>Date</span><span class="legend-item"><span class="legend-dot" style="background:#7262FD"></span>Equipment</span><span class="legend-item"><span class="legend-dot" style="background:#F08BB4"></span>Militaryforce</span><span class="legend-item"><span class="legend-dot" style="background:#78D3F8"></span>Object</span><span class="legend-item"><span class="legend-dot" style="background:#FF9D4D"></span>Participant</span><span class="legend-item"><span class="legend-dot" style="background:#BFBFBF"></span>Unknown</span></div>
+      <div id="mynetwork"></div>
+    </div>
+  </div>
+  <script>
+    const nodesData = [{"id": "777::n0", "label": "印度尼西亚", "title": "<b>印度尼西亚</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 777<br>Mentions: 3<br>Sent IDs: 0|2|3<br>Mentions:<br>name=印度尼西亚, sent_id=0, pos=[18, 23], type=ENTITY<br>name=印度尼西亚, sent_id=2, pos=[18, 23], type=ENTITY<br>name=印度尼西亚, sent_id=3, pos=[4, 9], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "777::n1", "label": "印度海军", "title": "<b>印度海军</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 777<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=印度海军, sent_id=0, pos=[0, 4], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "777::n2", "label": "拉那号导弹驱逐舰", "title": "<b>拉那号导弹驱逐舰</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 777<br>Mentions: 1<br>Sent IDs: 1<br>Mentions:<br>name=拉那号导弹驱逐舰, sent_id=1, pos=[9, 17], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "777::n3", "label": "兰吉特号导弹驱逐舰", "title": "<b>兰吉特号导弹驱逐舰</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 777<br>Mentions: 1<br>Sent IDs: 1<br>Mentions:<br>name=兰吉特号导弹驱逐舰, sent_id=1, pos=[18, 27], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "777::n4", "label": "乔迪号舰队补油船", "title": "<b>乔迪号舰队补油船</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 777<br>Mentions: 1<br>Sent IDs: 1<br>Mentions:<br>name=乔迪号舰队补油船, sent_id=1, pos=[28, 36], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "777::n5", "label": "库利什号导弹轻护舰", "title": "<b>库利什号导弹轻护舰</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 777<br>Mentions: 1<br>Sent IDs: 1<br>Mentions:<br>name=库利什号导弹轻护舰, sent_id=1, pos=[37, 46], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}];
+    const edgesData = [{"from": "777::n1", "to": "777::n0", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 印度海军<br>Tail entity: 印度尼西亚<br>Evidence sent IDs: 0|2|3<br>Evidence:<br>[0] 印度海军将其东方舰队的4艘舰艇部署至印度尼西亚，参加多国海军演习。<br>[2]  作为部署行动的一部分，这些舰艇将与印度尼西亚、澳大利亚和新加坡等国家的海军一同进行演习。<br>[3]  在前往印度尼西亚的航程中，印度舰艇将对越南、菲律宾、文莱，泰国、澳大利亚和马来西亚的港口进行访问。", "width": 2, "arrows": "to"}, {"from": "777::n1", "to": "777::n2", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 印度海军<br>Tail entity: 拉那号导弹驱逐舰<br>Evidence sent IDs: 0|1<br>Evidence:<br>[0] 印度海军将其东方舰队的4艘舰艇部署至印度尼西亚，参加多国海军演习。<br>[1]  所部署的舰艇包括拉那号导弹驱逐舰、兰吉特号导弹驱逐舰、乔迪号舰队补油船和库利什号导弹轻护舰。", "width": 2, "arrows": "to"}, {"from": "777::n1", "to": "777::n3", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 印度海军<br>Tail entity: 兰吉特号导弹驱逐舰<br>Evidence sent IDs: 0|1<br>Evidence:<br>[0] 印度海军将其东方舰队的4艘舰艇部署至印度尼西亚，参加多国海军演习。<br>[1]  所部署的舰艇包括拉那号导弹驱逐舰、兰吉特号导弹驱逐舰、乔迪号舰队补油船和库利什号导弹轻护舰。", "width": 2, "arrows": "to"}, {"from": "777::n1", "to": "777::n4", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 印度海军<br>Tail entity: 乔迪号舰队补油船<br>Evidence sent IDs: 0|1<br>Evidence:<br>[0] 印度海军将其东方舰队的4艘舰艇部署至印度尼西亚，参加多国海军演习。<br>[1]  所部署的舰艇包括拉那号导弹驱逐舰、兰吉特号导弹驱逐舰、乔迪号舰队补油船和库利什号导弹轻护舰。", "width": 2, "arrows": "to"}, {"from": "777::n1", "to": "777::n5", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 印度海军<br>Tail entity: 库利什号导弹轻护舰<br>Evidence sent IDs: 0|1<br>Evidence:<br>[0] 印度海军将其东方舰队的4艘舰艇部署至印度尼西亚，参加多国海军演习。<br>[1]  所部署的舰艇包括拉那号导弹驱逐舰、兰吉特号导弹驱逐舰、乔迪号舰队补油船和库利什号导弹轻护舰。", "width": 2, "arrows": "to"}];
+
+    const container = document.getElementById('mynetwork');
+    if (!window.vis) {
+      container.innerHTML = '<div class="empty">vis-network assets failed to load. Please check the local vis-9.1.2 directory.</div>';
+    } else if (!nodesData.length) {
+      container.innerHTML = '<div class="empty">No graph data is available for visualization.</div>';
+    } else {
+      const nodes = new vis.DataSet(nodesData);
+      const edges = new vis.DataSet(edgesData);
+      const data = { nodes, edges };
+      const options = {
+        interaction: {
+          hover: true,
+          navigationButtons: true,
+          keyboard: true
+        },
+        layout: {
+          improvedLayout: true
+        },
+        physics: {
+          enabled: true,
+          stabilization: {
+            enabled: true,
+            iterations: 300,
+            fit: true
+          },
+          barnesHut: {
+            gravitationalConstant: -3200,
+            centralGravity: 0.2,
+            springLength: 180,
+            springConstant: 0.04,
+            damping: 0.09
+          },
+          minVelocity: 0.75
+        },
+        edges: {
+          smooth: false,
+          color: {
+            color: '#94a3b8',
+            highlight: '#2563eb'
+          },
+          font: {
+            size: 12,
+            align: 'middle',
+            strokeWidth: 0,
+            background: 'rgba(255,255,255,0.75)'
+          }
+        },
+        nodes: {
+          borderWidth: 1,
+          borderWidthSelected: 2,
+          font: {
+            size: 16,
+            color: '#111827'
+          }
+        }
+      };
+
+      const network = new vis.Network(container, data, options);
+      network.once('stabilizationIterationsDone', function() {
+        network.fit({
+          animation: {
+            duration: 500,
+            easingFunction: 'easeInOutQuad'
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

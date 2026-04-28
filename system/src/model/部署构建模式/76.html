@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Graph: 76</title>
+  <link rel="stylesheet" href="./vis-9.1.2/vis-network.css">
+  <script src="./vis-9.1.2/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .page {
+      padding: 16px;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #dbe2ea;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    }
+    .header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .meta {
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .legend {
+      padding: 10px 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: #4b5563;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    #mynetwork {
+      width: 100%;
+      height: 85vh;
+      min-height: 760px;
+      background: #ffffff;
+    }
+    .empty {
+      padding: 40px 18px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <div class="header">
+        <div class="title">Document Graph: 76</div>
+        <div class="meta">Nodes 5 | Edges 3</div>
+      </div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5B8FF9"></span>Subject</span><span class="legend-item"><span class="legend-dot" style="background:#61DDAA"></span>Location</span><span class="legend-item"><span class="legend-dot" style="background:#F6BD16"></span>Date</span><span class="legend-item"><span class="legend-dot" style="background:#7262FD"></span>Equipment</span><span class="legend-item"><span class="legend-dot" style="background:#F08BB4"></span>Militaryforce</span><span class="legend-item"><span class="legend-dot" style="background:#78D3F8"></span>Object</span><span class="legend-item"><span class="legend-dot" style="background:#FF9D4D"></span>Participant</span><span class="legend-item"><span class="legend-dot" style="background:#BFBFBF"></span>Unknown</span></div>
+      <div id="mynetwork"></div>
+    </div>
+  </div>
+  <script>
+    const nodesData = [{"id": "76::n0", "label": "铁穹反导系统", "title": "<b>铁穹反导系统</b><br>Type: ENTITY<br>Entity role: Equipment<br>Doc: 76<br>Mentions: 4<br>Sent IDs: 0|1|2|6<br>Mentions:<br>name=铁穹反导弹防御系统, sent_id=0, pos=[0, 9], type=ENTITY<br>name=铁穹反导系统, sent_id=1, pos=[16, 22], type=ENTITY<br>name=铁穹, sent_id=2, pos=[1, 3], type=ENTITY<br>name=铁穹反导系统, sent_id=6, pos=[0, 6], type=ENTITY", "color": "#7262FD", "shape": "dot", "size": 18}, {"id": "76::n1", "label": "以色列", "title": "<b>以色列</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 76<br>Mentions: 2<br>Sent IDs: 1|5<br>Mentions:<br>name=以色列, sent_id=1, pos=[9, 12], type=ENTITY<br>name=以色列, sent_id=5, pos=[10, 13], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "76::n2", "label": "以色列国防军", "title": "<b>以色列国防军</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 76<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=以色列国防军, sent_id=5, pos=[3, 9], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "76::n3", "label": "以色列南部", "title": "<b>以色列南部</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 76<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=以色列南部, sent_id=5, pos=[10, 15], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "76::n4", "label": "铁穹反导炮兵连", "title": "<b>铁穹反导炮兵连</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 76<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=铁穹反导炮兵连, sent_id=5, pos=[20, 27], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}];
+    const edgesData = [{"from": "76::n1", "to": "76::n0", "label": "验证", "title": "<b>验证</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 以色列<br>Tail entity: 铁穹反导系统<br>Evidence sent IDs: 0|1|2|6<br>Evidence:<br>[0] 铁穹反导弹防御系统已经通过验证，非常成功拦截了加沙地带恐怖分子向以色列平民社区发射的火箭。<br>[1] 尽管取得这些成绩，以色列仍然继续铁穹反导系统的升级改造工作。<br>[2]  铁穹下一阶段将包括改进拦截能力，扩展威胁响应范围。<br>[6] 铁穹反导系统可在所有气候条件下昼夜拦截短程火箭，能够同时抵御多个威胁。", "width": 2, "arrows": "to"}, {"from": "76::n2", "to": "76::n3", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 以色列国防军<br>Tail entity: 以色列南部<br>Evidence sent IDs: 5<br>Evidence:<br>[5] 目前，以色列国防军在以色列南部部署了3个铁穹反导炮兵连，不久将组建第4个反导炮兵连。", "width": 2, "arrows": "to"}, {"from": "76::n2", "to": "76::n4", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 以色列国防军<br>Tail entity: 铁穹反导炮兵连<br>Evidence sent IDs: 5<br>Evidence:<br>[5] 目前，以色列国防军在以色列南部部署了3个铁穹反导炮兵连，不久将组建第4个反导炮兵连。", "width": 2, "arrows": "to"}];
+
+    const container = document.getElementById('mynetwork');
+    if (!window.vis) {
+      container.innerHTML = '<div class="empty">vis-network assets failed to load. Please check the local vis-9.1.2 directory.</div>';
+    } else if (!nodesData.length) {
+      container.innerHTML = '<div class="empty">No graph data is available for visualization.</div>';
+    } else {
+      const nodes = new vis.DataSet(nodesData);
+      const edges = new vis.DataSet(edgesData);
+      const data = { nodes, edges };
+      const options = {
+        interaction: {
+          hover: true,
+          navigationButtons: true,
+          keyboard: true
+        },
+        layout: {
+          improvedLayout: true
+        },
+        physics: {
+          enabled: true,
+          stabilization: {
+            enabled: true,
+            iterations: 300,
+            fit: true
+          },
+          barnesHut: {
+            gravitationalConstant: -3200,
+            centralGravity: 0.2,
+            springLength: 180,
+            springConstant: 0.04,
+            damping: 0.09
+          },
+          minVelocity: 0.75
+        },
+        edges: {
+          smooth: false,
+          color: {
+            color: '#94a3b8',
+            highlight: '#2563eb'
+          },
+          font: {
+            size: 12,
+            align: 'middle',
+            strokeWidth: 0,
+            background: 'rgba(255,255,255,0.75)'
+          }
+        },
+        nodes: {
+          borderWidth: 1,
+          borderWidthSelected: 2,
+          font: {
+            size: 16,
+            color: '#111827'
+          }
+        }
+      };
+
+      const network = new vis.Network(container, data, options);
+      network.once('stabilizationIterationsDone', function() {
+        network.fit({
+          animation: {
+            duration: 500,
+            easingFunction: 'easeInOutQuad'
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

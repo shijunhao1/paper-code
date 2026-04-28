@@ -1,0 +1,26 @@
+{
+    "name":  "task-knowledge-modeling-system",
+    "private":  true,
+    "version":  "0.1.0",
+    "type":  "module",
+    "scripts":  {
+                    "dev":  "vite",
+                    "build":  "vite build",
+                    "preview":  "vite preview",
+                    "api:extract":  "node backend/server.mjs",
+                    "generate:triples":  "node scripts/generate-all-triples.mjs",
+                    "generate:potential-triples":  "node scripts/generate-potential-completion-triples.mjs",
+                    "generate:graph":  "node scripts/generate-graph-data.mjs",
+                    "extract:global-graph":  "node scripts/extract-global-graph-data.mjs"
+                },
+    "dependencies":  {
+                         "antd":  "^6.3.5",
+                         "react":  "^18.3.1",
+                         "react-dom":  "^18.3.1",
+                         "vis-network":  "^9.1.13"
+                     },
+    "devDependencies":  {
+                            "@vitejs/plugin-react":  "^4.3.4",
+                            "vite":  "^5.4.10"
+                        }
+}

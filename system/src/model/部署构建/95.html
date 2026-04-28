@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Graph: 95</title>
+  <link rel="stylesheet" href="./vis-9.1.2/vis-network.css">
+  <script src="./vis-9.1.2/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .page {
+      padding: 16px;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #dbe2ea;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    }
+    .header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .meta {
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .legend {
+      padding: 10px 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: #4b5563;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    #mynetwork {
+      width: 100%;
+      height: 85vh;
+      min-height: 760px;
+      background: #ffffff;
+    }
+    .empty {
+      padding: 40px 18px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <div class="header">
+        <div class="title">Document Graph: 95</div>
+        <div class="meta">Nodes 6 | Edges 6</div>
+      </div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5B8FF9"></span>Subject</span><span class="legend-item"><span class="legend-dot" style="background:#61DDAA"></span>Location</span><span class="legend-item"><span class="legend-dot" style="background:#F6BD16"></span>Date</span><span class="legend-item"><span class="legend-dot" style="background:#7262FD"></span>Equipment</span><span class="legend-item"><span class="legend-dot" style="background:#F08BB4"></span>Militaryforce</span><span class="legend-item"><span class="legend-dot" style="background:#78D3F8"></span>Object</span><span class="legend-item"><span class="legend-dot" style="background:#FF9D4D"></span>Participant</span><span class="legend-item"><span class="legend-dot" style="background:#BFBFBF"></span>Unknown</span></div>
+      <div id="mynetwork"></div>
+    </div>
+  </div>
+  <script>
+    const nodesData = [{"id": "719::n0", "label": "俄罗斯", "title": "<b>俄罗斯</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 719<br>Mentions: 5<br>Sent IDs: 0|1|3|4|5<br>Mentions:<br>name=俄罗斯, sent_id=0, pos=[0, 3], type=ENTITY<br>name=俄罗斯, sent_id=1, pos=[17, 20], type=ENTITY<br>name=俄罗斯, sent_id=3, pos=[0, 3], type=ENTITY<br>name=俄罗斯, sent_id=4, pos=[13, 16], type=ENTITY<br>name=俄罗斯, sent_id=5, pos=[2, 5], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "719::n1", "label": "潜基圆锤弹道导弹", "title": "<b>潜基圆锤弹道导弹</b><br>Type: ENTITY<br>Entity role: Equipment<br>Doc: 719<br>Mentions: 2<br>Sent IDs: 0|4<br>Mentions:<br>name=潜基圆锤弹道导弹, sent_id=0, pos=[12, 20], type=ENTITY<br>name=新型核导弹, sent_id=4, pos=[6, 11], type=ENTITY", "color": "#7262FD", "shape": "dot", "size": 18}, {"id": "719::n2", "label": "下个月", "title": "<b>下个月</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 719<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=下个月, sent_id=0, pos=[5, 8], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "719::n3", "label": "2008年", "title": "<b>2008年</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 719<br>Mentions: 1<br>Sent IDs: 3<br>Mentions:<br>name=2008年, sent_id=3, pos=[6, 11], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "719::n4", "label": "2003年", "title": "<b>2003年</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 719<br>Mentions: 1<br>Sent IDs: 1<br>Mentions:<br>name=2003年, sent_id=1, pos=[9, 14], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "719::n5", "label": "导弹", "title": "<b>导弹</b><br>Type: ENTITY<br>Entity role: Equipment<br>Doc: 719<br>Mentions: 1<br>Sent IDs: 1<br>Mentions:<br>name=导弹, sent_id=1, pos=[27, 29], type=ENTITY", "color": "#7262FD", "shape": "dot", "size": 18}];
+    const edgesData = [{"from": "719::n0", "to": "719::n2", "label": "试验", "title": "<b>试验</b><br>Relation: Experiment__Date<br>Role: Date<br>Head entity: 俄罗斯<br>Tail entity: 下个月<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 俄罗斯计划下个月开始进行潜基圆锤弹道导弹的试验。", "width": 2, "arrows": "to"}, {"from": "719::n0", "to": "719::n1", "label": "试验", "title": "<b>试验</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 俄罗斯<br>Tail entity: 潜基圆锤弹道导弹<br>Evidence sent IDs: 0|4<br>Evidence:<br>[0] 俄罗斯计划下个月开始进行潜基圆锤弹道导弹的试验。<br>[4]  试验和生产新型核导弹使得俄罗斯与美国谈判的快速削减核武库协议背道相驰。", "width": 2, "arrows": "to"}, {"from": "719::n0", "to": "719::n1", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 俄罗斯<br>Tail entity: 潜基圆锤弹道导弹<br>Evidence sent IDs: 0|3|4<br>Evidence:<br>[0] 俄罗斯计划下个月开始进行潜基圆锤弹道导弹的试验。<br>[3] 俄罗斯原计划2008年部署，但是现在看来至少要延后一年。<br>[4]  试验和生产新型核导弹使得俄罗斯与美国谈判的快速削减核武库协议背道相驰。", "width": 2, "arrows": "to"}, {"from": "719::n0", "to": "719::n3", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Date<br>Role: Date<br>Head entity: 俄罗斯<br>Tail entity: 2008年<br>Evidence sent IDs: 3<br>Evidence:<br>[3] 俄罗斯原计划2008年部署，但是现在看来至少要延后一年。", "width": 2, "arrows": "to"}, {"from": "719::n0", "to": "719::n4", "label": "试验", "title": "<b>试验</b><br>Relation: Experiment__Date<br>Role: Date<br>Head entity: 俄罗斯<br>Tail entity: 2003年<br>Evidence sent IDs: 1<br>Evidence:<br>[1]  根据最新报道，从2003年开始，俄罗斯共进行了10次导弹试验，至少一半未获得成功。", "width": 2, "arrows": "to"}, {"from": "719::n0", "to": "719::n5", "label": "试验", "title": "<b>试验</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 俄罗斯<br>Tail entity: 导弹<br>Evidence sent IDs: 1<br>Evidence:<br>[1]  根据最新报道，从2003年开始，俄罗斯共进行了10次导弹试验，至少一半未获得成功。", "width": 2, "arrows": "to"}];
+
+    const container = document.getElementById('mynetwork');
+    if (!window.vis) {
+      container.innerHTML = '<div class="empty">vis-network assets failed to load. Please check the local vis-9.1.2 directory.</div>';
+    } else if (!nodesData.length) {
+      container.innerHTML = '<div class="empty">No graph data is available for visualization.</div>';
+    } else {
+      const nodes = new vis.DataSet(nodesData);
+      const edges = new vis.DataSet(edgesData);
+      const data = { nodes, edges };
+      const options = {
+        interaction: {
+          hover: true,
+          navigationButtons: true,
+          keyboard: true
+        },
+        layout: {
+          improvedLayout: true
+        },
+        physics: {
+          enabled: true,
+          stabilization: {
+            enabled: true,
+            iterations: 300,
+            fit: true
+          },
+          barnesHut: {
+            gravitationalConstant: -3200,
+            centralGravity: 0.2,
+            springLength: 180,
+            springConstant: 0.04,
+            damping: 0.09
+          },
+          minVelocity: 0.75
+        },
+        edges: {
+          smooth: false,
+          color: {
+            color: '#94a3b8',
+            highlight: '#2563eb'
+          },
+          font: {
+            size: 12,
+            align: 'middle',
+            strokeWidth: 0,
+            background: 'rgba(255,255,255,0.75)'
+          }
+        },
+        nodes: {
+          borderWidth: 1,
+          borderWidthSelected: 2,
+          font: {
+            size: 16,
+            color: '#111827'
+          }
+        }
+      };
+
+      const network = new vis.Network(container, data, options);
+      network.once('stabilizationIterationsDone', function() {
+        network.fit({
+          animation: {
+            duration: 500,
+            easingFunction: 'easeInOutQuad'
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

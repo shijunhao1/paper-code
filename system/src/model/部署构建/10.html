@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Graph: 10</title>
+  <link rel="stylesheet" href="./vis-9.1.2/vis-network.css">
+  <script src="./vis-9.1.2/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .page {
+      padding: 16px;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #dbe2ea;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    }
+    .header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .meta {
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .legend {
+      padding: 10px 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: #4b5563;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    #mynetwork {
+      width: 100%;
+      height: 85vh;
+      min-height: 760px;
+      background: #ffffff;
+    }
+    .empty {
+      padding: 40px 18px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <div class="header">
+        <div class="title">Document Graph: 10</div>
+        <div class="meta">Nodes 11 | Edges 10</div>
+      </div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5B8FF9"></span>Subject</span><span class="legend-item"><span class="legend-dot" style="background:#61DDAA"></span>Location</span><span class="legend-item"><span class="legend-dot" style="background:#F6BD16"></span>Date</span><span class="legend-item"><span class="legend-dot" style="background:#7262FD"></span>Equipment</span><span class="legend-item"><span class="legend-dot" style="background:#F08BB4"></span>Militaryforce</span><span class="legend-item"><span class="legend-dot" style="background:#78D3F8"></span>Object</span><span class="legend-item"><span class="legend-dot" style="background:#FF9D4D"></span>Participant</span><span class="legend-item"><span class="legend-dot" style="background:#BFBFBF"></span>Unknown</span></div>
+      <div id="mynetwork"></div>
+    </div>
+  </div>
+  <script>
+    const nodesData = [{"id": "81::n0", "label": "提康德罗加级巡洋舰圣乔治角号", "title": "<b>提康德罗加级巡洋舰圣乔治角号</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 81<br>Mentions: 2<br>Sent IDs: 0|4<br>Mentions:<br>name=提康德罗加级巡洋舰圣乔治角号, sent_id=0, pos=[19, 33], type=ENTITY<br>name=圣乔治角号巡洋舰, sent_id=4, pos=[1, 9], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "81::n1", "label": "新型防滑涂层", "title": "<b>新型防滑涂层</b><br>Type: ENTITY<br>Entity role: Equipment<br>Doc: 81<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=新型防滑涂层, sent_id=0, pos=[11, 17], type=ENTITY", "color": "#7262FD", "shape": "dot", "size": 18}, {"id": "81::n2", "label": "美国海军", "title": "<b>美国海军</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 81<br>Mentions: 1<br>Sent IDs: 3<br>Mentions:<br>name=美国海军, sent_id=3, pos=[0, 4], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "81::n3", "label": "2010年", "title": "<b>2010年</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 81<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=2010年, sent_id=5, pos=[5, 10], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "81::n4", "label": "庞塞号两栖船坞运输舰", "title": "<b>庞塞号两栖船坞运输舰</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 81<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=庞塞号两栖船坞运输舰, sent_id=5, pos=[23, 33], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "81::n5", "label": "拉梅奇号", "title": "<b>拉梅奇号</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 81<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=拉梅奇号, sent_id=5, pos=[11, 15], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "81::n6", "label": "梅森号驱逐舰", "title": "<b>梅森号驱逐舰</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 81<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=梅森号驱逐舰, sent_id=5, pos=[16, 22], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "81::n7", "label": "美国海军", "title": "<b>美国海军</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 81<br>Mentions: 1<br>Sent IDs: 1<br>Mentions:<br>name=美国海军, sent_id=1, pos=[14, 18], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "81::n8", "label": "美国海军", "title": "<b>美国海军</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 81<br>Mentions: 1<br>Sent IDs: 2<br>Mentions:<br>name=美国海军, sent_id=2, pos=[1, 5], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "81::n9", "label": "中东", "title": "<b>中东</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 81<br>Mentions: 1<br>Sent IDs: 4<br>Mentions:<br>name=中东, sent_id=4, pos=[15, 17], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "81::n10", "label": "西太平洋", "title": "<b>西太平洋</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 81<br>Mentions: 1<br>Sent IDs: 4<br>Mentions:<br>name=西太平洋, sent_id=4, pos=[10, 14], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}];
+    const edgesData = [{"from": "81::n2", "to": "81::n1", "label": "测试", "title": "<b>测试</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 美国海军<br>Tail entity: 新型防滑涂层<br>Evidence sent IDs: 0|5<br>Evidence:<br>[0] 一种用于舰艇飞行甲板的新型防滑涂层将在提康德罗加级巡洋舰圣乔治角号上进行测试。<br>[5] 该涂层曾于2010年在拉梅奇号、梅森号驱逐舰和庞塞号两栖船坞运输舰上进行了测试。", "width": 3.0, "arrows": "to"}, {"from": "81::n2", "to": "81::n3", "label": "测试", "title": "<b>测试</b><br>Relation: Experiment__Date<br>Role: Date<br>Head entity: 美国海军<br>Tail entity: 2010年<br>Evidence sent IDs: 5<br>Evidence:<br>[5] 该涂层曾于2010年在拉梅奇号、梅森号驱逐舰和庞塞号两栖船坞运输舰上进行了测试。", "width": 3.0, "arrows": "to"}, {"from": "81::n2", "to": "81::n4", "label": "测试", "title": "<b>测试</b><br>Relation: Experiment__Location<br>Role: Location<br>Head entity: 美国海军<br>Tail entity: 庞塞号两栖船坞运输舰<br>Evidence sent IDs: 5<br>Evidence:<br>[5] 该涂层曾于2010年在拉梅奇号、梅森号驱逐舰和庞塞号两栖船坞运输舰上进行了测试。", "width": 2, "arrows": "to"}, {"from": "81::n2", "to": "81::n5", "label": "测试", "title": "<b>测试</b><br>Relation: Experiment__Location<br>Role: Location<br>Head entity: 美国海军<br>Tail entity: 拉梅奇号<br>Evidence sent IDs: 5<br>Evidence:<br>[5] 该涂层曾于2010年在拉梅奇号、梅森号驱逐舰和庞塞号两栖船坞运输舰上进行了测试。", "width": 2, "arrows": "to"}, {"from": "81::n2", "to": "81::n6", "label": "测试", "title": "<b>测试</b><br>Relation: Experiment__Location<br>Role: Location<br>Head entity: 美国海军<br>Tail entity: 梅森号驱逐舰<br>Evidence sent IDs: 5<br>Evidence:<br>[5] 该涂层曾于2010年在拉梅奇号、梅森号驱逐舰和庞塞号两栖船坞运输舰上进行了测试。", "width": 2, "arrows": "to"}, {"from": "81::n7", "to": "81::n1", "label": "测试", "title": "<b>测试</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 美国海军<br>Tail entity: 新型防滑涂层<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 一种用于舰艇飞行甲板的新型防滑涂层将在提康德罗加级巡洋舰圣乔治角号上进行测试。", "width": 2, "arrows": "to"}, {"from": "81::n7", "to": "81::n0", "label": "测试", "title": "<b>测试</b><br>Relation: Experiment__Location<br>Role: Location<br>Head entity: 美国海军<br>Tail entity: 提康德罗加级巡洋舰圣乔治角号<br>Evidence sent IDs: 0|4<br>Evidence:<br>[0] 一种用于舰艇飞行甲板的新型防滑涂层将在提康德罗加级巡洋舰圣乔治角号上进行测试。<br>[4]  圣乔治角号巡洋舰在西太平洋和中东部署完毕回到圣迭戈港后，涂层研发团队将立刻进行后续检查。", "width": 2, "arrows": "to"}, {"from": "81::n8", "to": "81::n0", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 美国海军<br>Tail entity: 提康德罗加级巡洋舰圣乔治角号<br>Evidence sent IDs: 0|4<br>Evidence:<br>[0] 一种用于舰艇飞行甲板的新型防滑涂层将在提康德罗加级巡洋舰圣乔治角号上进行测试。<br>[4]  圣乔治角号巡洋舰在西太平洋和中东部署完毕回到圣迭戈港后，涂层研发团队将立刻进行后续检查。", "width": 2.5, "arrows": "to"}, {"from": "81::n8", "to": "81::n9", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 美国海军<br>Tail entity: 中东<br>Evidence sent IDs: 4<br>Evidence:<br>[4]  圣乔治角号巡洋舰在西太平洋和中东部署完毕回到圣迭戈港后，涂层研发团队将立刻进行后续检查。", "width": 2, "arrows": "to"}, {"from": "81::n8", "to": "81::n10", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 美国海军<br>Tail entity: 西太平洋<br>Evidence sent IDs: 4<br>Evidence:<br>[4]  圣乔治角号巡洋舰在西太平洋和中东部署完毕回到圣迭戈港后，涂层研发团队将立刻进行后续检查。", "width": 2, "arrows": "to"}];
+
+    const container = document.getElementById('mynetwork');
+    if (!window.vis) {
+      container.innerHTML = '<div class="empty">vis-network assets failed to load. Please check the local vis-9.1.2 directory.</div>';
+    } else if (!nodesData.length) {
+      container.innerHTML = '<div class="empty">No graph data is available for visualization.</div>';
+    } else {
+      const nodes = new vis.DataSet(nodesData);
+      const edges = new vis.DataSet(edgesData);
+      const data = { nodes, edges };
+      const options = {
+        interaction: {
+          hover: true,
+          navigationButtons: true,
+          keyboard: true
+        },
+        layout: {
+          improvedLayout: true
+        },
+        physics: {
+          enabled: true,
+          stabilization: {
+            enabled: true,
+            iterations: 300,
+            fit: true
+          },
+          barnesHut: {
+            gravitationalConstant: -3200,
+            centralGravity: 0.2,
+            springLength: 180,
+            springConstant: 0.04,
+            damping: 0.09
+          },
+          minVelocity: 0.75
+        },
+        edges: {
+          smooth: false,
+          color: {
+            color: '#94a3b8',
+            highlight: '#2563eb'
+          },
+          font: {
+            size: 12,
+            align: 'middle',
+            strokeWidth: 0,
+            background: 'rgba(255,255,255,0.75)'
+          }
+        },
+        nodes: {
+          borderWidth: 1,
+          borderWidthSelected: 2,
+          font: {
+            size: 16,
+            color: '#111827'
+          }
+        }
+      };
+
+      const network = new vis.Network(container, data, options);
+      network.once('stabilizationIterationsDone', function() {
+        network.fit({
+          animation: {
+            duration: 500,
+            easingFunction: 'easeInOutQuad'
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

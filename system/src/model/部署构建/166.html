@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Graph: 166</title>
+  <link rel="stylesheet" href="./vis-9.1.2/vis-network.css">
+  <script src="./vis-9.1.2/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .page {
+      padding: 16px;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #dbe2ea;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    }
+    .header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .meta {
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .legend {
+      padding: 10px 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: #4b5563;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    #mynetwork {
+      width: 100%;
+      height: 85vh;
+      min-height: 760px;
+      background: #ffffff;
+    }
+    .empty {
+      padding: 40px 18px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <div class="header">
+        <div class="title">Document Graph: 166</div>
+        <div class="meta">Nodes 21 | Edges 30</div>
+      </div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5B8FF9"></span>Subject</span><span class="legend-item"><span class="legend-dot" style="background:#61DDAA"></span>Location</span><span class="legend-item"><span class="legend-dot" style="background:#F6BD16"></span>Date</span><span class="legend-item"><span class="legend-dot" style="background:#7262FD"></span>Equipment</span><span class="legend-item"><span class="legend-dot" style="background:#F08BB4"></span>Militaryforce</span><span class="legend-item"><span class="legend-dot" style="background:#78D3F8"></span>Object</span><span class="legend-item"><span class="legend-dot" style="background:#FF9D4D"></span>Participant</span><span class="legend-item"><span class="legend-dot" style="background:#BFBFBF"></span>Unknown</span></div>
+      <div id="mynetwork"></div>
+    </div>
+  </div>
+  <script>
+    const nodesData = [{"id": "1613::n0", "label": "岸基宙斯盾系统", "title": "<b>岸基宙斯盾系统</b><br>Type: ENTITY<br>Entity role: Equipment<br>Doc: 1613<br>Mentions: 7<br>Sent IDs: 0|1|2|4|6|7<br>Mentions:<br>name=美国岸基宙斯盾系统, sent_id=0, pos=[0, 9], type=ENTITY<br>name=岸基宙斯盾系统, sent_id=1, pos=[2, 9], type=ENTITY<br>name=岸基宙斯盾系统, sent_id=2, pos=[1, 8], type=ENTITY<br>name=岸基宙斯盾系统, sent_id=4, pos=[1, 8], type=ENTITY<br>name=系统, sent_id=6, pos=[3, 5], type=ENTITY<br>name=系统, sent_id=7, pos=[1, 3], type=ENTITY<br>name=系统, sent_id=7, pos=[29, 31], type=ENTITY", "color": "#7262FD", "shape": "dot", "size": 18}, {"id": "1613::n1", "label": "标准-3导弹", "title": "<b>标准-3导弹</b><br>Type: ENTITY<br>Entity role: Equipment<br>Doc: 1613<br>Mentions: 5<br>Sent IDs: 0|1|2|7<br>Mentions:<br>name=标准-3导弹, sent_id=0, pos=[20, 26], type=ENTITY<br>name=导弹, sent_id=0, pos=[32, 34], type=ENTITY<br>name=标准-3 Block 1B防空导弹, sent_id=1, pos=[31, 48], type=ENTITY<br>name=标准-3, sent_id=2, pos=[56, 60], type=ENTITY<br>name=IB, sent_id=7, pos=[22, 24], type=ENTITY", "color": "#7262FD", "shape": "dot", "size": 18}, {"id": "1613::n2", "label": "太平洋导弹靶场", "title": "<b>太平洋导弹靶场</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 1613<br>Mentions: 2<br>Sent IDs: 1|8<br>Mentions:<br>name=太平洋导弹靶场, sent_id=1, pos=[15, 22], type=ENTITY<br>name=太平洋导弹靶场, sent_id=8, pos=[2, 9], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "1613::n3", "label": "美国", "title": "<b>美国</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 1613<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=美国, sent_id=0, pos=[0, 2], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "1613::n4", "label": "初期", "title": "<b>初期</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 1613<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=初期, sent_id=5, pos=[3, 5], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "1613::n5", "label": "穆尔斯顿", "title": "<b>穆尔斯顿</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 1613<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=穆尔斯顿, sent_id=5, pos=[13, 17], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "1613::n6", "label": "5月21日", "title": "<b>5月21日</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 1613<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=5月21日, sent_id=0, pos=[10, 15], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "1613::n7", "label": "洛・马任务系统与训练分部", "title": "<b>洛・马任务系统与训练分部</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 1613<br>Mentions: 1<br>Sent IDs: 2<br>Mentions:<br>name=洛・马任务系统与训练分部, sent_id=2, pos=[9, 21], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "1613::n8", "label": "雷声公司", "title": "<b>雷声公司</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 1613<br>Mentions: 1<br>Sent IDs: 2<br>Mentions:<br>name=雷声公司, sent_id=2, pos=[26, 30], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "1613::n9", "label": "SPY-1D", "title": "<b>SPY-1D</b><br>Type: ENTITY<br>Entity role: Equipment<br>Doc: 1613<br>Mentions: 1<br>Sent IDs: 2<br>Mentions:<br>name=SPY-1D, sent_id=2, pos=[30, 36], type=ENTITY", "color": "#7262FD", "shape": "dot", "size": 18}, {"id": "1613::n10", "label": "雷声公司导弹系统分部", "title": "<b>雷声公司导弹系统分部</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 1613<br>Mentions: 1<br>Sent IDs: 2<br>Mentions:<br>name=雷声公司导弹系统分部, sent_id=2, pos=[43, 53], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "1613::n11", "label": "2015年", "title": "<b>2015年</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 1613<br>Mentions: 1<br>Sent IDs: 8<br>Mentions:<br>name=2015年, sent_id=8, pos=[12, 17], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "1613::n12", "label": "导弹", "title": "<b>导弹</b><br>Type: ENTITY<br>Entity role: Equipment<br>Doc: 1613<br>Mentions: 1<br>Sent IDs: 8<br>Mentions:<br>name=导弹, sent_id=8, pos=[22, 24], type=ENTITY", "color": "#7262FD", "shape": "dot", "size": 18}, {"id": "1613::n13", "label": "2018年", "title": "<b>2018年</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 1613<br>Mentions: 1<br>Sent IDs: 6<br>Mentions:<br>name=2018年, sent_id=6, pos=[8, 13], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "1613::n14", "label": "波兰", "title": "<b>波兰</b><br>Type: ENTITY<br>Entity role: Object<br>Doc: 1613<br>Mentions: 1<br>Sent IDs: 6<br>Mentions:<br>name=波兰, sent_id=6, pos=[15, 17], type=ENTITY", "color": "#78D3F8", "shape": "dot", "size": 18}, {"id": "1613::n15", "label": "年底", "title": "<b>年底</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 1613<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=年底, sent_id=5, pos=[20, 22], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "1613::n16", "label": "罗马尼亚", "title": "<b>罗马尼亚</b><br>Type: ENTITY<br>Entity role: Object<br>Doc: 1613<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=罗马尼亚, sent_id=5, pos=[24, 28], type=ENTITY", "color": "#78D3F8", "shape": "dot", "size": 18}, {"id": "1613::n17", "label": "海上宙斯盾系统", "title": "<b>海上宙斯盾系统</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 1613<br>Mentions: 1<br>Sent IDs: 3<br>Mentions:<br>name=海上宙斯盾系统, sent_id=3, pos=[4, 11], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "1613::n18", "label": "美海军", "title": "<b>美海军</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 1613<br>Mentions: 1<br>Sent IDs: 3<br>Mentions:<br>name=美海军, sent_id=3, pos=[23, 26], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "1613::n19", "label": "阿利・伯克级驱逐舰", "title": "<b>阿利・伯克级驱逐舰</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 1613<br>Mentions: 1<br>Sent IDs: 3<br>Mentions:<br>name=阿利・伯克级驱逐舰, sent_id=3, pos=[36, 45], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "1613::n20", "label": "提康德罗加级巡洋舰", "title": "<b>提康德罗加级巡洋舰</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 1613<br>Mentions: 1<br>Sent IDs: 3<br>Mentions:<br>name=提康德罗加级巡洋舰, sent_id=3, pos=[26, 35], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}];
+    const edgesData = [{"from": "1613::n3", "to": "1613::n0", "label": "安装", "title": "<b>安装</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 美国<br>Tail entity: 岸基宙斯盾系统<br>Evidence sent IDs: 0|1|2|4|5|6|7<br>Evidence:<br>[0] 美国岸基宙斯盾系统于5月21日完成了首次标准-3导弹试射，共发射导弹5枚。<br>[1] 这套岸基宙斯盾系统位于夏威夷的太平洋导弹靶场，发射并控制了一枚标准-3 Block 1B防空导弹，攻击一个模拟目标，但并未采用拦截方案。<br>[2]  岸基宙斯盾系统有洛・马任务系统与训练分部搭建，通过雷声公司SPY-1D跟踪目标，利用雷声公司导弹系统分部研制的标准-3拦截目标。<br>[4]  岸基宙斯盾系统配备最新版本的BMD 5.0弹道导弹防御软件，首部建造的系统用于测试。<br>[5] 第二部初期安装于新泽西州的穆尔斯顿，将于年底交付罗马尼亚，2015年正式运行。<br>[6] 第三部系统计划于2018年交付波兰，并正式运行。<br>[7]  系统最终可发射标准-3 Block IA、IB和IIA，系统将配备3组Mk 41垂直发射装置，共24单元，备弹24枚。", "width": 2, "arrows": "to"}, {"from": "1613::n3", "to": "1613::n4", "label": "安装", "title": "<b>安装</b><br>Relation: Deploy__Date<br>Role: Date<br>Head entity: 美国<br>Tail entity: 初期<br>Evidence sent IDs: 5<br>Evidence:<br>[5] 第二部初期安装于新泽西州的穆尔斯顿，将于年底交付罗马尼亚，2015年正式运行。", "width": 2, "arrows": "to"}, {"from": "1613::n3", "to": "1613::n5", "label": "安装", "title": "<b>安装</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 美国<br>Tail entity: 穆尔斯顿<br>Evidence sent IDs: 5<br>Evidence:<br>[5] 第二部初期安装于新泽西州的穆尔斯顿，将于年底交付罗马尼亚，2015年正式运行。", "width": 2, "arrows": "to"}, {"from": "1613::n7", "to": "1613::n0", "label": "试射", "title": "<b>试射</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 洛・马任务系统与训练分部<br>Tail entity: 岸基宙斯盾系统<br>Evidence sent IDs: 0|1|2|4|6|7<br>Evidence:<br>[0] 美国岸基宙斯盾系统于5月21日完成了首次标准-3导弹试射，共发射导弹5枚。<br>[1] 这套岸基宙斯盾系统位于夏威夷的太平洋导弹靶场，发射并控制了一枚标准-3 Block 1B防空导弹，攻击一个模拟目标，但并未采用拦截方案。<br>[2]  岸基宙斯盾系统有洛・马任务系统与训练分部搭建，通过雷声公司SPY-1D跟踪目标，利用雷声公司导弹系统分部研制的标准-3拦截目标。<br>[4]  岸基宙斯盾系统配备最新版本的BMD 5.0弹道导弹防御软件，首部建造的系统用于测试。<br>[6] 第三部系统计划于2018年交付波兰，并正式运行。<br>[7]  系统最终可发射标准-3 Block IA、IB和IIA，系统将配备3组Mk 41垂直发射装置，共24单元，备弹24枚。", "width": 2, "arrows": "to"}, {"from": "1613::n7", "to": "1613::n6", "label": "试射", "title": "<b>试射</b><br>Relation: Experiment__Date<br>Role: Date<br>Head entity: 洛・马任务系统与训练分部<br>Tail entity: 5月21日<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 美国岸基宙斯盾系统于5月21日完成了首次标准-3导弹试射，共发射导弹5枚。", "width": 2, "arrows": "to"}, {"from": "1613::n7", "to": "1613::n1", "label": "试射", "title": "<b>试射</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 洛・马任务系统与训练分部<br>Tail entity: 标准-3导弹<br>Evidence sent IDs: 0|1|2|7<br>Evidence:<br>[0] 美国岸基宙斯盾系统于5月21日完成了首次标准-3导弹试射，共发射导弹5枚。<br>[1] 这套岸基宙斯盾系统位于夏威夷的太平洋导弹靶场，发射并控制了一枚标准-3 Block 1B防空导弹，攻击一个模拟目标，但并未采用拦截方案。<br>[2]  岸基宙斯盾系统有洛・马任务系统与训练分部搭建，通过雷声公司SPY-1D跟踪目标，利用雷声公司导弹系统分部研制的标准-3拦截目标。<br>[7]  系统最终可发射标准-3 Block IA、IB和IIA，系统将配备3组Mk 41垂直发射装置，共24单元，备弹24枚。", "width": 2, "arrows": "to"}, {"from": "1613::n7", "to": "1613::n2", "label": "试射", "title": "<b>试射</b><br>Relation: Experiment__Location<br>Role: Location<br>Head entity: 洛・马任务系统与训练分部<br>Tail entity: 太平洋导弹靶场<br>Evidence sent IDs: 0|1|8<br>Evidence:<br>[0] 美国岸基宙斯盾系统于5月21日完成了首次标准-3导弹试射，共发射导弹5枚。<br>[1] 这套岸基宙斯盾系统位于夏威夷的太平洋导弹靶场，发射并控制了一枚标准-3 Block 1B防空导弹，攻击一个模拟目标，但并未采用拦截方案。<br>[8] 位于太平洋导弹靶场计划于2015年第二次执行导弹发射，执行真正的拦截任务。", "width": 2, "arrows": "to"}, {"from": "1613::n7", "to": "1613::n9", "label": "试射", "title": "<b>试射</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 洛・马任务系统与训练分部<br>Tail entity: SPY-1D<br>Evidence sent IDs: 0|2<br>Evidence:<br>[0] 美国岸基宙斯盾系统于5月21日完成了首次标准-3导弹试射，共发射导弹5枚。<br>[2]  岸基宙斯盾系统有洛・马任务系统与训练分部搭建，通过雷声公司SPY-1D跟踪目标，利用雷声公司导弹系统分部研制的标准-3拦截目标。", "width": 2, "arrows": "to"}, {"from": "1613::n8", "to": "1613::n0", "label": "试射", "title": "<b>试射</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 雷声公司<br>Tail entity: 岸基宙斯盾系统<br>Evidence sent IDs: 0|1|2|4|6|7<br>Evidence:<br>[0] 美国岸基宙斯盾系统于5月21日完成了首次标准-3导弹试射，共发射导弹5枚。<br>[1] 这套岸基宙斯盾系统位于夏威夷的太平洋导弹靶场，发射并控制了一枚标准-3 Block 1B防空导弹，攻击一个模拟目标，但并未采用拦截方案。<br>[2]  岸基宙斯盾系统有洛・马任务系统与训练分部搭建，通过雷声公司SPY-1D跟踪目标，利用雷声公司导弹系统分部研制的标准-3拦截目标。<br>[4]  岸基宙斯盾系统配备最新版本的BMD 5.0弹道导弹防御软件，首部建造的系统用于测试。<br>[6] 第三部系统计划于2018年交付波兰，并正式运行。<br>[7]  系统最终可发射标准-3 Block IA、IB和IIA，系统将配备3组Mk 41垂直发射装置，共24单元，备弹24枚。", "width": 2, "arrows": "to"}, {"from": "1613::n8", "to": "1613::n6", "label": "试射", "title": "<b>试射</b><br>Relation: Experiment__Date<br>Role: Date<br>Head entity: 雷声公司<br>Tail entity: 5月21日<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 美国岸基宙斯盾系统于5月21日完成了首次标准-3导弹试射，共发射导弹5枚。", "width": 2, "arrows": "to"}, {"from": "1613::n8", "to": "1613::n1", "label": "试射", "title": "<b>试射</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 雷声公司<br>Tail entity: 标准-3导弹<br>Evidence sent IDs: 0|1|2|7<br>Evidence:<br>[0] 美国岸基宙斯盾系统于5月21日完成了首次标准-3导弹试射，共发射导弹5枚。<br>[1] 这套岸基宙斯盾系统位于夏威夷的太平洋导弹靶场，发射并控制了一枚标准-3 Block 1B防空导弹，攻击一个模拟目标，但并未采用拦截方案。<br>[2]  岸基宙斯盾系统有洛・马任务系统与训练分部搭建，通过雷声公司SPY-1D跟踪目标，利用雷声公司导弹系统分部研制的标准-3拦截目标。<br>[7]  系统最终可发射标准-3 Block IA、IB和IIA，系统将配备3组Mk 41垂直发射装置，共24单元，备弹24枚。", "width": 2, "arrows": "to"}, {"from": "1613::n8", "to": "1613::n2", "label": "试射", "title": "<b>试射</b><br>Relation: Experiment__Location<br>Role: Location<br>Head entity: 雷声公司<br>Tail entity: 太平洋导弹靶场<br>Evidence sent IDs: 0|1|8<br>Evidence:<br>[0] 美国岸基宙斯盾系统于5月21日完成了首次标准-3导弹试射，共发射导弹5枚。<br>[1] 这套岸基宙斯盾系统位于夏威夷的太平洋导弹靶场，发射并控制了一枚标准-3 Block 1B防空导弹，攻击一个模拟目标，但并未采用拦截方案。<br>[8] 位于太平洋导弹靶场计划于2015年第二次执行导弹发射，执行真正的拦截任务。", "width": 2, "arrows": "to"}, {"from": "1613::n8", "to": "1613::n9", "label": "试射", "title": "<b>试射</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 雷声公司<br>Tail entity: SPY-1D<br>Evidence sent IDs: 0|2<br>Evidence:<br>[0] 美国岸基宙斯盾系统于5月21日完成了首次标准-3导弹试射，共发射导弹5枚。<br>[2]  岸基宙斯盾系统有洛・马任务系统与训练分部搭建，通过雷声公司SPY-1D跟踪目标，利用雷声公司导弹系统分部研制的标准-3拦截目标。", "width": 2, "arrows": "to"}, {"from": "1613::n10", "to": "1613::n0", "label": "试射", "title": "<b>试射</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 雷声公司导弹系统分部<br>Tail entity: 岸基宙斯盾系统<br>Evidence sent IDs: 0|1|2|4|6|7<br>Evidence:<br>[0] 美国岸基宙斯盾系统于5月21日完成了首次标准-3导弹试射，共发射导弹5枚。<br>[1] 这套岸基宙斯盾系统位于夏威夷的太平洋导弹靶场，发射并控制了一枚标准-3 Block 1B防空导弹，攻击一个模拟目标，但并未采用拦截方案。<br>[2]  岸基宙斯盾系统有洛・马任务系统与训练分部搭建，通过雷声公司SPY-1D跟踪目标，利用雷声公司导弹系统分部研制的标准-3拦截目标。<br>[4]  岸基宙斯盾系统配备最新版本的BMD 5.0弹道导弹防御软件，首部建造的系统用于测试。<br>[6] 第三部系统计划于2018年交付波兰，并正式运行。<br>[7]  系统最终可发射标准-3 Block IA、IB和IIA，系统将配备3组Mk 41垂直发射装置，共24单元，备弹24枚。", "width": 2, "arrows": "to"}, {"from": "1613::n10", "to": "1613::n6", "label": "试射", "title": "<b>试射</b><br>Relation: Experiment__Date<br>Role: Date<br>Head entity: 雷声公司导弹系统分部<br>Tail entity: 5月21日<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 美国岸基宙斯盾系统于5月21日完成了首次标准-3导弹试射，共发射导弹5枚。", "width": 2, "arrows": "to"}, {"from": "1613::n10", "to": "1613::n1", "label": "试射", "title": "<b>试射</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 雷声公司导弹系统分部<br>Tail entity: 标准-3导弹<br>Evidence sent IDs: 0|1|2|7<br>Evidence:<br>[0] 美国岸基宙斯盾系统于5月21日完成了首次标准-3导弹试射，共发射导弹5枚。<br>[1] 这套岸基宙斯盾系统位于夏威夷的太平洋导弹靶场，发射并控制了一枚标准-3 Block 1B防空导弹，攻击一个模拟目标，但并未采用拦截方案。<br>[2]  岸基宙斯盾系统有洛・马任务系统与训练分部搭建，通过雷声公司SPY-1D跟踪目标，利用雷声公司导弹系统分部研制的标准-3拦截目标。<br>[7]  系统最终可发射标准-3 Block IA、IB和IIA，系统将配备3组Mk 41垂直发射装置，共24单元，备弹24枚。", "width": 2, "arrows": "to"}, {"from": "1613::n10", "to": "1613::n2", "label": "试射", "title": "<b>试射</b><br>Relation: Experiment__Location<br>Role: Location<br>Head entity: 雷声公司导弹系统分部<br>Tail entity: 太平洋导弹靶场<br>Evidence sent IDs: 0|1|8<br>Evidence:<br>[0] 美国岸基宙斯盾系统于5月21日完成了首次标准-3导弹试射，共发射导弹5枚。<br>[1] 这套岸基宙斯盾系统位于夏威夷的太平洋导弹靶场，发射并控制了一枚标准-3 Block 1B防空导弹，攻击一个模拟目标，但并未采用拦截方案。<br>[8] 位于太平洋导弹靶场计划于2015年第二次执行导弹发射，执行真正的拦截任务。", "width": 2, "arrows": "to"}, {"from": "1613::n10", "to": "1613::n9", "label": "试射", "title": "<b>试射</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 雷声公司导弹系统分部<br>Tail entity: SPY-1D<br>Evidence sent IDs: 0|2<br>Evidence:<br>[0] 美国岸基宙斯盾系统于5月21日完成了首次标准-3导弹试射，共发射导弹5枚。<br>[2]  岸基宙斯盾系统有洛・马任务系统与训练分部搭建，通过雷声公司SPY-1D跟踪目标，利用雷声公司导弹系统分部研制的标准-3拦截目标。", "width": 2, "arrows": "to"}, {"from": "1613::n7", "to": "1613::n0", "label": "发射", "title": "<b>发射</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 洛・马任务系统与训练分部<br>Tail entity: 岸基宙斯盾系统<br>Evidence sent IDs: 0|1|2|4|6|7|8<br>Evidence:<br>[0] 美国岸基宙斯盾系统于5月21日完成了首次标准-3导弹试射，共发射导弹5枚。<br>[1] 这套岸基宙斯盾系统位于夏威夷的太平洋导弹靶场，发射并控制了一枚标准-3 Block 1B防空导弹，攻击一个模拟目标，但并未采用拦截方案。<br>[2]  岸基宙斯盾系统有洛・马任务系统与训练分部搭建，通过雷声公司SPY-1D跟踪目标，利用雷声公司导弹系统分部研制的标准-3拦截目标。<br>[4]  岸基宙斯盾系统配备最新版本的BMD 5.0弹道导弹防御软件，首部建造的系统用于测试。<br>[6] 第三部系统计划于2018年交付波兰，并正式运行。<br>[7]  系统最终可发射标准-3 Block IA、IB和IIA，系统将配备3组Mk 41垂直发射装置，共24单元，备弹24枚。<br>[8] 位于太平洋导弹靶场计划于2015年第二次执行导弹发射，执行真正的拦截任务。", "width": 2, "arrows": "to"}, {"from": "1613::n7", "to": "1613::n2", "label": "发射", "title": "<b>发射</b><br>Relation: Experiment__Location<br>Role: Location<br>Head entity: 洛・马任务系统与训练分部<br>Tail entity: 太平洋导弹靶场<br>Evidence sent IDs: 1|8<br>Evidence:<br>[1] 这套岸基宙斯盾系统位于夏威夷的太平洋导弹靶场，发射并控制了一枚标准-3 Block 1B防空导弹，攻击一个模拟目标，但并未采用拦截方案。<br>[8] 位于太平洋导弹靶场计划于2015年第二次执行导弹发射，执行真正的拦截任务。", "width": 2, "arrows": "to"}, {"from": "1613::n7", "to": "1613::n11", "label": "发射", "title": "<b>发射</b><br>Relation: Experiment__Date<br>Role: Date<br>Head entity: 洛・马任务系统与训练分部<br>Tail entity: 2015年<br>Evidence sent IDs: 8<br>Evidence:<br>[8] 位于太平洋导弹靶场计划于2015年第二次执行导弹发射，执行真正的拦截任务。", "width": 2, "arrows": "to"}, {"from": "1613::n7", "to": "1613::n12", "label": "发射", "title": "<b>发射</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 洛・马任务系统与训练分部<br>Tail entity: 导弹<br>Evidence sent IDs: 8<br>Evidence:<br>[8] 位于太平洋导弹靶场计划于2015年第二次执行导弹发射，执行真正的拦截任务。", "width": 2, "arrows": "to"}, {"from": "1613::n7", "to": "1613::n0", "label": "交付", "title": "<b>交付</b><br>Relation: Support__Materials<br>Role: Materials<br>Head entity: 洛・马任务系统与训练分部<br>Tail entity: 岸基宙斯盾系统<br>Evidence sent IDs: 0|1|2|4|6|7<br>Evidence:<br>[0] 美国岸基宙斯盾系统于5月21日完成了首次标准-3导弹试射，共发射导弹5枚。<br>[1] 这套岸基宙斯盾系统位于夏威夷的太平洋导弹靶场，发射并控制了一枚标准-3 Block 1B防空导弹，攻击一个模拟目标，但并未采用拦截方案。<br>[2]  岸基宙斯盾系统有洛・马任务系统与训练分部搭建，通过雷声公司SPY-1D跟踪目标，利用雷声公司导弹系统分部研制的标准-3拦截目标。<br>[4]  岸基宙斯盾系统配备最新版本的BMD 5.0弹道导弹防御软件，首部建造的系统用于测试。<br>[6] 第三部系统计划于2018年交付波兰，并正式运行。<br>[7]  系统最终可发射标准-3 Block IA、IB和IIA，系统将配备3组Mk 41垂直发射装置，共24单元，备弹24枚。", "width": 2.5, "arrows": "to"}, {"from": "1613::n7", "to": "1613::n13", "label": "交付", "title": "<b>交付</b><br>Relation: Support__Date<br>Role: Date<br>Head entity: 洛・马任务系统与训练分部<br>Tail entity: 2018年<br>Evidence sent IDs: 6<br>Evidence:<br>[6] 第三部系统计划于2018年交付波兰，并正式运行。", "width": 2, "arrows": "to"}, {"from": "1613::n7", "to": "1613::n14", "label": "交付", "title": "<b>交付</b><br>Relation: Support__Object<br>Role: Object<br>Head entity: 洛・马任务系统与训练分部<br>Tail entity: 波兰<br>Evidence sent IDs: 6<br>Evidence:<br>[6] 第三部系统计划于2018年交付波兰，并正式运行。", "width": 2, "arrows": "to"}, {"from": "1613::n7", "to": "1613::n15", "label": "交付", "title": "<b>交付</b><br>Relation: Support__Date<br>Role: Date<br>Head entity: 洛・马任务系统与训练分部<br>Tail entity: 年底<br>Evidence sent IDs: 5<br>Evidence:<br>[5] 第二部初期安装于新泽西州的穆尔斯顿，将于年底交付罗马尼亚，2015年正式运行。", "width": 2, "arrows": "to"}, {"from": "1613::n7", "to": "1613::n16", "label": "交付", "title": "<b>交付</b><br>Relation: Support__Object<br>Role: Object<br>Head entity: 洛・马任务系统与训练分部<br>Tail entity: 罗马尼亚<br>Evidence sent IDs: 5<br>Evidence:<br>[5] 第二部初期安装于新泽西州的穆尔斯顿，将于年底交付罗马尼亚，2015年正式运行。", "width": 2, "arrows": "to"}, {"from": "1613::n18", "to": "1613::n17", "label": "安装", "title": "<b>安装</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 美海军<br>Tail entity: 海上宙斯盾系统<br>Evidence sent IDs: 3<br>Evidence:<br>[3] 该系统是海上宙斯盾系统的改进型，后者目前安装于美海军提康德罗加级巡洋舰和阿利・伯克级驱逐舰，用于欧洲分阶段导弹防御网络项目。", "width": 2.5, "arrows": "to"}, {"from": "1613::n18", "to": "1613::n19", "label": "安装", "title": "<b>安装</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 美海军<br>Tail entity: 阿利・伯克级驱逐舰<br>Evidence sent IDs: 3<br>Evidence:<br>[3] 该系统是海上宙斯盾系统的改进型，后者目前安装于美海军提康德罗加级巡洋舰和阿利・伯克级驱逐舰，用于欧洲分阶段导弹防御网络项目。", "width": 2, "arrows": "to"}, {"from": "1613::n18", "to": "1613::n20", "label": "安装", "title": "<b>安装</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 美海军<br>Tail entity: 提康德罗加级巡洋舰<br>Evidence sent IDs: 3<br>Evidence:<br>[3] 该系统是海上宙斯盾系统的改进型，后者目前安装于美海军提康德罗加级巡洋舰和阿利・伯克级驱逐舰，用于欧洲分阶段导弹防御网络项目。", "width": 2, "arrows": "to"}];
+
+    const container = document.getElementById('mynetwork');
+    if (!window.vis) {
+      container.innerHTML = '<div class="empty">vis-network assets failed to load. Please check the local vis-9.1.2 directory.</div>';
+    } else if (!nodesData.length) {
+      container.innerHTML = '<div class="empty">No graph data is available for visualization.</div>';
+    } else {
+      const nodes = new vis.DataSet(nodesData);
+      const edges = new vis.DataSet(edgesData);
+      const data = { nodes, edges };
+      const options = {
+        interaction: {
+          hover: true,
+          navigationButtons: true,
+          keyboard: true
+        },
+        layout: {
+          improvedLayout: true
+        },
+        physics: {
+          enabled: true,
+          stabilization: {
+            enabled: true,
+            iterations: 300,
+            fit: true
+          },
+          barnesHut: {
+            gravitationalConstant: -3200,
+            centralGravity: 0.2,
+            springLength: 180,
+            springConstant: 0.04,
+            damping: 0.09
+          },
+          minVelocity: 0.75
+        },
+        edges: {
+          smooth: false,
+          color: {
+            color: '#94a3b8',
+            highlight: '#2563eb'
+          },
+          font: {
+            size: 12,
+            align: 'middle',
+            strokeWidth: 0,
+            background: 'rgba(255,255,255,0.75)'
+          }
+        },
+        nodes: {
+          borderWidth: 1,
+          borderWidthSelected: 2,
+          font: {
+            size: 16,
+            color: '#111827'
+          }
+        }
+      };
+
+      const network = new vis.Network(container, data, options);
+      network.once('stabilizationIterationsDone', function() {
+        network.fit({
+          animation: {
+            duration: 500,
+            easingFunction: 'easeInOutQuad'
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

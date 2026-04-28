@@ -1,0 +1,178 @@
+{
+  "source_file": "43.html",
+  "doc_id": 43,
+  "nodes_count": 11,
+  "edges_count": 10,
+  "nodes": [
+    {
+      "id": "43::n0",
+      "label": "雷声公司",
+      "title": "<b>雷声公司</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 43<br>Mentions: 3<br>Sent IDs: 0|2|6<br>Mentions:<br>name=雷声公司, sent_id=0, pos=[0, 4], type=ENTITY<br>name=雷声公司, sent_id=2, pos=[7, 11], type=ENTITY<br>name=雷声公司, sent_id=6, pos=[15, 19], type=ENTITY",
+      "color": "#5B8FF9",
+      "shape": "dot",
+      "size": 18
+    },
+    {
+      "id": "43::n1",
+      "label": "SeaVue任务能力增强海上和陆地监视雷达",
+      "title": "<b>SeaVue任务能力增强海上和陆地监视雷达</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 43<br>Mentions: 4<br>Sent IDs: 0|2|5|6<br>Mentions:<br>name=SeaVue任务能力增强海上和陆地监视雷达, sent_id=0, pos=[21, 42], type=ENTITY<br>name=SeaVue任务能力增强雷达, sent_id=2, pos=[12, 26], type=ENTITY<br>name=雷达, sent_id=5, pos=[6, 8], type=ENTITY<br>name=SeaVue雷达, sent_id=6, pos=[28, 36], type=ENTITY",
+      "color": "#F08BB4",
+      "shape": "dot",
+      "size": 18
+    },
+    {
+      "id": "43::n2",
+      "label": "巴基斯坦",
+      "title": "<b>巴基斯坦</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 43<br>Mentions: 1<br>Sent IDs: 6<br>Mentions:<br>name=巴基斯坦, sent_id=6, pos=[58, 62], type=ENTITY",
+      "color": "#61DDAA",
+      "shape": "dot",
+      "size": 18
+    },
+    {
+      "id": "43::n3",
+      "label": "挪威",
+      "title": "<b>挪威</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 43<br>Mentions: 1<br>Sent IDs: 6<br>Mentions:<br>name=挪威, sent_id=6, pos=[55, 57], type=ENTITY",
+      "color": "#61DDAA",
+      "shape": "dot",
+      "size": 18
+    },
+    {
+      "id": "43::n4",
+      "label": "墨西哥",
+      "title": "<b>墨西哥</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 43<br>Mentions: 1<br>Sent IDs: 6<br>Mentions:<br>name=墨西哥, sent_id=6, pos=[51, 54], type=ENTITY",
+      "color": "#61DDAA",
+      "shape": "dot",
+      "size": 18
+    },
+    {
+      "id": "43::n5",
+      "label": "日本",
+      "title": "<b>日本</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 43<br>Mentions: 1<br>Sent IDs: 6<br>Mentions:<br>name=日本, sent_id=6, pos=[48, 50], type=ENTITY",
+      "color": "#61DDAA",
+      "shape": "dot",
+      "size": 18
+    },
+    {
+      "id": "43::n6",
+      "label": "意大利",
+      "title": "<b>意大利</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 43<br>Mentions: 1<br>Sent IDs: 6<br>Mentions:<br>name=意大利, sent_id=6, pos=[44, 47], type=ENTITY",
+      "color": "#61DDAA",
+      "shape": "dot",
+      "size": 18
+    },
+    {
+      "id": "43::n7",
+      "label": "澳大利亚",
+      "title": "<b>澳大利亚</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 43<br>Mentions: 1<br>Sent IDs: 6<br>Mentions:<br>name=澳大利亚, sent_id=6, pos=[39, 43], type=ENTITY",
+      "color": "#61DDAA",
+      "shape": "dot",
+      "size": 18
+    },
+    {
+      "id": "43::n8",
+      "label": "台湾",
+      "title": "<b>台湾</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 43<br>Mentions: 1<br>Sent IDs: 6<br>Mentions:<br>name=台湾, sent_id=6, pos=[63, 65], type=ENTITY",
+      "color": "#61DDAA",
+      "shape": "dot",
+      "size": 18
+    },
+    {
+      "id": "43::n9",
+      "label": "英国",
+      "title": "<b>英国</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 43<br>Mentions: 1<br>Sent IDs: 6<br>Mentions:<br>name=英国, sent_id=6, pos=[66, 68], type=ENTITY",
+      "color": "#61DDAA",
+      "shape": "dot",
+      "size": 18
+    },
+    {
+      "id": "43::n10",
+      "label": "美国",
+      "title": "<b>美国</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 43<br>Mentions: 1<br>Sent IDs: 6<br>Mentions:<br>name=美国, sent_id=6, pos=[69, 71], type=ENTITY",
+      "color": "#61DDAA",
+      "shape": "dot",
+      "size": 18
+    }
+  ],
+  "edges": [
+    {
+      "from": "43::n0",
+      "to": "43::n1",
+      "label": "部署",
+      "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 雷声公司<br>Tail entity: SeaVue任务能力增强海上和陆地监视雷达<br>Evidence sent IDs: 0|2|5|6<br>Evidence:<br>[0] 雷声公司与美国国防部签订合同，向摩洛哥出口SeaVue任务能力增强海上和陆地监视雷达。<br>[2]        雷声公司的SeaVue任务能力增强雷达专门装备美国海军、美国海关和边界防护飞机，执行美国海岸、加勒比海和墨西哥湾沿海地区的监视任务。<br>[5] 该能力扩展了雷达的海上监视范围，通过提高任务成功率节省了全球用户执行海上监视的时间和经费投入。<br>[6]        约有超过150部雷声公司没有进行性能增强的SeaVue雷达部署在澳大利亚、意大利、日本、墨西哥、挪威、巴基斯坦、台湾、英国和美国。",
+      "width": 6.0,
+      "arrows": "to"
+    },
+    {
+      "from": "43::n0",
+      "to": "43::n2",
+      "label": "部署",
+      "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 雷声公司<br>Tail entity: 巴基斯坦<br>Evidence sent IDs: 6<br>Evidence:<br>[6]        约有超过150部雷声公司没有进行性能增强的SeaVue雷达部署在澳大利亚、意大利、日本、墨西哥、挪威、巴基斯坦、台湾、英国和美国。",
+      "width": 2,
+      "arrows": "to"
+    },
+    {
+      "from": "43::n0",
+      "to": "43::n3",
+      "label": "部署",
+      "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 雷声公司<br>Tail entity: 挪威<br>Evidence sent IDs: 6<br>Evidence:<br>[6]        约有超过150部雷声公司没有进行性能增强的SeaVue雷达部署在澳大利亚、意大利、日本、墨西哥、挪威、巴基斯坦、台湾、英国和美国。",
+      "width": 2,
+      "arrows": "to"
+    },
+    {
+      "from": "43::n0",
+      "to": "43::n4",
+      "label": "部署",
+      "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 雷声公司<br>Tail entity: 墨西哥<br>Evidence sent IDs: 6<br>Evidence:<br>[6]        约有超过150部雷声公司没有进行性能增强的SeaVue雷达部署在澳大利亚、意大利、日本、墨西哥、挪威、巴基斯坦、台湾、英国和美国。",
+      "width": 2,
+      "arrows": "to"
+    },
+    {
+      "from": "43::n0",
+      "to": "43::n5",
+      "label": "部署",
+      "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 雷声公司<br>Tail entity: 日本<br>Evidence sent IDs: 6<br>Evidence:<br>[6]        约有超过150部雷声公司没有进行性能增强的SeaVue雷达部署在澳大利亚、意大利、日本、墨西哥、挪威、巴基斯坦、台湾、英国和美国。",
+      "width": 2,
+      "arrows": "to"
+    },
+    {
+      "from": "43::n0",
+      "to": "43::n6",
+      "label": "部署",
+      "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 雷声公司<br>Tail entity: 意大利<br>Evidence sent IDs: 6<br>Evidence:<br>[6]        约有超过150部雷声公司没有进行性能增强的SeaVue雷达部署在澳大利亚、意大利、日本、墨西哥、挪威、巴基斯坦、台湾、英国和美国。",
+      "width": 2,
+      "arrows": "to"
+    },
+    {
+      "from": "43::n0",
+      "to": "43::n7",
+      "label": "部署",
+      "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 雷声公司<br>Tail entity: 澳大利亚<br>Evidence sent IDs: 6<br>Evidence:<br>[6]        约有超过150部雷声公司没有进行性能增强的SeaVue雷达部署在澳大利亚、意大利、日本、墨西哥、挪威、巴基斯坦、台湾、英国和美国。",
+      "width": 2,
+      "arrows": "to"
+    },
+    {
+      "from": "43::n0",
+      "to": "43::n8",
+      "label": "部署",
+      "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 雷声公司<br>Tail entity: 台湾<br>Evidence sent IDs: 6<br>Evidence:<br>[6]        约有超过150部雷声公司没有进行性能增强的SeaVue雷达部署在澳大利亚、意大利、日本、墨西哥、挪威、巴基斯坦、台湾、英国和美国。",
+      "width": 2,
+      "arrows": "to"
+    },
+    {
+      "from": "43::n0",
+      "to": "43::n9",
+      "label": "部署",
+      "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 雷声公司<br>Tail entity: 英国<br>Evidence sent IDs: 6<br>Evidence:<br>[6]        约有超过150部雷声公司没有进行性能增强的SeaVue雷达部署在澳大利亚、意大利、日本、墨西哥、挪威、巴基斯坦、台湾、英国和美国。",
+      "width": 2,
+      "arrows": "to"
+    },
+    {
+      "from": "43::n0",
+      "to": "43::n10",
+      "label": "部署",
+      "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 雷声公司<br>Tail entity: 美国<br>Evidence sent IDs: 6<br>Evidence:<br>[6]        约有超过150部雷声公司没有进行性能增强的SeaVue雷达部署在澳大利亚、意大利、日本、墨西哥、挪威、巴基斯坦、台湾、英国和美国。",
+      "width": 2,
+      "arrows": "to"
+    }
+  ]
+}

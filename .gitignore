@@ -10,12 +10,18 @@ __pycache__/
 .venv/
 venv/
 env/
+node_modules/
+.npm-cache/
+dist/
 
 data/
 dataset/
 datasets/
+!system/src/data/
+!system/src/data/**
 outputs/
 checkpoints/
+.tmp_*
 
 *.pt
 *.pth

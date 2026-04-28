@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Graph: 389</title>
+  <link rel="stylesheet" href="./vis-9.1.2/vis-network.css">
+  <script src="./vis-9.1.2/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .page {
+      padding: 16px;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #dbe2ea;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    }
+    .header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .meta {
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .legend {
+      padding: 10px 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: #4b5563;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    #mynetwork {
+      width: 100%;
+      height: 85vh;
+      min-height: 760px;
+      background: #ffffff;
+    }
+    .empty {
+      padding: 40px 18px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <div class="header">
+        <div class="title">Document Graph: 389</div>
+        <div class="meta">Nodes 11 | Edges 14</div>
+      </div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5B8FF9"></span>Subject</span><span class="legend-item"><span class="legend-dot" style="background:#61DDAA"></span>Location</span><span class="legend-item"><span class="legend-dot" style="background:#F6BD16"></span>Date</span><span class="legend-item"><span class="legend-dot" style="background:#7262FD"></span>Equipment</span><span class="legend-item"><span class="legend-dot" style="background:#F08BB4"></span>Militaryforce</span><span class="legend-item"><span class="legend-dot" style="background:#78D3F8"></span>Object</span><span class="legend-item"><span class="legend-dot" style="background:#FF9D4D"></span>Participant</span><span class="legend-item"><span class="legend-dot" style="background:#BFBFBF"></span>Unknown</span></div>
+      <div id="mynetwork"></div>
+    </div>
+  </div>
+  <script>
+    const nodesData = [{"id": "389::n0", "label": "美国", "title": "<b>美国</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 389<br>Mentions: 3<br>Sent IDs: 0|3<br>Mentions:<br>name=美国, sent_id=0, pos=[8, 10], type=ENTITY<br>name=美国, sent_id=0, pos=[31, 33], type=ENTITY<br>name=美国海军, sent_id=3, pos=[0, 4], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "389::n1", "label": "提康德洛加级导弹巡洋舰钱瑟勒斯威尔号", "title": "<b>提康德洛加级导弹巡洋舰钱瑟勒斯威尔号</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 389<br>Mentions: 3<br>Sent IDs: 3|6<br>Mentions:<br>name=提康德洛加级导弹巡洋舰钱瑟勒斯威尔号, sent_id=3, pos=[15, 33], type=ENTITY<br>name=钱瑟勒斯威尔&#x27;号, sent_id=6, pos=[1, 9], type=ENTITY<br>name=钱瑟勒斯威尔号, sent_id=6, pos=[28, 35], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "389::n2", "label": "保罗・福斯特号", "title": "<b>保罗・福斯特号</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 389<br>Mentions: 3<br>Sent IDs: 3|6<br>Mentions:<br>name=斯普鲁恩斯级驱逐舰保罗・福斯特号, sent_id=3, pos=[35, 51], type=ENTITY<br>name=保罗・福斯特号, sent_id=6, pos=[10, 17], type=ENTITY<br>name=保罗・福斯特号, sent_id=6, pos=[57, 64], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "389::n3", "label": "印度", "title": "<b>印度</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 389<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=印度, sent_id=0, pos=[5, 7], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "389::n4", "label": "星期四", "title": "<b>星期四</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 389<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=星期四, sent_id=0, pos=[19, 22], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "389::n5", "label": "印度西海岸", "title": "<b>印度西海岸</b><br>Type: ENTITY<br>Entity role: Area<br>Doc: 389<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=印度西海岸, sent_id=0, pos=[23, 28], type=ENTITY", "color": "#BFBFBF", "shape": "dot", "size": 18}, {"id": "389::n6", "label": "直升机甲板、舰炮发射", "title": "<b>直升机甲板、舰炮发射</b><br>Type: ENTITY<br>Entity role: Content<br>Doc: 389<br>Mentions: 1<br>Sent IDs: 4<br>Mentions:<br>name=直升机甲板、舰炮发射, sent_id=4, pos=[24, 34], type=ENTITY", "color": "#BFBFBF", "shape": "dot", "size": 18}, {"id": "389::n7", "label": "反潜作战训练", "title": "<b>反潜作战训练</b><br>Type: ENTITY<br>Entity role: Content<br>Doc: 389<br>Mentions: 1<br>Sent IDs: 4<br>Mentions:<br>name=反潜作战训练, sent_id=4, pos=[35, 41], type=ENTITY", "color": "#BFBFBF", "shape": "dot", "size": 18}, {"id": "389::n8", "label": "星期四", "title": "<b>星期四</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 389<br>Mentions: 1<br>Sent IDs: 6<br>Mentions:<br>name=星期四, sent_id=6, pos=[18, 21], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "389::n9", "label": "印度科钦", "title": "<b>印度科钦</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 389<br>Mentions: 1<br>Sent IDs: 6<br>Mentions:<br>name=印度科钦, sent_id=6, pos=[23, 27], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "389::n10", "label": "日本横须贺海军基地", "title": "<b>日本横须贺海军基地</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 389<br>Mentions: 1<br>Sent IDs: 6<br>Mentions:<br>name=日本横须贺海军基地, sent_id=6, pos=[47, 56], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}];
+    const edgesData = [{"from": "389::n3", "to": "389::n4", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Date<br>Role: Date<br>Head entity: 印度<br>Tail entity: 星期四<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 为期一周的印度-美国双边海军演习于这个星期四在印度西海岸开始，美国有750名海军人员参加了该次军事演习。", "width": 2, "arrows": "to"}, {"from": "389::n3", "to": "389::n5", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Area<br>Role: Area<br>Head entity: 印度<br>Tail entity: 印度西海岸<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 为期一周的印度-美国双边海军演习于这个星期四在印度西海岸开始，美国有750名海军人员参加了该次军事演习。", "width": 2, "arrows": "to"}, {"from": "389::n3", "to": "389::n6", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Content<br>Role: Content<br>Head entity: 印度<br>Tail entity: 直升机甲板、舰炮发射<br>Evidence sent IDs: 0|4<br>Evidence:<br>[0] 为期一周的印度-美国双边海军演习于这个星期四在印度西海岸开始，美国有750名海军人员参加了该次军事演习。<br>[4] 演习过程中，两国部队将在多种技能区域内训练，包括直升机甲板、舰炮发射和反潜作战训练。", "width": 2, "arrows": "to"}, {"from": "389::n3", "to": "389::n7", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Content<br>Role: Content<br>Head entity: 印度<br>Tail entity: 反潜作战训练<br>Evidence sent IDs: 0|4<br>Evidence:<br>[0] 为期一周的印度-美国双边海军演习于这个星期四在印度西海岸开始，美国有750名海军人员参加了该次军事演习。<br>[4] 演习过程中，两国部队将在多种技能区域内训练，包括直升机甲板、舰炮发射和反潜作战训练。", "width": 2, "arrows": "to"}, {"from": "389::n0", "to": "389::n4", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Date<br>Role: Date<br>Head entity: 美国<br>Tail entity: 星期四<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 为期一周的印度-美国双边海军演习于这个星期四在印度西海岸开始，美国有750名海军人员参加了该次军事演习。", "width": 2, "arrows": "to"}, {"from": "389::n0", "to": "389::n5", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Area<br>Role: Area<br>Head entity: 美国<br>Tail entity: 印度西海岸<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 为期一周的印度-美国双边海军演习于这个星期四在印度西海岸开始，美国有750名海军人员参加了该次军事演习。", "width": 2, "arrows": "to"}, {"from": "389::n0", "to": "389::n6", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Content<br>Role: Content<br>Head entity: 美国<br>Tail entity: 直升机甲板、舰炮发射<br>Evidence sent IDs: 0|4<br>Evidence:<br>[0] 为期一周的印度-美国双边海军演习于这个星期四在印度西海岸开始，美国有750名海军人员参加了该次军事演习。<br>[4] 演习过程中，两国部队将在多种技能区域内训练，包括直升机甲板、舰炮发射和反潜作战训练。", "width": 2, "arrows": "to"}, {"from": "389::n0", "to": "389::n7", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Content<br>Role: Content<br>Head entity: 美国<br>Tail entity: 反潜作战训练<br>Evidence sent IDs: 0|4<br>Evidence:<br>[0] 为期一周的印度-美国双边海军演习于这个星期四在印度西海岸开始，美国有750名海军人员参加了该次军事演习。<br>[4] 演习过程中，两国部队将在多种技能区域内训练，包括直升机甲板、舰炮发射和反潜作战训练。", "width": 2, "arrows": "to"}, {"from": "389::n0", "to": "389::n1", "label": "到达", "title": "<b>到达</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 美国<br>Tail entity: 提康德洛加级导弹巡洋舰钱瑟勒斯威尔号<br>Evidence sent IDs: 3|6<br>Evidence:<br>[3] 美国海军参加军事演习的舰艇包括提康德洛加级导弹巡洋舰钱瑟勒斯威尔号 、斯普鲁恩斯级驱逐舰保罗・福斯特号和一架P-3C巡逻侦察机。<br>[6]  钱瑟勒斯威尔&#x27;号和保罗・福斯特号在星期四到达印度科钦，钱瑟勒斯威尔号配备人员360名，驻扎在日本横须贺海军基地，保罗・福斯特号340名，母港在华盛顿埃弗雷德海军基地。", "width": 2, "arrows": "to"}, {"from": "389::n0", "to": "389::n2", "label": "到达", "title": "<b>到达</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 美国<br>Tail entity: 保罗・福斯特号<br>Evidence sent IDs: 3|6<br>Evidence:<br>[3] 美国海军参加军事演习的舰艇包括提康德洛加级导弹巡洋舰钱瑟勒斯威尔号 、斯普鲁恩斯级驱逐舰保罗・福斯特号和一架P-3C巡逻侦察机。<br>[6]  钱瑟勒斯威尔&#x27;号和保罗・福斯特号在星期四到达印度科钦，钱瑟勒斯威尔号配备人员360名，驻扎在日本横须贺海军基地，保罗・福斯特号340名，母港在华盛顿埃弗雷德海军基地。", "width": 2, "arrows": "to"}, {"from": "389::n0", "to": "389::n8", "label": "到达", "title": "<b>到达</b><br>Relation: Deploy__Date<br>Role: Date<br>Head entity: 美国<br>Tail entity: 星期四<br>Evidence sent IDs: 6<br>Evidence:<br>[6]  钱瑟勒斯威尔&#x27;号和保罗・福斯特号在星期四到达印度科钦，钱瑟勒斯威尔号配备人员360名，驻扎在日本横须贺海军基地，保罗・福斯特号340名，母港在华盛顿埃弗雷德海军基地。", "width": 2, "arrows": "to"}, {"from": "389::n0", "to": "389::n9", "label": "到达", "title": "<b>到达</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 美国<br>Tail entity: 印度科钦<br>Evidence sent IDs: 6<br>Evidence:<br>[6]  钱瑟勒斯威尔&#x27;号和保罗・福斯特号在星期四到达印度科钦，钱瑟勒斯威尔号配备人员360名，驻扎在日本横须贺海军基地，保罗・福斯特号340名，母港在华盛顿埃弗雷德海军基地。", "width": 2, "arrows": "to"}, {"from": "389::n0", "to": "389::n1", "label": "驻扎", "title": "<b>驻扎</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 美国<br>Tail entity: 提康德洛加级导弹巡洋舰钱瑟勒斯威尔号<br>Evidence sent IDs: 3|6<br>Evidence:<br>[3] 美国海军参加军事演习的舰艇包括提康德洛加级导弹巡洋舰钱瑟勒斯威尔号 、斯普鲁恩斯级驱逐舰保罗・福斯特号和一架P-3C巡逻侦察机。<br>[6]  钱瑟勒斯威尔&#x27;号和保罗・福斯特号在星期四到达印度科钦，钱瑟勒斯威尔号配备人员360名，驻扎在日本横须贺海军基地，保罗・福斯特号340名，母港在华盛顿埃弗雷德海军基地。", "width": 2, "arrows": "to"}, {"from": "389::n0", "to": "389::n10", "label": "驻扎", "title": "<b>驻扎</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 美国<br>Tail entity: 日本横须贺海军基地<br>Evidence sent IDs: 6<br>Evidence:<br>[6]  钱瑟勒斯威尔&#x27;号和保罗・福斯特号在星期四到达印度科钦，钱瑟勒斯威尔号配备人员360名，驻扎在日本横须贺海军基地，保罗・福斯特号340名，母港在华盛顿埃弗雷德海军基地。", "width": 2, "arrows": "to"}];
+
+    const container = document.getElementById('mynetwork');
+    if (!window.vis) {
+      container.innerHTML = '<div class="empty">vis-network assets failed to load. Please check the local vis-9.1.2 directory.</div>';
+    } else if (!nodesData.length) {
+      container.innerHTML = '<div class="empty">No graph data is available for visualization.</div>';
+    } else {
+      const nodes = new vis.DataSet(nodesData);
+      const edges = new vis.DataSet(edgesData);
+      const data = { nodes, edges };
+      const options = {
+        interaction: {
+          hover: true,
+          navigationButtons: true,
+          keyboard: true
+        },
+        layout: {
+          improvedLayout: true
+        },
+        physics: {
+          enabled: true,
+          stabilization: {
+            enabled: true,
+            iterations: 300,
+            fit: true
+          },
+          barnesHut: {
+            gravitationalConstant: -3200,
+            centralGravity: 0.2,
+            springLength: 180,
+            springConstant: 0.04,
+            damping: 0.09
+          },
+          minVelocity: 0.75
+        },
+        edges: {
+          smooth: false,
+          color: {
+            color: '#94a3b8',
+            highlight: '#2563eb'
+          },
+          font: {
+            size: 12,
+            align: 'middle',
+            strokeWidth: 0,
+            background: 'rgba(255,255,255,0.75)'
+          }
+        },
+        nodes: {
+          borderWidth: 1,
+          borderWidthSelected: 2,
+          font: {
+            size: 16,
+            color: '#111827'
+          }
+        }
+      };
+
+      const network = new vis.Network(container, data, options);
+      network.once('stabilizationIterationsDone', function() {
+        network.fit({
+          animation: {
+            duration: 500,
+            easingFunction: 'easeInOutQuad'
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

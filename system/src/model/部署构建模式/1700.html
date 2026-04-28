@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Graph: 1700</title>
+  <link rel="stylesheet" href="./vis-9.1.2/vis-network.css">
+  <script src="./vis-9.1.2/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .page {
+      padding: 16px;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #dbe2ea;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    }
+    .header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .meta {
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .legend {
+      padding: 10px 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: #4b5563;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    #mynetwork {
+      width: 100%;
+      height: 85vh;
+      min-height: 760px;
+      background: #ffffff;
+    }
+    .empty {
+      padding: 40px 18px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <div class="header">
+        <div class="title">Document Graph: 1700</div>
+        <div class="meta">Nodes 9 | Edges 11</div>
+      </div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5B8FF9"></span>Subject</span><span class="legend-item"><span class="legend-dot" style="background:#61DDAA"></span>Location</span><span class="legend-item"><span class="legend-dot" style="background:#F6BD16"></span>Date</span><span class="legend-item"><span class="legend-dot" style="background:#7262FD"></span>Equipment</span><span class="legend-item"><span class="legend-dot" style="background:#F08BB4"></span>Militaryforce</span><span class="legend-item"><span class="legend-dot" style="background:#78D3F8"></span>Object</span><span class="legend-item"><span class="legend-dot" style="background:#FF9D4D"></span>Participant</span><span class="legend-item"><span class="legend-dot" style="background:#BFBFBF"></span>Unknown</span></div>
+      <div id="mynetwork"></div>
+    </div>
+  </div>
+  <script>
+    const nodesData = [{"id": "1700::n0", "label": "澳大利亚皇家海军", "title": "<b>澳大利亚皇家海军</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 1700<br>Mentions: 2<br>Sent IDs: 0|6<br>Mentions:<br>name=澳大利亚皇家海军, sent_id=0, pos=[0, 8], type=ENTITY<br>name=澳大利亚皇家海军, sent_id=6, pos=[5, 13], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "1700::n1", "label": "驱逐舰霍巴特号", "title": "<b>驱逐舰霍巴特号</b><br>Type: ENTITY<br>Entity role: Equipment<br>Doc: 1700<br>Mentions: 3<br>Sent IDs: 0|2|5<br>Mentions:<br>name=驱逐舰霍巴特号, sent_id=0, pos=[33, 40], type=ENTITY<br>name=霍巴特号, sent_id=2, pos=[2, 6], type=ENTITY<br>name=霍巴特, sent_id=5, pos=[29, 32], type=ENTITY", "color": "#7262FD", "shape": "dot", "size": 18}, {"id": "1700::n2", "label": "阿利伯克级舰约翰芬恩号", "title": "<b>阿利伯克级舰约翰芬恩号</b><br>Type: ENTITY<br>Entity role: Equipment<br>Doc: 1700<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=阿利伯克级舰约翰芬恩号, sent_id=5, pos=[5, 16], type=ENTITY", "color": "#7262FD", "shape": "dot", "size": 18}, {"id": "1700::n3", "label": "去年11月", "title": "<b>去年11月</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 1700<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=去年11月, sent_id=5, pos=[16, 21], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "1700::n4", "label": "夏威夷海岸", "title": "<b>夏威夷海岸</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 1700<br>Mentions: 1<br>Sent IDs: 5<br>Mentions:<br>name=夏威夷海岸, sent_id=5, pos=[22, 27], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "1700::n5", "label": "布里斯班号", "title": "<b>布里斯班号</b><br>Type: ENTITY<br>Entity role: Equipment<br>Doc: 1700<br>Mentions: 1<br>Sent IDs: 2<br>Mentions:<br>name=布里斯班号, sent_id=2, pos=[21, 26], type=ENTITY", "color": "#7262FD", "shape": "dot", "size": 18}, {"id": "1700::n6", "label": "2018年10月", "title": "<b>2018年10月</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 1700<br>Mentions: 1<br>Sent IDs: 2<br>Mentions:<br>name=2018年10月, sent_id=2, pos=[27, 35], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "1700::n7", "label": "美国宙斯盾作战系统", "title": "<b>美国宙斯盾作战系统</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 1700<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=美国宙斯盾作战系统, sent_id=0, pos=[23, 32], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "1700::n8", "label": "本周早前", "title": "<b>本周早前</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 1700<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=本周早前, sent_id=0, pos=[8, 12], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}];
+    const edgesData = [{"from": "1700::n0", "to": "1700::n2", "label": "测试", "title": "<b>测试</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 澳大利亚皇家海军<br>Tail entity: 阿利伯克级舰约翰芬恩号<br>Evidence sent IDs: 5<br>Evidence:<br>[5]      阿利伯克级舰约翰芬恩号去年11月在夏威夷海岸帮助霍巴特测试了其传感器网系统。", "width": 2, "arrows": "to"}, {"from": "1700::n0", "to": "1700::n3", "label": "测试", "title": "<b>测试</b><br>Relation: Experiment__Date<br>Role: Date<br>Head entity: 澳大利亚皇家海军<br>Tail entity: 去年11月<br>Evidence sent IDs: 5<br>Evidence:<br>[5]      阿利伯克级舰约翰芬恩号去年11月在夏威夷海岸帮助霍巴特测试了其传感器网系统。", "width": 2, "arrows": "to"}, {"from": "1700::n0", "to": "1700::n4", "label": "测试", "title": "<b>测试</b><br>Relation: Experiment__Location<br>Role: Location<br>Head entity: 澳大利亚皇家海军<br>Tail entity: 夏威夷海岸<br>Evidence sent IDs: 5<br>Evidence:<br>[5]      阿利伯克级舰约翰芬恩号去年11月在夏威夷海岸帮助霍巴特测试了其传感器网系统。", "width": 2, "arrows": "to"}, {"from": "1700::n0", "to": "1700::n1", "label": "测试", "title": "<b>测试</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 澳大利亚皇家海军<br>Tail entity: 驱逐舰霍巴特号<br>Evidence sent IDs: 0|2|5<br>Evidence:<br>[0] 澳大利亚皇家海军本周早前宣布，澳大利亚首艘装备美国宙斯盾作战系统的驱逐舰霍巴特号已经完成了武器和系统评估。<br>[2] 首舰霍巴特号于2017年9月入役，第二艘舰布里斯班号于2018年10月下水，最后一艘悉尼号计划于2020年3月交付。<br>[5]      阿利伯克级舰约翰芬恩号去年11月在夏威夷海岸帮助霍巴特测试了其传感器网系统。", "width": 2, "arrows": "to"}, {"from": "1700::n0", "to": "1700::n5", "label": "下水", "title": "<b>下水</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 澳大利亚皇家海军<br>Tail entity: 布里斯班号<br>Evidence sent IDs: 2<br>Evidence:<br>[2] 首舰霍巴特号于2017年9月入役，第二艘舰布里斯班号于2018年10月下水，最后一艘悉尼号计划于2020年3月交付。", "width": 2, "arrows": "to"}, {"from": "1700::n0", "to": "1700::n6", "label": "下水", "title": "<b>下水</b><br>Relation: Experiment__Date<br>Role: Date<br>Head entity: 澳大利亚皇家海军<br>Tail entity: 2018年10月<br>Evidence sent IDs: 2<br>Evidence:<br>[2] 首舰霍巴特号于2017年9月入役，第二艘舰布里斯班号于2018年10月下水，最后一艘悉尼号计划于2020年3月交付。", "width": 2, "arrows": "to"}, {"from": "1700::n0", "to": "1700::n7", "label": "装备", "title": "<b>装备</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 澳大利亚皇家海军<br>Tail entity: 美国宙斯盾作战系统<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 澳大利亚皇家海军本周早前宣布，澳大利亚首艘装备美国宙斯盾作战系统的驱逐舰霍巴特号已经完成了武器和系统评估。", "width": 2, "arrows": "to"}, {"from": "1700::n0", "to": "1700::n1", "label": "装备", "title": "<b>装备</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 澳大利亚皇家海军<br>Tail entity: 驱逐舰霍巴特号<br>Evidence sent IDs: 0|2|5<br>Evidence:<br>[0] 澳大利亚皇家海军本周早前宣布，澳大利亚首艘装备美国宙斯盾作战系统的驱逐舰霍巴特号已经完成了武器和系统评估。<br>[2] 首舰霍巴特号于2017年9月入役，第二艘舰布里斯班号于2018年10月下水，最后一艘悉尼号计划于2020年3月交付。<br>[5]      阿利伯克级舰约翰芬恩号去年11月在夏威夷海岸帮助霍巴特测试了其传感器网系统。", "width": 2, "arrows": "to"}, {"from": "1700::n0", "to": "1700::n1", "label": "评估", "title": "<b>评估</b><br>Relation: Experiment__Equipment<br>Role: Equipment<br>Head entity: 澳大利亚皇家海军<br>Tail entity: 驱逐舰霍巴特号<br>Evidence sent IDs: 0|2|5<br>Evidence:<br>[0] 澳大利亚皇家海军本周早前宣布，澳大利亚首艘装备美国宙斯盾作战系统的驱逐舰霍巴特号已经完成了武器和系统评估。<br>[2] 首舰霍巴特号于2017年9月入役，第二艘舰布里斯班号于2018年10月下水，最后一艘悉尼号计划于2020年3月交付。<br>[5]      阿利伯克级舰约翰芬恩号去年11月在夏威夷海岸帮助霍巴特测试了其传感器网系统。", "width": 2, "arrows": "to"}, {"from": "1700::n0", "to": "1700::n8", "label": "宣布", "title": "<b>宣布</b><br>Relation: Exhibit__Date<br>Role: Date<br>Head entity: 澳大利亚皇家海军<br>Tail entity: 本周早前<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 澳大利亚皇家海军本周早前宣布，澳大利亚首艘装备美国宙斯盾作战系统的驱逐舰霍巴特号已经完成了武器和系统评估。", "width": 2, "arrows": "to"}, {"from": "1700::n0", "to": "1700::n1", "label": "宣布", "title": "<b>宣布</b><br>Relation: Exhibit__Equipment<br>Role: Equipment<br>Head entity: 澳大利亚皇家海军<br>Tail entity: 驱逐舰霍巴特号<br>Evidence sent IDs: 0|2|5<br>Evidence:<br>[0] 澳大利亚皇家海军本周早前宣布，澳大利亚首艘装备美国宙斯盾作战系统的驱逐舰霍巴特号已经完成了武器和系统评估。<br>[2] 首舰霍巴特号于2017年9月入役，第二艘舰布里斯班号于2018年10月下水，最后一艘悉尼号计划于2020年3月交付。<br>[5]      阿利伯克级舰约翰芬恩号去年11月在夏威夷海岸帮助霍巴特测试了其传感器网系统。", "width": 2, "arrows": "to"}];
+
+    const container = document.getElementById('mynetwork');
+    if (!window.vis) {
+      container.innerHTML = '<div class="empty">vis-network assets failed to load. Please check the local vis-9.1.2 directory.</div>';
+    } else if (!nodesData.length) {
+      container.innerHTML = '<div class="empty">No graph data is available for visualization.</div>';
+    } else {
+      const nodes = new vis.DataSet(nodesData);
+      const edges = new vis.DataSet(edgesData);
+      const data = { nodes, edges };
+      const options = {
+        interaction: {
+          hover: true,
+          navigationButtons: true,
+          keyboard: true
+        },
+        layout: {
+          improvedLayout: true
+        },
+        physics: {
+          enabled: true,
+          stabilization: {
+            enabled: true,
+            iterations: 300,
+            fit: true
+          },
+          barnesHut: {
+            gravitationalConstant: -3200,
+            centralGravity: 0.2,
+            springLength: 180,
+            springConstant: 0.04,
+            damping: 0.09
+          },
+          minVelocity: 0.75
+        },
+        edges: {
+          smooth: false,
+          color: {
+            color: '#94a3b8',
+            highlight: '#2563eb'
+          },
+          font: {
+            size: 12,
+            align: 'middle',
+            strokeWidth: 0,
+            background: 'rgba(255,255,255,0.75)'
+          }
+        },
+        nodes: {
+          borderWidth: 1,
+          borderWidthSelected: 2,
+          font: {
+            size: 16,
+            color: '#111827'
+          }
+        }
+      };
+
+      const network = new vis.Network(container, data, options);
+      network.once('stabilizationIterationsDone', function() {
+        network.fit({
+          animation: {
+            duration: 500,
+            easingFunction: 'easeInOutQuad'
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

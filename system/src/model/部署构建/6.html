@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Graph: 6</title>
+  <link rel="stylesheet" href="./vis-9.1.2/vis-network.css">
+  <script src="./vis-9.1.2/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .page {
+      padding: 16px;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #dbe2ea;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    }
+    .header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .meta {
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .legend {
+      padding: 10px 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: #4b5563;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    #mynetwork {
+      width: 100%;
+      height: 85vh;
+      min-height: 760px;
+      background: #ffffff;
+    }
+    .empty {
+      padding: 40px 18px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <div class="header">
+        <div class="title">Document Graph: 6</div>
+        <div class="meta">Nodes 4 | Edges 3</div>
+      </div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5B8FF9"></span>Subject</span><span class="legend-item"><span class="legend-dot" style="background:#61DDAA"></span>Location</span><span class="legend-item"><span class="legend-dot" style="background:#F6BD16"></span>Date</span><span class="legend-item"><span class="legend-dot" style="background:#7262FD"></span>Equipment</span><span class="legend-item"><span class="legend-dot" style="background:#F08BB4"></span>Militaryforce</span><span class="legend-item"><span class="legend-dot" style="background:#78D3F8"></span>Object</span><span class="legend-item"><span class="legend-dot" style="background:#FF9D4D"></span>Participant</span><span class="legend-item"><span class="legend-dot" style="background:#BFBFBF"></span>Unknown</span></div>
+      <div id="mynetwork"></div>
+    </div>
+  </div>
+  <script>
+    const nodesData = [{"id": "50::n0", "label": "俄罗斯", "title": "<b>俄罗斯</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 50<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=俄罗斯, sent_id=0, pos=[43, 46], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "50::n1", "label": "摩尔曼斯克奥列涅戈尔斯克", "title": "<b>摩尔曼斯克奥列涅戈尔斯克</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 50<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=摩尔曼斯克奥列涅戈尔斯克, sent_id=0, pos=[62, 74], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "50::n2", "label": "雷达站", "title": "<b>雷达站</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 50<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=雷达站, sent_id=0, pos=[75, 78], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "50::n3", "label": "伯朝拉", "title": "<b>伯朝拉</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 50<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=伯朝拉, sent_id=0, pos=[58, 61], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}];
+    const edgesData = [{"from": "50::n0", "to": "50::n1", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 俄罗斯<br>Tail entity: 摩尔曼斯克奥列涅戈尔斯克<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 以A・L・明茨院士命名的无线电技术研究所股份公司总经理弗拉基米尔・萨夫琴科宣布，将加入俄罗斯导弹袭击预警系统、部署在伯朝拉和摩尔曼斯克奥列涅戈尔斯克的雷达站，将分别在2015年和2017年开始进行现代化改造。", "width": 2, "arrows": "to"}, {"from": "50::n0", "to": "50::n2", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 俄罗斯<br>Tail entity: 雷达站<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 以A・L・明茨院士命名的无线电技术研究所股份公司总经理弗拉基米尔・萨夫琴科宣布，将加入俄罗斯导弹袭击预警系统、部署在伯朝拉和摩尔曼斯克奥列涅戈尔斯克的雷达站，将分别在2015年和2017年开始进行现代化改造。", "width": 2.5, "arrows": "to"}, {"from": "50::n0", "to": "50::n3", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 俄罗斯<br>Tail entity: 伯朝拉<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 以A・L・明茨院士命名的无线电技术研究所股份公司总经理弗拉基米尔・萨夫琴科宣布，将加入俄罗斯导弹袭击预警系统、部署在伯朝拉和摩尔曼斯克奥列涅戈尔斯克的雷达站，将分别在2015年和2017年开始进行现代化改造。", "width": 2, "arrows": "to"}];
+
+    const container = document.getElementById('mynetwork');
+    if (!window.vis) {
+      container.innerHTML = '<div class="empty">vis-network assets failed to load. Please check the local vis-9.1.2 directory.</div>';
+    } else if (!nodesData.length) {
+      container.innerHTML = '<div class="empty">No graph data is available for visualization.</div>';
+    } else {
+      const nodes = new vis.DataSet(nodesData);
+      const edges = new vis.DataSet(edgesData);
+      const data = { nodes, edges };
+      const options = {
+        interaction: {
+          hover: true,
+          navigationButtons: true,
+          keyboard: true
+        },
+        layout: {
+          improvedLayout: true
+        },
+        physics: {
+          enabled: true,
+          stabilization: {
+            enabled: true,
+            iterations: 300,
+            fit: true
+          },
+          barnesHut: {
+            gravitationalConstant: -3200,
+            centralGravity: 0.2,
+            springLength: 180,
+            springConstant: 0.04,
+            damping: 0.09
+          },
+          minVelocity: 0.75
+        },
+        edges: {
+          smooth: false,
+          color: {
+            color: '#94a3b8',
+            highlight: '#2563eb'
+          },
+          font: {
+            size: 12,
+            align: 'middle',
+            strokeWidth: 0,
+            background: 'rgba(255,255,255,0.75)'
+          }
+        },
+        nodes: {
+          borderWidth: 1,
+          borderWidthSelected: 2,
+          font: {
+            size: 16,
+            color: '#111827'
+          }
+        }
+      };
+
+      const network = new vis.Network(container, data, options);
+      network.once('stabilizationIterationsDone', function() {
+        network.fit({
+          animation: {
+            duration: 500,
+            easingFunction: 'easeInOutQuad'
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

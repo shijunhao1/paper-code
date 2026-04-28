@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Graph: 72</title>
+  <link rel="stylesheet" href="./vis-9.1.2/vis-network.css">
+  <script src="./vis-9.1.2/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .page {
+      padding: 16px;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #dbe2ea;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    }
+    .header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .meta {
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .legend {
+      padding: 10px 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: #4b5563;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    #mynetwork {
+      width: 100%;
+      height: 85vh;
+      min-height: 760px;
+      background: #ffffff;
+    }
+    .empty {
+      padding: 40px 18px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <div class="header">
+        <div class="title">Document Graph: 72</div>
+        <div class="meta">Nodes 13 | Edges 17</div>
+      </div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5B8FF9"></span>Subject</span><span class="legend-item"><span class="legend-dot" style="background:#61DDAA"></span>Location</span><span class="legend-item"><span class="legend-dot" style="background:#F6BD16"></span>Date</span><span class="legend-item"><span class="legend-dot" style="background:#7262FD"></span>Equipment</span><span class="legend-item"><span class="legend-dot" style="background:#F08BB4"></span>Militaryforce</span><span class="legend-item"><span class="legend-dot" style="background:#78D3F8"></span>Object</span><span class="legend-item"><span class="legend-dot" style="background:#FF9D4D"></span>Participant</span><span class="legend-item"><span class="legend-dot" style="background:#BFBFBF"></span>Unknown</span></div>
+      <div id="mynetwork"></div>
+    </div>
+  </div>
+  <script>
+    const nodesData = [{"id": "531::n0", "label": "美国", "title": "<b>美国</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 531<br>Mentions: 3<br>Sent IDs: 0|1<br>Mentions:<br>name=美国, sent_id=0, pos=[0, 2], type=ENTITY<br>name=美国, sent_id=0, pos=[17, 19], type=ENTITY<br>name=美, sent_id=1, pos=[0, 1], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "531::n1", "label": "核潜艇", "title": "<b>核潜艇</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 531<br>Mentions: 2<br>Sent IDs: 0|1<br>Mentions:<br>name=核潜艇, sent_id=0, pos=[7, 10], type=ENTITY<br>name=核潜艇, sent_id=1, pos=[28, 31], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "531::n2", "label": "泰国", "title": "<b>泰国</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 531<br>Mentions: 5<br>Sent IDs: 0|1|5|6<br>Mentions:<br>name=泰国, sent_id=0, pos=[20, 22], type=ENTITY<br>name=泰, sent_id=1, pos=[1, 2], type=ENTITY<br>name=泰国, sent_id=1, pos=[38, 40], type=ENTITY<br>name=泰国, sent_id=5, pos=[0, 2], type=ENTITY<br>name=泰国, sent_id=6, pos=[1, 3], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "531::n3", "label": "美军", "title": "<b>美军</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 531<br>Mentions: 2<br>Sent IDs: 3|6<br>Mentions:<br>name=美军, sent_id=3, pos=[16, 18], type=ENTITY<br>name=美军, sent_id=6, pos=[50, 52], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "531::n4", "label": "2000年", "title": "<b>2000年</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 531<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=2000年, sent_id=0, pos=[12, 17], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "531::n5", "label": "文莱", "title": "<b>文莱</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 531<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=文莱, sent_id=0, pos=[23, 25], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "531::n6", "label": "新加坡", "title": "<b>新加坡</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 531<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=新加坡, sent_id=0, pos=[26, 29], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "531::n7", "label": "马来西亚", "title": "<b>马来西亚</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 531<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=马来西亚, sent_id=0, pos=[30, 34], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "531::n8", "label": "菲律宾", "title": "<b>菲律宾</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 531<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=菲律宾, sent_id=0, pos=[35, 38], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "531::n9", "label": "印尼", "title": "<b>印尼</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 531<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=印尼, sent_id=0, pos=[39, 41], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "531::n10", "label": "2000年", "title": "<b>2000年</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 531<br>Mentions: 1<br>Sent IDs: 1<br>Mentions:<br>name=2000年, sent_id=1, pos=[2, 7], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "531::n11", "label": "以防卫为目的，因此着重反潜艇演练", "title": "<b>以防卫为目的，因此着重反潜艇演练</b><br>Type: ENTITY<br>Entity role: Content<br>Doc: 531<br>Mentions: 1<br>Sent IDs: 2<br>Mentions:<br>name=以防卫为目的，因此着重反潜艇演练, sent_id=2, pos=[5, 21], type=ENTITY", "color": "#BFBFBF", "shape": "dot", "size": 18}, {"id": "531::n12", "label": "罗勇省和春武里省泰国村", "title": "<b>罗勇省和春武里省泰国村</b><br>Type: ENTITY<br>Entity role: Object<br>Doc: 531<br>Mentions: 1<br>Sent IDs: 6<br>Mentions:<br>name=罗勇省和春武里省泰国村, sent_id=6, pos=[55, 66], type=ENTITY", "color": "#78D3F8", "shape": "dot", "size": 18}];
+    const edgesData = [{"from": "531::n0", "to": "531::n1", "label": "派遣", "title": "<b>派遣</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 美国<br>Tail entity: 核潜艇<br>Evidence sent IDs: 0|1<br>Evidence:<br>[0] 美国将首次派遣核潜艇参加2000年美国与泰国、文莱、新加坡、马来西亚、菲律宾和印尼等国举行的克拉特军事演习。<br>[1] 美泰2000年克拉特军事演习开始后，一艘目前位于澳大利亚核潜艇将两天内将抵达泰国参加演习。", "width": 2, "arrows": "to"}, {"from": "531::n0", "to": "531::n4", "label": "派遣", "title": "<b>派遣</b><br>Relation: Deploy__Date<br>Role: Date<br>Head entity: 美国<br>Tail entity: 2000年<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 美国将首次派遣核潜艇参加2000年美国与泰国、文莱、新加坡、马来西亚、菲律宾和印尼等国举行的克拉特军事演习。", "width": 2, "arrows": "to"}, {"from": "531::n0", "to": "531::n10", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Date<br>Role: Date<br>Head entity: 美国<br>Tail entity: 2000年<br>Evidence sent IDs: 1<br>Evidence:<br>[1] 美泰2000年克拉特军事演习开始后，一艘目前位于澳大利亚核潜艇将两天内将抵达泰国参加演习。", "width": 2, "arrows": "to"}, {"from": "531::n0", "to": "531::n11", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Content<br>Role: Content<br>Head entity: 美国<br>Tail entity: 以防卫为目的，因此着重反潜艇演练<br>Evidence sent IDs: 1|2<br>Evidence:<br>[1] 美泰2000年克拉特军事演习开始后，一艘目前位于澳大利亚核潜艇将两天内将抵达泰国参加演习。<br>[2] 这次演习是以防卫为目的，因此着重反潜艇演练。", "width": 2, "arrows": "to"}, {"from": "531::n2", "to": "531::n10", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Date<br>Role: Date<br>Head entity: 泰国<br>Tail entity: 2000年<br>Evidence sent IDs: 1<br>Evidence:<br>[1] 美泰2000年克拉特军事演习开始后，一艘目前位于澳大利亚核潜艇将两天内将抵达泰国参加演习。", "width": 2, "arrows": "to"}, {"from": "531::n2", "to": "531::n11", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Content<br>Role: Content<br>Head entity: 泰国<br>Tail entity: 以防卫为目的，因此着重反潜艇演练<br>Evidence sent IDs: 1|2<br>Evidence:<br>[1] 美泰2000年克拉特军事演习开始后，一艘目前位于澳大利亚核潜艇将两天内将抵达泰国参加演习。<br>[2] 这次演习是以防卫为目的，因此着重反潜艇演练。", "width": 2, "arrows": "to"}, {"from": "531::n5", "to": "531::n10", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Date<br>Role: Date<br>Head entity: 文莱<br>Tail entity: 2000年<br>Evidence sent IDs: 1<br>Evidence:<br>[1] 美泰2000年克拉特军事演习开始后，一艘目前位于澳大利亚核潜艇将两天内将抵达泰国参加演习。", "width": 2, "arrows": "to"}, {"from": "531::n5", "to": "531::n11", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Content<br>Role: Content<br>Head entity: 文莱<br>Tail entity: 以防卫为目的，因此着重反潜艇演练<br>Evidence sent IDs: 1|2<br>Evidence:<br>[1] 美泰2000年克拉特军事演习开始后，一艘目前位于澳大利亚核潜艇将两天内将抵达泰国参加演习。<br>[2] 这次演习是以防卫为目的，因此着重反潜艇演练。", "width": 2, "arrows": "to"}, {"from": "531::n6", "to": "531::n10", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Date<br>Role: Date<br>Head entity: 新加坡<br>Tail entity: 2000年<br>Evidence sent IDs: 1<br>Evidence:<br>[1] 美泰2000年克拉特军事演习开始后，一艘目前位于澳大利亚核潜艇将两天内将抵达泰国参加演习。", "width": 2, "arrows": "to"}, {"from": "531::n6", "to": "531::n11", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Content<br>Role: Content<br>Head entity: 新加坡<br>Tail entity: 以防卫为目的，因此着重反潜艇演练<br>Evidence sent IDs: 1|2<br>Evidence:<br>[1] 美泰2000年克拉特军事演习开始后，一艘目前位于澳大利亚核潜艇将两天内将抵达泰国参加演习。<br>[2] 这次演习是以防卫为目的，因此着重反潜艇演练。", "width": 2, "arrows": "to"}, {"from": "531::n7", "to": "531::n10", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Date<br>Role: Date<br>Head entity: 马来西亚<br>Tail entity: 2000年<br>Evidence sent IDs: 1<br>Evidence:<br>[1] 美泰2000年克拉特军事演习开始后，一艘目前位于澳大利亚核潜艇将两天内将抵达泰国参加演习。", "width": 2, "arrows": "to"}, {"from": "531::n7", "to": "531::n11", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Content<br>Role: Content<br>Head entity: 马来西亚<br>Tail entity: 以防卫为目的，因此着重反潜艇演练<br>Evidence sent IDs: 1|2<br>Evidence:<br>[1] 美泰2000年克拉特军事演习开始后，一艘目前位于澳大利亚核潜艇将两天内将抵达泰国参加演习。<br>[2] 这次演习是以防卫为目的，因此着重反潜艇演练。", "width": 2, "arrows": "to"}, {"from": "531::n8", "to": "531::n10", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Date<br>Role: Date<br>Head entity: 菲律宾<br>Tail entity: 2000年<br>Evidence sent IDs: 1<br>Evidence:<br>[1] 美泰2000年克拉特军事演习开始后，一艘目前位于澳大利亚核潜艇将两天内将抵达泰国参加演习。", "width": 2, "arrows": "to"}, {"from": "531::n8", "to": "531::n11", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Content<br>Role: Content<br>Head entity: 菲律宾<br>Tail entity: 以防卫为目的，因此着重反潜艇演练<br>Evidence sent IDs: 1|2<br>Evidence:<br>[1] 美泰2000年克拉特军事演习开始后，一艘目前位于澳大利亚核潜艇将两天内将抵达泰国参加演习。<br>[2] 这次演习是以防卫为目的，因此着重反潜艇演练。", "width": 2, "arrows": "to"}, {"from": "531::n9", "to": "531::n10", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Date<br>Role: Date<br>Head entity: 印尼<br>Tail entity: 2000年<br>Evidence sent IDs: 1<br>Evidence:<br>[1] 美泰2000年克拉特军事演习开始后，一艘目前位于澳大利亚核潜艇将两天内将抵达泰国参加演习。", "width": 2, "arrows": "to"}, {"from": "531::n9", "to": "531::n11", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Content<br>Role: Content<br>Head entity: 印尼<br>Tail entity: 以防卫为目的，因此着重反潜艇演练<br>Evidence sent IDs: 1|2<br>Evidence:<br>[1] 美泰2000年克拉特军事演习开始后，一艘目前位于澳大利亚核潜艇将两天内将抵达泰国参加演习。<br>[2] 这次演习是以防卫为目的，因此着重反潜艇演练。", "width": 2, "arrows": "to"}, {"from": "531::n3", "to": "531::n12", "label": "援助", "title": "<b>援助</b><br>Relation: Support__Object<br>Role: Object<br>Head entity: 美军<br>Tail entity: 罗勇省和春武里省泰国村<br>Evidence sent IDs: 6<br>Evidence:<br>[6] 在泰国自本月三日起长达十天演习中，头七天在港口演练，十日起三天在海上演习，十四日最后一天是人道援助，美军将前往罗勇省和春武里省泰国村进行医疗服务，并在罗通省一所学校建造多目的楼房。", "width": 2, "arrows": "to"}];
+
+    const container = document.getElementById('mynetwork');
+    if (!window.vis) {
+      container.innerHTML = '<div class="empty">vis-network assets failed to load. Please check the local vis-9.1.2 directory.</div>';
+    } else if (!nodesData.length) {
+      container.innerHTML = '<div class="empty">No graph data is available for visualization.</div>';
+    } else {
+      const nodes = new vis.DataSet(nodesData);
+      const edges = new vis.DataSet(edgesData);
+      const data = { nodes, edges };
+      const options = {
+        interaction: {
+          hover: true,
+          navigationButtons: true,
+          keyboard: true
+        },
+        layout: {
+          improvedLayout: true
+        },
+        physics: {
+          enabled: true,
+          stabilization: {
+            enabled: true,
+            iterations: 300,
+            fit: true
+          },
+          barnesHut: {
+            gravitationalConstant: -3200,
+            centralGravity: 0.2,
+            springLength: 180,
+            springConstant: 0.04,
+            damping: 0.09
+          },
+          minVelocity: 0.75
+        },
+        edges: {
+          smooth: false,
+          color: {
+            color: '#94a3b8',
+            highlight: '#2563eb'
+          },
+          font: {
+            size: 12,
+            align: 'middle',
+            strokeWidth: 0,
+            background: 'rgba(255,255,255,0.75)'
+          }
+        },
+        nodes: {
+          borderWidth: 1,
+          borderWidthSelected: 2,
+          font: {
+            size: 16,
+            color: '#111827'
+          }
+        }
+      };
+
+      const network = new vis.Network(container, data, options);
+      network.once('stabilizationIterationsDone', function() {
+        network.fit({
+          animation: {
+            duration: 500,
+            easingFunction: 'easeInOutQuad'
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

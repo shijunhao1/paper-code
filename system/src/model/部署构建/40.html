@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Graph: 40</title>
+  <link rel="stylesheet" href="./vis-9.1.2/vis-network.css">
+  <script src="./vis-9.1.2/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .page {
+      padding: 16px;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #dbe2ea;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    }
+    .header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .meta {
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .legend {
+      padding: 10px 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: #4b5563;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    #mynetwork {
+      width: 100%;
+      height: 85vh;
+      min-height: 760px;
+      background: #ffffff;
+    }
+    .empty {
+      padding: 40px 18px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <div class="header">
+        <div class="title">Document Graph: 40</div>
+        <div class="meta">Nodes 6 | Edges 4</div>
+      </div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5B8FF9"></span>Subject</span><span class="legend-item"><span class="legend-dot" style="background:#61DDAA"></span>Location</span><span class="legend-item"><span class="legend-dot" style="background:#F6BD16"></span>Date</span><span class="legend-item"><span class="legend-dot" style="background:#7262FD"></span>Equipment</span><span class="legend-item"><span class="legend-dot" style="background:#F08BB4"></span>Militaryforce</span><span class="legend-item"><span class="legend-dot" style="background:#78D3F8"></span>Object</span><span class="legend-item"><span class="legend-dot" style="background:#FF9D4D"></span>Participant</span><span class="legend-item"><span class="legend-dot" style="background:#BFBFBF"></span>Unknown</span></div>
+      <div id="mynetwork"></div>
+    </div>
+  </div>
+  <script>
+    const nodesData = [{"id": "260::n0", "label": "朝鲜", "title": "<b>朝鲜</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 260<br>Mentions: 5<br>Sent IDs: 0|1|3|4|5<br>Mentions:<br>name=朝鲜, sent_id=0, pos=[62, 64], type=ENTITY<br>name=朝鲜, sent_id=1, pos=[21, 23], type=ENTITY<br>name=朝鲜, sent_id=3, pos=[2, 4], type=ENTITY<br>name=朝方, sent_id=4, pos=[8, 10], type=ENTITY<br>name=朝鲜, sent_id=5, pos=[33, 35], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "260::n1", "label": "1996年", "title": "<b>1996年</b><br>Type: ENTITY<br>Entity role: Date<br>Doc: 260<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=1996年, sent_id=0, pos=[23, 28], type=ENTITY", "color": "#F6BD16", "shape": "dot", "size": 18}, {"id": "260::n2", "label": "韩国近海", "title": "<b>韩国近海</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 260<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=韩国近海, sent_id=0, pos=[31, 35], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "260::n3", "label": "朝鲜鲨鱼级潜艇", "title": "<b>朝鲜鲨鱼级潜艇</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 260<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=朝鲜鲨鱼级潜艇, sent_id=0, pos=[36, 43], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "260::n4", "label": "北方界线附近海军基地", "title": "<b>北方界线附近海军基地</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 260<br>Mentions: 1<br>Sent IDs: 4<br>Mentions:<br>name=北方界线附近海军基地, sent_id=4, pos=[14, 24], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "260::n5", "label": "新型鲨鱼级潜艇", "title": "<b>新型鲨鱼级潜艇</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 260<br>Mentions: 1<br>Sent IDs: 4<br>Mentions:<br>name=新型鲨鱼级潜艇, sent_id=4, pos=[25, 32], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}];
+    const edgesData = [{"from": "260::n3", "to": "260::n1", "label": "搁浅", "title": "<b>搁浅</b><br>Relation: Accident__Date<br>Role: Date<br>Head entity: 朝鲜鲨鱼级潜艇<br>Tail entity: 1996年<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 资料图：韩国海军浦项级轻型反潜护卫舰 资料图：1996年搁浅在韩国近海的朝鲜鲨鱼级潜艇 　　中新网4月6日电 据韩联社报道，朝鲜从3月开始加强东部西部海岸海军基地的潜艇机动训练，韩国军事当局对此提高了监视水平。", "width": 2, "arrows": "to"}, {"from": "260::n3", "to": "260::n2", "label": "搁浅", "title": "<b>搁浅</b><br>Relation: Accident__Location<br>Role: Location<br>Head entity: 朝鲜鲨鱼级潜艇<br>Tail entity: 韩国近海<br>Evidence sent IDs: 0<br>Evidence:<br>[0] 资料图：韩国海军浦项级轻型反潜护卫舰 资料图：1996年搁浅在韩国近海的朝鲜鲨鱼级潜艇 　　中新网4月6日电 据韩联社报道，朝鲜从3月开始加强东部西部海岸海军基地的潜艇机动训练，韩国军事当局对此提高了监视水平。", "width": 2, "arrows": "to"}, {"from": "260::n0", "to": "260::n4", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 朝鲜<br>Tail entity: 北方界线附近海军基地<br>Evidence sent IDs: 4<br>Evidence:<br>[4] 　　消息人士说，朝方将部署到北方界线附近海军基地的新型鲨鱼级潜艇投入到训练，可能是为试验潜艇性能，进而继续提高潜艇性能。", "width": 2, "arrows": "to"}, {"from": "260::n0", "to": "260::n5", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 朝鲜<br>Tail entity: 新型鲨鱼级潜艇<br>Evidence sent IDs: 4<br>Evidence:<br>[4] 　　消息人士说，朝方将部署到北方界线附近海军基地的新型鲨鱼级潜艇投入到训练，可能是为试验潜艇性能，进而继续提高潜艇性能。", "width": 2, "arrows": "to"}];
+
+    const container = document.getElementById('mynetwork');
+    if (!window.vis) {
+      container.innerHTML = '<div class="empty">vis-network assets failed to load. Please check the local vis-9.1.2 directory.</div>';
+    } else if (!nodesData.length) {
+      container.innerHTML = '<div class="empty">No graph data is available for visualization.</div>';
+    } else {
+      const nodes = new vis.DataSet(nodesData);
+      const edges = new vis.DataSet(edgesData);
+      const data = { nodes, edges };
+      const options = {
+        interaction: {
+          hover: true,
+          navigationButtons: true,
+          keyboard: true
+        },
+        layout: {
+          improvedLayout: true
+        },
+        physics: {
+          enabled: true,
+          stabilization: {
+            enabled: true,
+            iterations: 300,
+            fit: true
+          },
+          barnesHut: {
+            gravitationalConstant: -3200,
+            centralGravity: 0.2,
+            springLength: 180,
+            springConstant: 0.04,
+            damping: 0.09
+          },
+          minVelocity: 0.75
+        },
+        edges: {
+          smooth: false,
+          color: {
+            color: '#94a3b8',
+            highlight: '#2563eb'
+          },
+          font: {
+            size: 12,
+            align: 'middle',
+            strokeWidth: 0,
+            background: 'rgba(255,255,255,0.75)'
+          }
+        },
+        nodes: {
+          borderWidth: 1,
+          borderWidthSelected: 2,
+          font: {
+            size: 16,
+            color: '#111827'
+          }
+        }
+      };
+
+      const network = new vis.Network(container, data, options);
+      network.once('stabilizationIterationsDone', function() {
+        network.fit({
+          animation: {
+            duration: 500,
+            easingFunction: 'easeInOutQuad'
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

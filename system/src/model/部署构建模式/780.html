@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Graph: 780</title>
+  <link rel="stylesheet" href="./vis-9.1.2/vis-network.css">
+  <script src="./vis-9.1.2/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .page {
+      padding: 16px;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #dbe2ea;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    }
+    .header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .meta {
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .legend {
+      padding: 10px 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: #4b5563;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    #mynetwork {
+      width: 100%;
+      height: 85vh;
+      min-height: 760px;
+      background: #ffffff;
+    }
+    .empty {
+      padding: 40px 18px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="panel">
+      <div class="header">
+        <div class="title">Document Graph: 780</div>
+        <div class="meta">Nodes 8 | Edges 8</div>
+      </div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5B8FF9"></span>Subject</span><span class="legend-item"><span class="legend-dot" style="background:#61DDAA"></span>Location</span><span class="legend-item"><span class="legend-dot" style="background:#F6BD16"></span>Date</span><span class="legend-item"><span class="legend-dot" style="background:#7262FD"></span>Equipment</span><span class="legend-item"><span class="legend-dot" style="background:#F08BB4"></span>Militaryforce</span><span class="legend-item"><span class="legend-dot" style="background:#78D3F8"></span>Object</span><span class="legend-item"><span class="legend-dot" style="background:#FF9D4D"></span>Participant</span><span class="legend-item"><span class="legend-dot" style="background:#BFBFBF"></span>Unknown</span></div>
+      <div id="mynetwork"></div>
+    </div>
+  </div>
+  <script>
+    const nodesData = [{"id": "780::n0", "label": "阿瑟斯顿号扫雷舰", "title": "<b>阿瑟斯顿号扫雷舰</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 780<br>Mentions: 4<br>Sent IDs: 0|1|3|5<br>Mentions:<br>name=阿瑟斯顿号扫雷舰, sent_id=0, pos=[6, 14], type=ENTITY<br>name=阿瑟斯顿号, sent_id=1, pos=[1, 6], type=ENTITY<br>name=阿瑟斯顿号扫雷舰, sent_id=3, pos=[1, 9], type=ENTITY<br>name=阿瑟斯顿号扫雷舰, sent_id=5, pos=[1, 9], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "780::n1", "label": "海湾地区", "title": "<b>海湾地区</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 780<br>Mentions: 2<br>Sent IDs: 0|2<br>Mentions:<br>name=海湾地区, sent_id=0, pos=[15, 19], type=ENTITY<br>name=海湾地区, sent_id=2, pos=[18, 22], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "780::n2", "label": "米德尔顿号", "title": "<b>米德尔顿号</b><br>Type: ENTITY<br>Entity role: Militaryforce<br>Doc: 780<br>Mentions: 2<br>Sent IDs: 5|6<br>Mentions:<br>name=米德尔顿号, sent_id=5, pos=[18, 23], type=ENTITY<br>name=米德尔顿号扫雷舰, sent_id=6, pos=[0, 8], type=ENTITY", "color": "#F08BB4", "shape": "dot", "size": 18}, {"id": "780::n3", "label": "英国皇家海军", "title": "<b>英国皇家海军</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 780<br>Mentions: 1<br>Sent IDs: 0<br>Mentions:<br>name=英国皇家海军, sent_id=0, pos=[0, 6], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "780::n4", "label": "巴林", "title": "<b>巴林</b><br>Type: ENTITY<br>Entity role: Location<br>Doc: 780<br>Mentions: 1<br>Sent IDs: 6<br>Mentions:<br>name=巴林, sent_id=6, pos=[14, 16], type=ENTITY", "color": "#61DDAA", "shape": "dot", "size": 18}, {"id": "780::n5", "label": "多哈海岸", "title": "<b>多哈海岸</b><br>Type: ENTITY<br>Entity role: Area<br>Doc: 780<br>Mentions: 1<br>Sent IDs: 3<br>Mentions:<br>name=多哈海岸, sent_id=3, pos=[11, 15], type=ENTITY", "color": "#BFBFBF", "shape": "dot", "size": 18}, {"id": "780::n6", "label": "卡塔尔武装部队", "title": "<b>卡塔尔武装部队</b><br>Type: ENTITY<br>Entity role: Subject<br>Doc: 780<br>Mentions: 1<br>Sent IDs: 3<br>Mentions:<br>name=卡塔尔武装部队, sent_id=3, pos=[20, 27], type=ENTITY", "color": "#5B8FF9", "shape": "dot", "size": 18}, {"id": "780::n7", "label": "多项训练演习", "title": "<b>多项训练演习</b><br>Type: ENTITY<br>Entity role: Content<br>Doc: 780<br>Mentions: 1<br>Sent IDs: 4<br>Mentions:<br>name=多项训练演习, sent_id=4, pos=[11, 17], type=ENTITY", "color": "#BFBFBF", "shape": "dot", "size": 18}];
+    const edgesData = [{"from": "780::n3", "to": "780::n2", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 英国皇家海军<br>Tail entity: 米德尔顿号<br>Evidence sent IDs: 5|6<br>Evidence:<br>[5]  阿瑟斯顿号扫雷舰的任务将由其姊妹舰米德尔顿号来接替完成。<br>[6] 米德尔顿号扫雷舰最近被部署至巴林，执行反水雷任务，从而保卫沿国际推荐运输走廊贸易航道航行的货船安全。", "width": 2, "arrows": "to"}, {"from": "780::n3", "to": "780::n4", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 英国皇家海军<br>Tail entity: 巴林<br>Evidence sent IDs: 6<br>Evidence:<br>[6] 米德尔顿号扫雷舰最近被部署至巴林，执行反水雷任务，从而保卫沿国际推荐运输走廊贸易航道航行的货船安全。", "width": 2, "arrows": "to"}, {"from": "780::n3", "to": "780::n0", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Militaryforce<br>Role: Militaryforce<br>Head entity: 英国皇家海军<br>Tail entity: 阿瑟斯顿号扫雷舰<br>Evidence sent IDs: 0|1|3|5<br>Evidence:<br>[0] 英国皇家海军阿瑟斯顿号扫雷舰在海湾地区成功完成为期两年的部署后，抵达其母港朴次茅斯海军基地。<br>[1]  阿瑟斯顿号是亨特级扫雷舰。<br>[3]  阿瑟斯顿号扫雷舰还在多哈海岸，参与了同卡塔尔武装部队联合举行的海军演习；<br>[5]  阿瑟斯顿号扫雷舰的任务将由其姊妹舰米德尔顿号来接替完成。", "width": 2, "arrows": "to"}, {"from": "780::n3", "to": "780::n1", "label": "部署", "title": "<b>部署</b><br>Relation: Deploy__Location<br>Role: Location<br>Head entity: 英国皇家海军<br>Tail entity: 海湾地区<br>Evidence sent IDs: 0|2<br>Evidence:<br>[0] 英国皇家海军阿瑟斯顿号扫雷舰在海湾地区成功完成为期两年的部署后，抵达其母港朴次茅斯海军基地。<br>[2] 在部署期间，它参与了各种任务，保证了海湾地区周边国家的海上安全。", "width": 2, "arrows": "to"}, {"from": "780::n0", "to": "780::n5", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Area<br>Role: Area<br>Head entity: 阿瑟斯顿号扫雷舰<br>Tail entity: 多哈海岸<br>Evidence sent IDs: 3<br>Evidence:<br>[3]  阿瑟斯顿号扫雷舰还在多哈海岸，参与了同卡塔尔武装部队联合举行的海军演习；", "width": 2, "arrows": "to"}, {"from": "780::n0", "to": "780::n7", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Content<br>Role: Content<br>Head entity: 阿瑟斯顿号扫雷舰<br>Tail entity: 多项训练演习<br>Evidence sent IDs: 3|4<br>Evidence:<br>[3]  阿瑟斯顿号扫雷舰还在多哈海岸，参与了同卡塔尔武装部队联合举行的海军演习；<br>[4] 并与其他联军部队进行了多项训练演习。", "width": 2, "arrows": "to"}, {"from": "780::n6", "to": "780::n5", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Area<br>Role: Area<br>Head entity: 卡塔尔武装部队<br>Tail entity: 多哈海岸<br>Evidence sent IDs: 3<br>Evidence:<br>[3]  阿瑟斯顿号扫雷舰还在多哈海岸，参与了同卡塔尔武装部队联合举行的海军演习；", "width": 2, "arrows": "to"}, {"from": "780::n6", "to": "780::n7", "label": "演习", "title": "<b>演习</b><br>Relation: Manoeuvre__Content<br>Role: Content<br>Head entity: 卡塔尔武装部队<br>Tail entity: 多项训练演习<br>Evidence sent IDs: 3|4<br>Evidence:<br>[3]  阿瑟斯顿号扫雷舰还在多哈海岸，参与了同卡塔尔武装部队联合举行的海军演习；<br>[4] 并与其他联军部队进行了多项训练演习。", "width": 2, "arrows": "to"}];
+
+    const container = document.getElementById('mynetwork');
+    if (!window.vis) {
+      container.innerHTML = '<div class="empty">vis-network assets failed to load. Please check the local vis-9.1.2 directory.</div>';
+    } else if (!nodesData.length) {
+      container.innerHTML = '<div class="empty">No graph data is available for visualization.</div>';
+    } else {
+      const nodes = new vis.DataSet(nodesData);
+      const edges = new vis.DataSet(edgesData);
+      const data = { nodes, edges };
+      const options = {
+        interaction: {
+          hover: true,
+          navigationButtons: true,
+          keyboard: true
+        },
+        layout: {
+          improvedLayout: true
+        },
+        physics: {
+          enabled: true,
+          stabilization: {
+            enabled: true,
+            iterations: 300,
+            fit: true
+          },
+          barnesHut: {
+            gravitationalConstant: -3200,
+            centralGravity: 0.2,
+            springLength: 180,
+            springConstant: 0.04,
+            damping: 0.09
+          },
+          minVelocity: 0.75
+        },
+        edges: {
+          smooth: false,
+          color: {
+            color: '#94a3b8',
+            highlight: '#2563eb'
+          },
+          font: {
+            size: 12,
+            align: 'middle',
+            strokeWidth: 0,
+            background: 'rgba(255,255,255,0.75)'
+          }
+        },
+        nodes: {
+          borderWidth: 1,
+          borderWidthSelected: 2,
+          font: {
+            size: 16,
+            color: '#111827'
+          }
+        }
+      };
+
+      const network = new vis.Network(container, data, options);
+      network.once('stabilizationIterationsDone', function() {
+        network.fit({
+          animation: {
+            duration: 500,
+            easingFunction: 'easeInOutQuad'
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>
