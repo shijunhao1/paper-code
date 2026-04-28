@@ -1,6 +1,4 @@
-﻿# PPF-MR 实验代码（独立目录）
-
-本目录为基于你论文第4章实现的独立实验代码，不依赖 KDD 目录中的脚本文件。
+﻿# PPF-MR 实验代码
 
 ## 方法对应
 
@@ -19,7 +17,7 @@
 
 3. 候选精炼与目标匹配
 - MLP 对候选内部节点打保留置信度
-- BCE 监督训练（正样本来自目标模式，负样本来自扩展邻域）
+- BCE 监督训练
 - 蒸馏后候选与目标样例做表示匹配
 
 ## 文件说明
@@ -30,20 +28,6 @@
 - `model.py`：GNN编码器
 - `metrics.py`：F1/Jaccard评价
 - `utils.py`：工具函数
-
-## 运行方式
-
-在当前目录执行：
-
-```bash
-python run_ppfmr.py --dataset amazon --data_root ../KDD2024ProCom-master/data --device cuda:0
-```
-
-如果无GPU：
-
-```bash
-python run_ppfmr.py --dataset amazon --data_root ../KDD2024ProCom-master/data --device cpu
-```
 
 ## 消融开关
 
